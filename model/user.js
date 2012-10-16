@@ -18,13 +18,12 @@ if (typeof define !== 'function') {
 
 
         var user = sequelize.define('User', {
-            name:{ type:Sequelize.STRING},
-            UserName:{ type:Sequelize.STRING, validate:{len:{args:6, msg:"le pseudo doit faire au moins 6 charactere"}, notNull:{msg:"Le pseudo ne peut pas etre vide"}}},
-            surname:{ type:Sequelize.STRING},
-            email:{type:Sequelize.STRING, validate:{ isEmail:{msg:"L'adresse mail n'est pas conforme"}, notNull:{msg:"L'adresse mail ne peut pas etre vide"}}},
-            password:{type:Sequelize.STRING, validate:{len:{args:6, msg:"le mot de passe doit faire au moins 6 charactere"}, notNull:{msg:"Le mot de passe ne peut pas etre vide"}}},
-            birthday:{type:Sequelize.DATE},
-            img:{type:Sequelize.STRING}
+            Name:{ type:Sequelize.STRING},
+            Surname:{ type:Sequelize.STRING},
+            Email:{type:Sequelize.STRING, validate:{ isEmail:{msg:"L'adresse mail n'est pas conforme"}, notNull:{msg:"L'adresse mail ne peut pas etre vide"}}},
+            Password:{type:Sequelize.STRING, validate:{len:{args:6, msg:"le mot de passe doit faire au moins 6 charactere"}, notNull:{msg:"Le mot de passe ne peut pas etre vide"}}},
+            Birthday:{type:Sequelize.DATE},
+            Img:{type:Sequelize.STRING}
         });
 
 
@@ -32,11 +31,7 @@ if (typeof define !== 'function') {
         // user.hasMany(message, { as :"Receiver_ID" });
         //TODO don t work for the moment lets see after
 
-
-
         user.sync();
-
-
         return user;
     });
 

@@ -26,13 +26,16 @@ define([
 
     var app = {
         init:function () {
-            datepicker();
+           $('#login').live('submit',function(event){
+               event.preventDefault();
+               user.login($('#logEmail').val(),$('#logPassword').val());
+           });
+
+           datepicker();
            var model = user.init('inscription');
             $('#inscription').live('submit',function(event){
                 event.preventDefault();
                 user.create(model);
-                //le return sert a ne pas submit le form
-
             });
 
         }

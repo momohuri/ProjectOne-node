@@ -8,20 +8,35 @@ if (typeof define !== 'function') {
         "../model/user"
     ], function (user) {
         var Controller = {
-
             index:function (req, res) {
                 res.render('index');
             },
             subscribe:function(req,res){
                 var User = user.build(req.body);
-
                 var err = User.validate();
                 if(err){
-                    res.send(err);
+                    res.send({err:err});
                 }else{
-                    res.send('bien inscrit');
+                    User.save();
+                    res.send({work:true});
                 }
 
+            },
+            connect:function(req,res){
+                if(req.body.password!= '' && req.body.user!=''){
+                    user.find({
+                        where: ['Password=? and Email=?', req.body.password, req.body.user]
+                    }).on('success', function (row) {
+                            if(row!=null){
+                                req.session.user=row;
+                                res.send({work:true,Email:row.Email,Password:row.Password})
+                            }else{
+                                res.send({error:'Email ou Mdp existe pas'});
+                            }
+                        });
+                }else{
+                    res.send({error:"Champs pas bien remplie"});
+                }
             }
 
         }

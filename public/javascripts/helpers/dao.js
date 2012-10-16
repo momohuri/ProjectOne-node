@@ -2,7 +2,7 @@ define([
 ], function () {
 
     var app = {
-        saveOnline:function (url,data,next) {
+        QueryOnline:function (url,data,next) {
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -12,6 +12,10 @@ define([
                 }
 
             });
+        },
+        QueryOffline:function(table,where,next){
+
+
         }
     }
     return app;

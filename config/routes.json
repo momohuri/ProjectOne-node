@@ -6,10 +6,16 @@
             "func":"index",
             "method":"get"
         },
-        "login":{
+        "subscribe":{
             "route":"/addUser",
             "controller":"guest",
             "func":"subscribe",
+            "method":"post"
+        },
+        "Connect":{
+            "route":"/UserConnect",
+            "controller":"guest",
+            "func":"connect",
             "method":"post"
         },
         "404":{
