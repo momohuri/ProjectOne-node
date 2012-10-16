@@ -1,0 +1,32 @@
+      //exemple de creation  un user et d association  un message
+      (le message n est pas automatiquement associer au receveur)
+
+
+      var User = user.build({
+            name:'my awesome project',
+            surname:'woot woot. this will make me a rich man',
+            email:"h@hlo.fr"
+        });
+
+            User.save();//creation de notre utilisateur
+				
+        var Message = message.build({
+            title: "coucou",
+            message:"comment va?"
+            receiverID:2
+        })
+        //on construit notre message
+
+
+        //notre utilisateur envoiele message a l id 2.
+        User.setMessages([Message]).success(function() {
+
+            //et la on recup tout les messages de notre user courants
+			User.getMessages().success(function(userMessage){
+                console.log(userMessage);
+            })
+            
+        })
+		
+
+

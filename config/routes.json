@@ -1,0 +1,20 @@
+{
+    "ROUTE" :{
+        "index":{
+            "route":"/",
+            "controller":"guest",
+            "func":"index",
+            "method":"get"
+        },
+        "login":{
+            "route":"/addUser",
+            "controller":"guest",
+            "func":"subscribe",
+            "method":"post"
+        },
+        "404":{
+            "route":"*",
+            "render":"404"
+        }
+    }
+}
