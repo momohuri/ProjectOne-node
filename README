@@ -1,1 +1,25 @@
-This file was created by JetBrains PhpStorm 5.0.2 for binding GitHub repository
+    //    ) )
+   //    / /  ___     ( ) //
+  //    / / //   ) ) / / // //   / /
+ //    / / //   / / / / // ((___/ /
+//____/ / ((___( ( / / //      / /
+
+
+    //   / /
+   //____           ___       __    __  ___
+  / ____  ||  / / //___) ) //   ) )  / /
+ //       || / / //       //   / /  / /
+//____/ / ||/ / ((____   //   / /  / /     
+
+A little project with online and offline support
+
+
+All in AMD
+
+Server side node.js express sequelize
+
+Database mysql
+
+Client side Knockback bootstrap localstoragedb jquery
+
+Everything should work with phonegap for windows and android phone (and maybe IOS)
