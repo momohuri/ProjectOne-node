@@ -4,36 +4,45 @@
             <form class="form-horizontal" id="inscription">
                 <div class="control-group">
                     <label class="control-label" for="inputName">Nom :</label>
+
                     <div class="controls">
                         <input type="text" id="inputName" placeholder="Votre nom" data-bind="value: Name" required>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputSurname">Prénom :</label>
+
                     <div class="controls">
-                        <input type="text" id="inputSurname" placeholder="Votre prénom" data-bind="value: Surname" required>
+                        <input type="text" id="inputSurname" placeholder="Votre prénom" data-bind="value: Surname"
+                               required>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">Adresse e-mail :</label>
+
                     <div class="controls">
-                        <input type="email" id="inputEmail" placeholder="Votre adresse e-mail:"  data-bind="value: Email" required>
+                        <input type="email" id="inputEmail" placeholder="Votre adresse e-mail:" data-bind="value: Email"
+                               required>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">Saisissez à nouveau votre e-mail :</label>
+
                     <div class="controls">
                         <input type="email" id="inputEmail" placeholder="E-mail" required>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputPassword">Mot de passe :</label>
+
                     <div class="controls">
-                        <input type="password" id="inputPassword" placeholder="Votre mot de passe :" data-bind="value: Password" required>
+                        <input type="password" id="inputPassword" placeholder="Votre mot de passe :"
+                               data-bind="value: Password" required>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputPassword">Saisissez à nouveau votre e-mail :</label>
+
                     <div class="controls">
                         <input type="password" id="inputPassword" placeholder="Mot de passe" required>
                     </div>
@@ -48,23 +57,25 @@
 
         <div class="span7">
             <form class="form-inline well">
-                <div id="alerte" class="alert alert-error" style="display:none"> <strong>La date de retour doit être postérieure à la date de départ !</strong> </div>
+                <div id="alerte" class="alert alert-error" style="display:none"><strong>La date de retour doit être
+                    postérieure à la date de départ !</strong></div>
                 <fieldset>
                     <label class="control-label" for="inputEvent">Evenement :</label>
                     <input type="text" class="search-query" required>
                     <label for="start" class="control-label">Date de départ : </label>
                     <input id="start" type="text" class="input-mini" data-date-format="dd/mm/yy" required>
                     <br/><br/>
-                    <label class="control-label" for="inputEvent" >Lieu :</label>
+                    <label class="control-label" for="inputEvent">Lieu :</label>
                     <input type="text" class="search-query" required>
                     <label for="end" class="control-label">Date de retour : </label>
                     <input id="end" type="text" class="input-mini" data-date-format="dd/mm/yy" required>
-                    <button type="submit" id='Search' class="btn" >Search</button>
+                    <button type="submit" id='Search' class="btn">Search</button>
                 </fieldset>
 
             </form>
 
-            <div class="thumbnail">
-                <iframe frameborder="0" height="400px" width="100%" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.fr/?ie=UTF8&amp;ll=48.84461,2.328844&amp;spn=0.052362,0.127459&amp;t=m&amp;z=14&amp;output=embed"></iframe>
-            </div>
+            <div id="map"  height="400px" width="100%"  ></div>
+
         </div>
+    </div>
+</div>

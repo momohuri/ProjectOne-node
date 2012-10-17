@@ -1,8 +1,10 @@
 define([
     'jquery',
     "../model/user",
+    "../helpers/googlemaps",
     "extern/bootstrap-datepicker"
-], function ($,user) {
+
+], function ($,user,maps) {
 
     function get_date(text,user) {
         var d_split = text.split('/');
@@ -25,6 +27,8 @@ define([
 
     var app = {
         init:function () {
+            maps.init();
+
            $('#login').live('submit',function(event){
                event.preventDefault();
                user.login($('#logEmail').val(),$('#logPassword').val());

@@ -1,7 +1,8 @@
 require.config({
     baseUrl: "/javascripts",
     paths: {
-        "bootstrap": "extern/bootstrap.min"
+        "bootstrap": "extern/bootstrap.min",
+        async:'extern/async.min'
     }
 });
 //call jquery if jquery :)
