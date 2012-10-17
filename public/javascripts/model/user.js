@@ -27,22 +27,33 @@ define([
 
         },
         login:function(user,password){
-            var online =true;
+            var online =false;
             if(online){
                 dao.QueryOnline('UserConnect', {user:user,password:password},
                     function (res) {
                         if(res.work){
-                            //todo local storage
-                            console.log('ici');
+                            dao.createOffline(function(){
+                                dao.InsertOffline('user',{Email:user,Password:password},function(){
+                                    console.log('log and clear')
+                                })
+                            });
+
                         }else{
                             //todo echo error
                             console.log(res.error);
                         }
                  });
             }else{
-                dao.QueryOffline('user','Email='+user,function(res){
+                dao.createOffline(function(){
+                    dao.QueryOffline('user',{Email:user,Password:password},function(res){
+                        if(res.length!=0){
+                            console.log('logged OFFLINE');
+                        }else{
+                            console.log('bad password');
+                        }
+                    })
+                });
 
-                })
             }
 
         }
