@@ -26,15 +26,28 @@ if (typeof define !== 'function') {
                 });
 
 
-                    function createManifest(content) {
-                    fs.unlink("public/site.manifest", function (err) {
-                        fs.writeFile("public/site.manifest", content, function (err) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log("manifest generated saved!");
-                            }
-                        });
+                    function createManifest(files) {
+                        var content='CACHE MANIFEST \n';
+                        files.forEach(function(item){
+                            content+=item+'\n';
+                        })
+
+                    fs.unlink("./public/site.manifest", function (err) {
+                        if(!err){
+                            console.log('deleted');
+                              fs.writeFile("public/site.manifest", content, function (err) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("manifest generated saved!");
+                                }
+                            });
+                        }else{
+                            console.log(err)
+                        }
+
+
+
                     });
                 }
 

@@ -1,5 +1,6 @@
 define([
-], function () {
+    "async!http://maps.google.com/maps/api/js?v=3&sensor=false"
+], function (gmaps) {
 
     // Fonction de callback en cas d’erreur
     function erreurPosition(error) {
@@ -61,7 +62,7 @@ define([
 
             } else {
 
-                alert("Ce navigateur ne supporte pas la géolocalisation");
+                console.log("Ce navigateur ne supporte pas la géolocalisation");
 
             }
 

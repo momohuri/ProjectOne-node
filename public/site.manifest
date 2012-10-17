@@ -1,1 +1,23 @@
-/site.manifest,/templates/home.html,/javascripts/main.js,/javascripts/routes.js,/javascripts/model/user.js,/javascripts/helpers/dao.js,/javascripts/helpers/googlemaps.js,/javascripts/extern/async.min.js,/javascripts/extern/backbone.js,/javascripts/extern/bootstrap-datepicker.js,/javascripts/extern/bootstrap.min.js,/javascripts/extern/knockback-full-stack.min.js,/javascripts/extern/localstoragedb.min.js,/javascripts/extern/require-jquery.js,/javascripts/controller/home.js,/images/glyphicons-halflings-white.png,/images/glyphicons-halflings.png,/css/bootstrap-responsive.min.css,/css/bootstrap.min.css,/css/datepicker.css,/css/main.css
+CACHE MANIFEST 
+/site.manifest
+/templates/home.html
+/javascripts/main.js
+/javascripts/routes.js
+/javascripts/model/user.js
+/javascripts/helpers/dao.js
+/javascripts/helpers/googlemaps.js
+/javascripts/extern/async.js
+/javascripts/extern/backbone.js
+/javascripts/extern/bootstrap-datepicker.js
+/javascripts/extern/bootstrap.min.js
+/javascripts/extern/jquery.min.js
+/javascripts/extern/knockback-full-stack.min.js
+/javascripts/extern/localstoragedb.min.js
+/javascripts/extern/require.min.js
+/javascripts/controller/home.js
+/images/glyphicons-halflings-white.png
+/images/glyphicons-halflings.png
+/css/bootstrap-responsive.min.css
+/css/bootstrap.min.css
+/css/datepicker.css
+/css/main.css
