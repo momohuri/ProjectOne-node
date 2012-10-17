@@ -1,5 +1,5 @@
 define([
-'jquery',
+    'jquery',
     "../model/user",
     "extern/bootstrap-datepicker"
 ], function ($,user) {
@@ -23,7 +23,6 @@ define([
     }
 
 
-
     var app = {
         init:function () {
            $('#login').live('submit',function(event){
@@ -37,11 +36,7 @@ define([
                 event.preventDefault();
                 user.create(model);
             });
-
         }
-
     }
-
     return app;
-
 });

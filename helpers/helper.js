@@ -5,39 +5,41 @@ if (typeof define !== 'function') {
 //class name :
 (function (define) {
     define([
-        'fs'
-    ], function (fs) {
+        'fs',
+        'walk'
+    ], function (fs,walk) {
         var helpers = {
             manifest:function () {
 
-                function getDirectoryFiles(directory, callback) {
-                    fs.readdir(directory, function (err, files) {
-                        files.forEach(function (file) {
-                            fs.stat(directory + '/' + file, function (err, stats) {
-                                if (stats.isFile()) {
-                                    callback(directory + '/' + file);
-                                }
-                                if (stats.isDirectory()) {
-                                    getDirectoryFiles(directory + '/' + file, callback);
-                                }
-                            });
-                        });
-                    });
-                }
 
-                var content = 'CACHE MANIFEST';
-                getDirectoryFiles('./public', function (file_with_path) {
+                var files   = [];
+
+// Walker options
+                var walker  = walk.walk('./public', { followLinks: false });
+
+                walker.on('file', function(root, stat, next) {
+                    // Add this file to the list of files
+                    files.push(root.substr(8,root.length) + '/' + stat.name);
+                    next();
+                });
+
+                walker.on('end', function() {
+                    createManifest(files);
+                });
+
+
+                    function createManifest(content) {
                     fs.unlink("public/site.manifest", function (err) {
-                        content +='\n '+file_with_path.substr(8,file_with_path.length);
-                        fs.writeFile("public/site.manifest", content, function(err) {
-                            if(err) {
+                        fs.writeFile("public/site.manifest", content, function (err) {
+                            if (err) {
                                 console.log(err);
                             } else {
                                 console.log("The file was saved!");
                             }
                         });
                     });
-                });
+                }
+
 
             }
         }
