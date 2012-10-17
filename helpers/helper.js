@@ -32,7 +32,7 @@ if (typeof define !== 'function') {
                             if (err) {
                                 console.log(err);
                             } else {
-                                console.log("The file was saved!");
+                                console.log("manifest generated saved!");
                             }
                         });
                     });

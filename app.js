@@ -12,6 +12,7 @@ define([
 ], function (express, routes, http,ejs, path, Sequelize,helpers) {
 
     var app = express();
+
     app.configure(function () {
         app.set('port', process.env.PORT || 3000);
         app.set('views', __dirname + '/views');
