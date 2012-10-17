@@ -13,8 +13,6 @@ if (typeof define !== 'function') {
 
 
                 var files   = [];
-
-// Walker options
                 var walker  = walk.walk('./public', { followLinks: false });
 
                 walker.on('file', function(root, stat, next) {
