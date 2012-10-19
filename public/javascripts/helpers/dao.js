@@ -1,5 +1,5 @@
 define([
-    '../extern/localStoragedb.min'
+    '../extern/localstoragedb.min'
 ], function () {
 
     var app = {
