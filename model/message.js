@@ -5,7 +5,7 @@ if (typeof define !== 'function') {
 //class name :
 (function (define) {
     define([
-        "Sequelize",
+        "sequelize",
         "./user"
     ], function (Sequelize,user) {
         if(!global.sequelize){

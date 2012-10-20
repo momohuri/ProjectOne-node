@@ -27,15 +27,16 @@ define([
 
         },
         login:function(user,password){
-            var online =false;
+            var online =true;
             if(online){
                 dao.QueryOnline('UserConnect', {user:user,password:password},
                     function (res) {
                         if(res.work){
+                            sessionStorage.setItem('id',res.id);
                             dao.createOffline(function(){
                                 dao.InsertOffline('user',{Email:user,Password:password},function(){
                                     console.log('log and clear')
-                                })
+                                });
                             });
 
                         }else{
@@ -47,7 +48,8 @@ define([
                 dao.createOffline(function(){
                     dao.QueryOffline('user',{Email:user,Password:password},function(res){
                         if(res.length!=0){
-                            console.log('logged OFFLINE');
+                            //todo make offline id session
+                            sessionStorage.setItem('id','idOffline');
                         }else{
                             console.log('bad password');
                         }

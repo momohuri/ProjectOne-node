@@ -7,9 +7,8 @@ define([
     'http',
     'ejs',
     'path',
-    'Sequelize',
     './helpers/helper'
-], function (express, routes, http,ejs, path, Sequelize,helpers) {
+], function (express, routes, http,ejs, path,helpers) {
 
     var app = express();
 

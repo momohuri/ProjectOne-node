@@ -5,7 +5,7 @@ if (typeof define !== 'function') {
 //class name : USER Model
 (function (define) {
     define([
-        "Sequelize",
+        "sequelize",
         "./message"
     ], function (Sequelize, message) {
 

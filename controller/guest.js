@@ -29,7 +29,7 @@ if (typeof define !== 'function') {
                     }).on('success', function (row) {
                             if(row!=null){
                                 req.session.user=row;
-                                res.send({work:true,Email:row.Email,Password:row.Password});
+                                res.send({work:true,Email:row.Email,Password:row.Password,id:req.session.id});
                             }else{
                                 res.send({error:'Email ou Mdp existe pas'});
                             }
