@@ -2,15 +2,15 @@ define([
     './dao'
 ], function (dao) {
     var app = {
-        isConnected:function () {
+        isConnected:function (next) {
             $.ajax({
                 type:'POST',
                 url:'isConnected',
                 success:function () {
-                    console.log('coucou');
+                    next(true);
                 },
                 error:function () {
-                    console.log('coucou2');
+                    next(false);
                 }
             });
         }

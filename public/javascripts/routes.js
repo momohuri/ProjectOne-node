@@ -18,14 +18,28 @@ define([
             "*actions":"defaultRoute" // Backbone will try match the route above first
         },
         home:function () {
-            functionH.isConnected();
-            loadView('home', function () {
-                homeC.init();
+            functionH.isConnected( function(isConnected){
+                if(isConnected){
+                    loadView('home', function () {
+                    homeC.init();
+                    });
+                }else{
+                    loadView('home-offline', function () {
+                    });
+                }
             });
+
         },
         defaultRoute:function () {
-            loadView('home', function () {
-                homeC.init();
+            functionH.isConnected( function(isConnected){
+                if(isConnected){
+                    loadView('home', function () {
+                        homeC.init();
+                    });
+                }else{
+                    loadView('home-offline', function () {
+                    });
+                }
             });
         }
     });
