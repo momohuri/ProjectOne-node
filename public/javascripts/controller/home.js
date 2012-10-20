@@ -1,6 +1,7 @@
 define([
     "../model/user",
-    "extern/bootstrap-datepicker"
+    "extern/bootstrap-datepicker",
+    "extern/bootstrap.min"
 ], function (user) {
 
     function get_date(text,user) {
