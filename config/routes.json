@@ -8,9 +8,9 @@
         },
         "subscribe":{
             "route":"/addUser",
+            "method":"post",
             "controller":"guest",
-            "func":"subscribe",
-            "method":"post"
+            "func":"subscribe"
         },
         "Connect":{
             "route":"/UserConnect",

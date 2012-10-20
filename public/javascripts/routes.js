@@ -1,6 +1,6 @@
 define([
     'controller/home'
-], function (home) {
+], function (homeC) {
 
 
     var loadView = function (view, next) {
@@ -18,15 +18,13 @@ define([
         },
         home:function () {
             loadView('home', function () {
-                home.init();
-            })
+                homeC.init();
+            });
         },
-
         defaultRoute:function () {
             loadView('home', function () {
-                home.init();
+                homeC.init();
             });
-
         }
     });
 

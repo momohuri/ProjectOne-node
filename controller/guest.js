@@ -8,6 +8,9 @@ if (typeof define !== 'function') {
         "../model/user"
     ], function (user) {
         var Controller = {
+            isConnected:function(req,res){
+              res.send({work:true});
+            },
             index:function (req, res) {
                 res.render('index');
             },

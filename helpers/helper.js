@@ -10,8 +10,6 @@ if (typeof define !== 'function') {
     ], function (fs,walk) {
         var helpers = {
             manifest:function () {
-
-
                 var files   = [];
                 var walker  = walk.walk('./public', { followLinks: false });
 

@@ -1,7 +1,6 @@
 define([
     "../model/user",
     "extern/bootstrap-datepicker"
-
 ], function (user) {
 
     function get_date(text,user) {
@@ -22,7 +21,6 @@ define([
         });
     }
 
-
     var app = {
         init:function () {
            $('#login').live('submit',function(event){
@@ -31,7 +29,9 @@ define([
            });
 
            datepicker();
+
            var model = user.init('inscription');
+
             $('#inscription').live('submit',function(event){
                 event.preventDefault();
                 user.create(model);

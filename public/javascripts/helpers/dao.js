@@ -15,7 +15,7 @@ define([
             });
         },
         QueryOffline:function(table,where,next){
-            var result = document.db.query("user", function(row) {
+            var result = document.db.query(table, function(row) {
                 var exist=true;
                 for(var item in where ){
                     if(row[item] !=where[item]){
