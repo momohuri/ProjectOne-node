@@ -1,9 +1,8 @@
 define([
     "../model/user",
-    "../helpers/googlemaps",
     "extern/bootstrap-datepicker"
 
-], function (user,maps) {
+], function (user) {
 
     function get_date(text,user) {
         var d_split = text.split('/');
@@ -37,7 +36,11 @@ define([
                 event.preventDefault();
                 user.create(model);
             });
-            maps.init();
+
+            require(["helpers/googlemaps"],function(maps){
+                maps.init();
+            });
+
         }
     }
     return app;

@@ -34,16 +34,31 @@ if (typeof define !== 'function') {
                             }
                         })
 
+
                     fs.unlink("./public/site.manifest", function (err) {
                         if(!err){
                             console.log('deleted');
-//                              fs.writeFile("public/site.manifest", content, function (err) {
-//                                if (err) {
-//                                    console.log(err);
-//                                } else {
-//                                    console.log("manifest generated saved!");
-//                                }
-                           // });
+                            content+="NETWORK: \n\
+http://maps.gstatic.com/\n \
+http://maps.google.com/\n \
+http://maps.googleapis.com/\n \
+http://mt0.googleapis.com/\n\
+http://mt1.googleapis.com/\n\
+http://mt2.googleapis.com/ \n\
+http://mt3.googleapis.com/ \n\
+http://khm0.googleapis.com/ \n\
+http://khm1.googleapis.com/ \n\
+http://cbk0.googleapis.com/ \n\
+http://cbk1.googleapis.com/ \n\
+http://www.google-analytics.com/ \n\
+http://gg.google.com/";
+                              fs.writeFile("public/site.manifest", content, function (err) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("manifest generated saved!");
+                                }
+                           });
                         }else{
                             console.log(err)
                         }
