@@ -1,6 +1,6 @@
 define([
-
-], function () {
+    './dao'
+], function (dao) {
     var app = {
         isConnected:function () {
             dao.QueryOnline("isConnected",{},function(res){

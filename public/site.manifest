@@ -4,6 +4,7 @@ CACHE MANIFEST
 /javascripts/routes.js
 /javascripts/model/user.js
 /javascripts/helpers/dao.js
+/javascripts/helpers/function.js
 /javascripts/helpers/googlemaps.js
 /javascripts/extern/async.js
 /javascripts/extern/backbone.js

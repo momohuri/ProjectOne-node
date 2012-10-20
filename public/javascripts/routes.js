@@ -1,6 +1,7 @@
 define([
-    'controller/home'
-], function (homeC) {
+    'controller/home',
+    'helpers/function'
+], function (homeC,functionH) {
 
 
     var loadView = function (view, next) {
@@ -17,6 +18,8 @@ define([
             "*actions":"defaultRoute" // Backbone will try match the route above first
         },
         home:function () {
+            functionH.isConnected();
+            debugger
             loadView('home', function () {
                 homeC.init();
             });
