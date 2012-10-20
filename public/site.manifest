@@ -1,5 +1,8 @@
 CACHE MANIFEST 
+/templates/home-offline.html
 /templates/home.html
+/templates/menu-connected.html
+/templates/menu-disconnected.html
 /javascripts/main.js
 /javascripts/routes.js
 /javascripts/model/user.js
