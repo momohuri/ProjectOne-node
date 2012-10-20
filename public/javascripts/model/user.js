@@ -1,6 +1,8 @@
 define([
-    '../helpers/dao'
-], function (dao) {
+    '../helpers/dao',
+    "../helpers/function"
+
+], function (dao, functionH) {
 
     var user = new Backbone.Model(
         {
@@ -26,38 +28,38 @@ define([
                 });
 
         },
-        login:function(user,password){
-            var online =true;
-            if(online){
-                dao.QueryOnline('UserConnect', {user:user,password:password},
-                    function (res) {
-                        if(res.work){
-                            sessionStorage.setItem('id',res.id);
-                            dao.createOffline(function(){
-                                dao.InsertOffline('user',{Email:user,Password:password},function(){
-                                    console.log('log and clear')
+        login:function (user, password) {
+            functionH.isConnected(function (online) {
+                debugger
+                if (online) {
+                    dao.QueryOnline('UserConnect', {user:user, password:password},
+                        function (res) {
+                            if (res.work) {
+                                sessionStorage.setItem('id', res.id);
+                                dao.createOffline(function () {
+                                    dao.InsertOffline('user', {Email:user, Password:password}, function () {
+                                        console.log('log and clear')
+                                    });
                                 });
-                            });
 
-                        }else{
-                            //todo echo error
-                            console.log(res.error);
-                        }
-                 });
-            }else{
-                dao.createOffline(function(){
-                    dao.QueryOffline('user',{Email:user,Password:password},function(res){
-                        if(res.length!=0){
-                            //todo make offline id session
-                            sessionStorage.setItem('id','idOffline');
-                        }else{
-                            console.log('bad password');
-                        }
-                    })
-                });
-
-            }
-
+                            } else {
+                                //todo echo error
+                                console.log(res.error);
+                            }
+                        });
+                } else {
+                    dao.createOffline(function () {
+                        dao.QueryOffline('user', {Email:user, Password:password}, function (res) {
+                            if (res.length != 0) {
+                                //todo make offline id session
+                                sessionStorage.setItem('id', 'idOffline');
+                            } else {
+                                console.log('bad password');
+                            }
+                        })
+                    });
+                }
+            });
         }
 
     }
