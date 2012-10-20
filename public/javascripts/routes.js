@@ -1,10 +1,22 @@
 define([
     'controller/home',
-    'helpers/function'
-], function (homeC,functionH) {
+    'helpers/function',
+    'model/user'
+], function (homeC,functionH,user) {
 
 
     var loadView = function (view, next) {
+        user.isLogged(function(logged){
+            if(logged){
+                $.get('../templates/menu-connected.html', function (data) {
+                    $('#menu').html(data);
+                });
+            }else{
+                $.get('../templates/menu-disconnected.html', function (data) {
+                    $('#menu').html(data);
+                });
+            }
+        });
         ko.removeNode($('#into'));
         $.get('../templates/' + view + '.html', function (data) {
             $('#into').html(data);

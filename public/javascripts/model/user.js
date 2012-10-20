@@ -28,9 +28,15 @@ define([
                 });
 
         },
+        isLogged:function(next){
+            if(sessionStorage.getItem('id')!=null){
+                next(true);
+            }else{
+                next(false);
+            }
+        },
         login:function (user, password) {
             functionH.isConnected(function (online) {
-                debugger
                 if (online) {
                     dao.QueryOnline('UserConnect', {user:user, password:password},
                         function (res) {
