@@ -18,6 +18,12 @@
             "func":"connect",
             "method":"post"
         },
+        "isConnected":{
+            "route":"/isConnected",
+            "controller":"guest",
+            "func":"isConnected",
+            "method":"post"
+        },
         "404":{
             "route":"*",
             "render":"404"
