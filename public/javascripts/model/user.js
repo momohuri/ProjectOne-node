@@ -21,8 +21,8 @@ define([
         },
         create:function (model) {
             dao.QueryOnline('addUser', model.model().attributes,
-                function (data) {
-                    console.log(data)
+                function (res) {
+                    console.log(res)
                 });
 
         },
@@ -45,7 +45,7 @@ define([
                         }
                  });
             }else{
-                dao.(function(){
+                dao.createOffline(function(){
                     dao.QueryOffline('user',{Email:user,Password:password},function(res){
                         if(res.length!=0){
                             //todo make offline id session
