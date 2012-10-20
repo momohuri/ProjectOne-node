@@ -3,14 +3,16 @@ define([
 ], function (dao) {
     var app = {
         isConnected:function () {
-            dao.QueryOnline("isConnected",{},function(res){
-                if(res.work){
-                    console.log('connecter')
-                }else{
-                    console.log('error')
+            $.ajax({
+                type:'POST',
+                url:'isConnected',
+                success:function () {
+                    console.log('coucou');
+                },
+                error:function () {
+                    console.log('coucou2');
                 }
-
-            })
+            });
         }
     }
     return app;
