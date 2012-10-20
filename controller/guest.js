@@ -34,7 +34,7 @@ if (typeof define !== 'function') {
                                 req.session.user=row;
                                 res.send({work:true,Email:row.Email,Password:row.Password,id:req.session.id});
                             }else{
-                                res.send({error:'Email ou Mdp existe pas'});
+                                res.send({err:{err:['Email ou Mdp existe pas']}});
                             }
                         });
                 }else{
