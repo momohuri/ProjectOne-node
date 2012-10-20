@@ -24,7 +24,7 @@ define([
         create:function (model) {
             dao.QueryOnline('addUser', model.model().attributes,
                 function (res) {
-                    console.log(res)
+                    functionH.alert("inscription",res.err);
                 });
 
         },
@@ -49,8 +49,7 @@ define([
                                 });
 
                             } else {
-                                //todo echo error
-                                console.log(res.error);
+                                functionH.alert("login",res.err);
                             }
                         });
                 } else {
