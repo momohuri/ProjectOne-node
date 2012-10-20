@@ -2,6 +2,10 @@
     <div class="row-fluid">
         <div class="span5">
             <form class="form-horizontal" id="inscription">
+                <div class="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    toto
+                </div>
                 <div class="control-group">
                     <label class="control-label" for="inputName">Nom :</label>
 
@@ -29,14 +33,14 @@
                     <label class="control-label" for="inputEmail">Saisissez à nouveau votre e-mail :</label>
 
                     <div class="controls">
-                        <input type="email" id="inputEmail" placeholder="E-mail" required>
+                        <input type="email" id="inputEmail2" placeholder="E-mail" required>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputPassword">Mot de passe :</label>
 
                     <div class="controls">
-                        <input type="password" id="inputPassword" placeholder="Votre mot de passe :"
+                        <input type="password" id="inputPassword2" placeholder="Votre mot de passe :"
                                data-bind="value: Password" required>
                     </div>
                 </div>
@@ -61,12 +65,12 @@
                     postérieure à la date de départ !</strong></div>
                 <fieldset>
                     <label class="control-label" for="inputEvent">Evenement :</label>
-                    <input type="text" class="search-query" required>
+                    <input type="text" id="inputEvent" class="search-query" required>
                     <label for="start" class="control-label">Date de départ : </label>
                     <input id="start" type="text" class="input-mini" data-date-format="dd/mm/yy" required>
                     <br/><br/>
-                    <label class="control-label" for="inputEvent">Lieu :</label>
-                    <input type="text" class="search-query" required>
+                    <label class="control-label" for="inputPlace">Lieu :</label>
+                    <input type="text" id="inputPlace" class="search-query" required>
                     <label for="end" class="control-label">Date de retour : </label>
                     <input id="end" type="text" class="input-mini" data-date-format="dd/mm/yy" required>
                     <button type="submit" id='Search' class="btn">Search</button>
