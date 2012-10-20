@@ -4,6 +4,8 @@
 
 .idea/
 
+*.manifest
+
 *.pydevproject
 .project
 .metadata
