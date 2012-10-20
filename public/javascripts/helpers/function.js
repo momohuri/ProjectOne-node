@@ -7,7 +7,7 @@ define([
                 if(res.work){
                     console.log('connecter')
                 }else{
-                    console.log('pas connecter')
+                    console.log('error')
                 }
 
             })

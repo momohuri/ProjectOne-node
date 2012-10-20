@@ -19,7 +19,6 @@ define([
         },
         home:function () {
             functionH.isConnected();
-            debugger
             loadView('home', function () {
                 homeC.init();
             });
