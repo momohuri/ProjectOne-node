@@ -26,7 +26,7 @@ define([
         app.use(express.static(path.join(__dirname, 'public')));
         app.use(app.router);
         routes.route(app);
-        helpers.manifest();
+        //helpers.manifest();
     });
 
 
