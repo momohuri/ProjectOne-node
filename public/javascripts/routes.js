@@ -1,8 +1,9 @@
 define([
     'controller/home',
+    'controller/message',
     'helpers/function',
     'model/user'
-], function (homeC,functionH,user) {
+], function (homeC,messageC,functionH,user) {
 
 
     var loadView = function (view, next) {
@@ -47,6 +48,7 @@ define([
             functionH.isConnected( function(isConnected){
                 if(isConnected){
                     loadView('message', function () {
+                    messageC.init();
                     });
                 }else{
                     loadView('message', function () {
