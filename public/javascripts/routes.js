@@ -27,6 +27,7 @@ define([
     var AppRouter = Backbone.Router.extend({
         routes:{
             "inscription":"home",
+            "message":"message",
             "*actions":"defaultRoute" // Backbone will try match the route above first
         },
         home:function () {
@@ -41,6 +42,17 @@ define([
                 }
             });
 
+        },
+        message:function(){
+            functionH.isConnected( function(isConnected){
+                if(isConnected){
+                    loadView('message', function () {
+                    });
+                }else{
+                    loadView('message', function () {
+                    });
+                }
+            });
         },
         defaultRoute:function () {
             functionH.isConnected( function(isConnected){

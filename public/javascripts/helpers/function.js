@@ -23,7 +23,6 @@ define([
                     err+=error[item][i]+'<br/>';
                 }
             };
-
             $('.alert').remove();
             $('#'+idForm).after('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>' + err + '</div>');
         }
