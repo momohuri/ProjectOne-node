@@ -1,20 +1,23 @@
 define([
     'controller/home',
     'controller/message',
+    'controller/menu',
     'helpers/function',
     'model/user'
-], function (homeC,messageC,functionH,user) {
+], function (homeC,messageC,menuC,functionH,user) {
 
 
     var loadView = function (view, next) {
         user.isLogged(function(logged){
             if(logged){
-                $.get('../templates/menu-connected.html', function (data) {
+                $.get('../templates/menu-logged.html', function (data) {
                     $('#menu').html(data);
+                    menuC.logged();
                 });
             }else{
-                $.get('../templates/menu-disconnected.html', function (data) {
+                $.get('../templates/menu-nonlogged.html', function (data) {
                     $('#menu').html(data);
+                    menuC.nonlogged();
                 });
             }
         });

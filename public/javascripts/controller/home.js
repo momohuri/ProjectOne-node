@@ -24,12 +24,7 @@ define([
 
     var app = {
         init:function () {
-           $('#login').live('submit',function(event){
-               event.preventDefault();
-               user.login($('#logEmail').val(),$('#logPassword').val());
-           });
-
-           datepicker();
+             datepicker();
 
            var model = user.init('inscription');
 
