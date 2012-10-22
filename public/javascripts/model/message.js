@@ -15,6 +15,7 @@ define([
     var app = {
         init:function () {
         //pareil que dans user.js ?
+        //entuilisant ce model la oui
         },
 
         send:function (message) {
