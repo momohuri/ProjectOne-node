@@ -10,22 +10,22 @@ define([
     var loadView = function (view, next) {
         user.isLogged(function(logged){
             if(logged){
-                $.get('../templates/menu-logged.html', function (data) {
+                $.get('templates/menu-logged.html', function (data) {
                     $('#menu').html(data);
                     menuC.logged();
-                });
+                },'html');
             }else{
-                $.get('../templates/menu-nonlogged.html', function (data) {
+                $.get('templates/menu-nonlogged.html', function (data) {
                     $('#menu').html(data);
                     menuC.nonlogged();
-                });
+                },'html');
             }
         });
         ko.removeNode($('#into'));
-        $.get('../templates/' + view + '.html', function (data) {
+        $.get('templates/' + view + '.html', function (data) {
             $('#into').html(data);
             next();
-        });
+        },'html');
     }
 
     var AppRouter = Backbone.Router.extend({

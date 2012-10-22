@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: "/javascripts",
+    baseUrl: "javascripts",
     paths: {
         "bootstrap": "extern/bootstrap.min",
         async:'extern/async'
