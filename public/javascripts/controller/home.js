@@ -32,12 +32,6 @@ define([
                 event.preventDefault();
                 user.create(model);
             });
-
-
-           /* $('#login').live('submit',function(?){
-                ?? routes ?
-            }) */
-
             require(["helpers/googlemaps"],function(maps){
                 maps.init();
             });

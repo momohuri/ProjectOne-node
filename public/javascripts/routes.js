@@ -4,28 +4,37 @@ define([
     'controller/menu',
     'helpers/function',
     'model/user'
-], function (homeC,messageC,menuC,functionH,user) {
+], function (homeC, messageC, menuC, functionH, user) {
 
 
     var loadView = function (view, next) {
-        user.isLogged(function(logged){
-            if(logged){
-                $.get('templates/menu-logged.html', function (data) {
-                    $('#menu').html(data);
-                    menuC.logged();
-                },'html');
-            }else{
-                $.get('templates/menu-nonlogged.html', function (data) {
-                    $('#menu').html(data);
-                    menuC.nonlogged();
-                },'html');
-            }
-        });
+        $.get('templates/menu-nonlogged.html', function (data) {
+            $('#menu').html(data);
+            menuC.nonlogged();
+        }, 'html');
         ko.removeNode($('#into'));
         $.get('templates/' + view + '.html', function (data) {
             $('#into').html(data);
             next();
-        },'html');
+        }, 'html');
+    }
+
+    var loadViewLogged = function (view, next) {
+        user.isLogged(function (logged) {
+            if (logged) {
+                $.get('templates/menu-logged.html', function (data) {
+                    $('#menu').html(data);
+                    menuC.logged();
+                }, 'html');
+                ko.removeNode($('#into'));
+                $.get('templates/' + view + '.html', function (data) {
+                    $('#into').html(data);
+                    next();
+                }, 'html');
+            } else {
+                window.location.hash='';
+            }
+        });
     }
 
     var AppRouter = Backbone.Router.extend({
@@ -35,37 +44,32 @@ define([
             "*actions":"defaultRoute" // Backbone will try match the route above first
         },
         home:function () {
-            functionH.isConnected( function(isConnected){
-                if(isConnected){
+            functionH.isConnected(function (isConnected) {
+                if (isConnected) {
                     loadView('home', function () {
-                    homeC.init();
+                        homeC.init();
                     });
-                }else{
+                } else {
                     loadView('home-offline', function () {
                     });
                 }
             });
 
         },
-        message:function(){
-            user.isLogged(function(logged){
-                if(logged){
-                    loadView('message', function () {
-                    messageC.init();
+        message:function () {
+            user.isLogged(function (logged) {
+                    loadViewLogged('message', function () {
+                        messageC.init();
                     });
-                }else{
-                    loadView('home', function () {
-                    });
-                }
             });
         },
         defaultRoute:function () {
-            functionH.isConnected( function(isConnected){
-                if(isConnected){
+            functionH.isConnected(function (isConnected) {
+                if (isConnected) {
                     loadView('home', function () {
                         homeC.init();
                     });
-                }else{
+                } else {
                     loadView('home-offline', function () {
                     });
                 }

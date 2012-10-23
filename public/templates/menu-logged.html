@@ -1,4 +1,4 @@
-<ul class="nav">
+<ul class="nav hidden-phone">
     <li>
         <a href="#">
             Accueil
@@ -15,8 +15,34 @@
         </a>
     </li>
 </ul>
+<ul class="nav visible-phone">
+    <li>
+        <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown">
+            Menu
+            <b class="caret"></b>
+        </a>
 
-    <button id='disconnect' class="btn navbar-form pull-right btn btn-primary">
-        Deconnecter
-    </button>
-</form>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li>
+                <a href="#message">
+                    Messages
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Evenements
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Emploie du temps
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+
+<button id='disconnect' class="btn navbar-form pull-right btn btn-primary">
+    Deconnecter
+</button>

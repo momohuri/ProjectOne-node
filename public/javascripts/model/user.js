@@ -43,7 +43,8 @@ define([
                                 sessionStorage.setItem('id', res.id);
                                 dao.createOffline(function () {
                                     dao.InsertOffline('user', {Email:user, Password:password}, function () {
-                                        console.log('log and clear')
+                                        window.location.hash = 'message';
+                                        //todo real page
                                     });
                                 });
 
@@ -57,8 +58,10 @@ define([
                             if (res.length != 0) {
                                 //todo make offline id session
                                 sessionStorage.setItem('id', 'idOffline');
+                                window.location.hash = 'message';
+
                             } else {
-                                console.log('bad password');
+                                functionH.alert("login", res.err);
                             }
                         })
                     });
@@ -70,16 +73,14 @@ define([
                 if (online) {
                     dao.QueryOnline('UserDisconect', {id:window.sessionStorage.id},
                         function (res) {
-                            window.sessionStorage.removeItem('id')
+                            window.sessionStorage.removeItem('id');
+                            window.location.hash = '';
                         });
                 } else {
                     dao.QueryOffline('user', {Email:user, Password:password}, function (res) {
-                        if (res.length != 0) {
-                            //todo make offline id session
-                            sessionStorage.setItem('id', 'idOffline');
-                        } else {
-                            console.log('bad password');
-                        }
+                        window.location.hash = '';
+                        sessionStorage.removeItem('id');
+
                     });
                 }
             });
