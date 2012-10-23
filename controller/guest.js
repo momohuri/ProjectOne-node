@@ -18,8 +18,9 @@ if (typeof define !== 'function') {
                 var User = user.build(req.body);
                 var err = User.validate();
                 if(err){
-                    res.send({err:err});
+                     res.send({err:err});
                 }else{
+                    User.hashpassword();
                     User.save();
                     res.send({work:true});
                 }
