@@ -2,7 +2,7 @@ define([
     '../helpers/dao',
     "../helpers/function"
 
-], function (dao,functionH) {
+], function (dao, functionH) {
 
     var message = new Backbone.Model(
         {
@@ -13,14 +13,14 @@ define([
 
 
     var app = {
-        init:function () {
+        init:function (form) {
             var view_model = kb.viewModel(message);
             ko.applyBindings(view_model, $('#' + form)[0]);
             return view_model;
         },
 
         send:function (message) {
-            dao.QueryOnline('addMessage', message,
+            dao.QueryOnline('addMessage', message.model().attributes,
                 function (res) {
                     functionH.alert("message",res.err);
                 });

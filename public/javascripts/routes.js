@@ -48,13 +48,13 @@ define([
 
         },
         message:function(){
-            functionH.isConnected( function(isConnected){
-                if(isConnected){
+            user.isLogged(function(logged){
+                if(logged){
                     loadView('message', function () {
                     messageC.init();
                     });
                 }else{
-                    loadView('message', function () {
+                    loadView('home', function () {
                     });
                 }
             });
