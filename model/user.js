@@ -6,8 +6,9 @@ if (typeof define !== 'function') {
 (function (define) {
     define([
         "sequelize",
-        "./message"
-    ], function (Sequelize, message) {
+        "./message",
+        "password-hash"
+    ], function (Sequelize, message, hash) {
 
 
         if (!global.sequelize) {
@@ -18,13 +19,20 @@ if (typeof define !== 'function') {
 
 
         var user = sequelize.define('User', {
-            Name:{ type:Sequelize.STRING},
-            Surname:{ type:Sequelize.STRING},
-            Email:{type:Sequelize.STRING, validate:{ isEmail:{msg:"L'adresse mail n'est pas conforme"}, notNull:{msg:"L'adresse mail ne peut pas etre vide"}}},
-            Password:{type:Sequelize.STRING, validate:{len:{args:6, msg:"le mot de passe doit faire au moins 6 charactere"}, notNull:{msg:"Le mot de passe ne peut pas etre vide"}}},
-            Birthday:{type:Sequelize.DATE},
-            Img:{type:Sequelize.STRING}
+                Name:{ type:Sequelize.STRING},
+                Surname:{ type:Sequelize.STRING},
+                Email:{type:Sequelize.STRING, validate:{ isEmail:{msg:"L'adresse mail n'est pas conforme"}, notNull:{msg:"L'adresse mail ne peut pas etre vide"}}},
+                Password:{type:Sequelize.STRING, validate:{len:{args:6, msg:"le mot de passe doit faire au moins 6 charactere"}, notNull:{msg:"Le mot de passe ne peut pas etre vide"}}},
+                Birthday:{type:Sequelize.DATE},
+                Img:{type:Sequelize.STRING}
+            }, { instanceMethods:{
+            hashpassword:function () {
+                this.Password= hash.generate(this.Password);
+                }
+            }
         });
+
+
 
 
         user.hasMany(message);
