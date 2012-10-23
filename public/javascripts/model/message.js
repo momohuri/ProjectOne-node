@@ -14,8 +14,9 @@ define([
 
     var app = {
         init:function () {
-        //pareil que dans user.js ?
-        //entuilisant ce model la oui
+            var view_model = kb.viewModel(message);
+            ko.applyBindings(view_model, $('#' + form)[0]);
+            return view_model;
         },
 
         send:function (message) {
