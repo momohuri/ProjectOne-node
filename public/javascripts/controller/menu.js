@@ -4,13 +4,15 @@ define([
 
     var app = {
         logged:function () {
+            $('#disconnect').live('click',function(event){
+                user.unlogue();
+            });
+        },
+        nonlogged:function(){
             $('#login').live('submit',function(event){
                 event.preventDefault();
                 user.login($('#logEmail').val(),$('#logPassword').val());
             });
-        },
-        nonlogged:function(){
-
         }
     }
     return app;

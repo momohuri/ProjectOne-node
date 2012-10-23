@@ -24,6 +24,12 @@
             "func":"isConnected",
             "method":"post"
         },
+        "UserDisconect":{
+            "route":"/UserDisconect",
+            "controller":"connected",
+            "func":"Disconnect",
+            "method":"post"
+        },
         "404":{
             "route":"*",
             "render":"404"

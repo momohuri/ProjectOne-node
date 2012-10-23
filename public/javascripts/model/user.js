@@ -24,14 +24,14 @@ define([
         create:function (model) {
             dao.QueryOnline('addUser', model.model().attributes,
                 function (res) {
-                    functionH.alert("inscription",res.err);
+                    functionH.alert("inscription", res.err);
                 });
 
         },
-        isLogged:function(next){
-            if(sessionStorage.getItem('id')!=null){
+        isLogged:function (next) {
+            if (sessionStorage.getItem('id') != null) {
                 next(true);
-            }else{
+            } else {
                 next(false);
             }
         },
@@ -49,7 +49,7 @@ define([
                                 });
 
                             } else {
-                                functionH.alert("login",res.err);
+                                functionH.alert("login", res.err);
                             }
                         });
                 } else {
@@ -65,6 +65,26 @@ define([
                     });
                 }
             });
+        },
+        unlogue:function () {
+            functionH.isConnected(function (online) {
+                if (online) {
+                    dao.QueryOnline('UserDisconect', {id:window.sessionStorage.id},
+                        function (res) {
+                            window.sessionStorage.removeItem('id')
+                        });
+                } else {
+                    dao.QueryOffline('user', {Email:user, Password:password}, function (res) {
+                        if (res.length != 0) {
+                            //todo make offline id session
+                            sessionStorage.setItem('id', 'idOffline');
+                        } else {
+                            console.log('bad password');
+                        }
+                    });
+                }
+            });
+
         }
 
     }

@@ -10,12 +10,14 @@ if (typeof define !== 'function') {
 (function (define) {
     define([
         'fs',
-        '../controller/guest'
-    ], function (fs,Cguest) {
+        '../controller/guest',
+        '../controller/connected'
+    ], function (fs,Cguest,Cconnected) {
         "use strict";
 
         var Controller = [];
         Controller.guest = Cguest;
+        Controller.connected = Cconnected;
 
 
         var routes = {
