@@ -26,7 +26,6 @@ define([
                 function (res) {
                     functionH.alert("inscription", res.err);
                 });
-
         },
         isLogged:function (next) {
             if (sessionStorage.getItem('id') != null) {

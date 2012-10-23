@@ -23,7 +23,6 @@ if (typeof define !== 'function') {
                     User.save();
                     res.send({work:true});
                 }
-
             },
             connect:function(req,res){
                 if(req.body.password!= '' && req.body.user!=''){

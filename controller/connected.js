@@ -8,10 +8,17 @@ if (typeof define !== 'function') {
     ], function () {
         var Controller = {
             Disconnect:function (req, res) {
-                var lol;
+               req.session.user=null;
+               res.send({work:true})
+            },
+            isLogged:function(req,res){
+               if( req.session.user!=null){
+                   res.send(true);
+               }else{
+                   res.send(false);
+               }
             }
         }
-
         return Controller;
     });
 
