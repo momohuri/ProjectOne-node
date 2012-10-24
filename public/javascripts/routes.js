@@ -59,18 +59,14 @@ define([
 
         },
         message:function () {
-            user.isLogged(function (logged) {
                     loadViewLogged('message', function () {
                         messageC.init();
                     });
-            });
         },
         event:function () {
-            user.isLogged(function (logged) {
                 loadViewLogged('event', function () {
                     eventC.init();
                 });
-            });
         },
         defaultRoute:function () {
             functionH.isConnected(function (isConnected) {
