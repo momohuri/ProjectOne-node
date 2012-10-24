@@ -24,7 +24,7 @@ define([
                 }
             };
             $('.alert').remove();
-            $('#'+idForm).after('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>' + err + '</div>');
+            $('#'+idForm).append('<div style="margin-top:10px;" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>' + err + '</div>');
         }
     }
     return app;

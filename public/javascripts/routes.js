@@ -1,10 +1,11 @@
 define([
     'controller/home',
     'controller/message',
+    'controller/event',
     'controller/menu',
     'helpers/function',
     'model/user'
-], function (homeC, messageC, menuC, functionH, user) {
+], function (homeC, messageC, eventC, menuC, functionH, user) {
 
 
     var loadView = function (view, next) {
@@ -41,6 +42,7 @@ define([
         routes:{
             "inscription":"home",
             "message":"message",
+            "event":"event",
             "*actions":"defaultRoute" // Backbone will try match the route above first
         },
         home:function () {
@@ -61,6 +63,13 @@ define([
                     loadViewLogged('message', function () {
                         messageC.init();
                     });
+            });
+        },
+        event:function () {
+            user.isLogged(function (logged) {
+                loadViewLogged('event', function () {
+                    eventC.init();
+                });
             });
         },
         defaultRoute:function () {

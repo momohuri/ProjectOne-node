@@ -24,8 +24,13 @@ define([
         create:function (model) {
             dao.QueryOnline('addUser', model.model().attributes,
                 function (res) {
-                    functionH.alert("inscription", res.err);
+                    if(res.work == true ){
+                        window.location.hash = 'message';
+                    }else{
+                        functionH.alert("inscription", res.err);
+                     }
                 });
+
         },
         isLogged:function (next) {
             if (sessionStorage.getItem('id') != null) {

@@ -20,7 +20,7 @@ if (typeof define !== 'function') {
                 if(err){
                      res.send({err:err});
                 }else{
-                    User.hashpassword();
+                    //User.hashpassword();
                     User.save();
                     res.send({work:true});
                 }
