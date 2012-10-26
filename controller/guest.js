@@ -20,19 +20,24 @@ if (typeof define !== 'function') {
                 if(err){
                      res.send({err:err});
                 }else{
-                    //User.hashpassword();
+                    User.hashthispassword();
                     User.save();
                     res.send({work:true});
                 }
             },
             connect:function(req,res){
                 if(req.body.password!= '' && req.body.user!=''){
+
                     user.find({
-                        where: ['Password=? and Email=?', req.body.password, req.body.user]
+                        where: [' Email=?', req.body.user]
                     }).on('success', function (row) {
                             if(row!=null){
-                                req.session.user=row;
-                                res.send({work:true,Email:row.Email,Password:row.Password,id:req.session.id});
+                                if(user.verify(req.body.password,row.Password)){
+                                    req.session.user=row;
+                                    res.send({work:true,Email:row.Email,Password:row.Password,id:req.session.id});
+                                }else{
+                                    res.send({err:{err:['Email ou Mdp existe pas']}});
+                                }
                             }else{
                                 res.send({err:{err:['Email ou Mdp existe pas']}});
                             }
