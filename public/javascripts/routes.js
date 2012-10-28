@@ -20,6 +20,18 @@ define([
         }, 'html');
     }
 
+    var loadViewOnOffline=function(view,next){
+        $.get('templates/menu-nonlogged.html', function (data) {
+            $('#menu').html(data);
+            menuC.nonlogged();
+        }, 'html');
+        ko.removeNode($('#into'));
+        $.get('templates/' + view + '.html', function (data) {
+            $('#into').html(data);
+            next();
+        }, 'html');
+    }
+
     var loadViewLogged = function (view, next) {
         user.isLogged(function (logged) {
             if (logged) {

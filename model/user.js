@@ -32,7 +32,7 @@ if (typeof define !== 'function') {
                 }},
             classMethods:{
                 verify:function (password,hashedPassword) {
-                  return  hash.verify(password, hashedPassword)
+                  return hash.verify(password, hashedPassword)
                 }
             }
         });
