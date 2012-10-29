@@ -2,7 +2,7 @@ define([
     "../model/user",
     "extern/bootstrap-datepicker",
     "extern/bootstrap.min"
-], function (user) {
+], function (user,datepicker) {
 
     function get_date(text,user) {
         var d_split = text.split('/');
