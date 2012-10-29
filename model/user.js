@@ -7,8 +7,9 @@ if (typeof define !== 'function') {
     define([
         "sequelize",
         "./message",
+        "./event",
         "password-hash"
-    ], function (Sequelize, message, hash) {
+    ], function (Sequelize, message,event, hash) {
 
 
         if (!global.sequelize) {
@@ -21,7 +22,7 @@ if (typeof define !== 'function') {
         var user = sequelize.define('User', {
             Name:{ type:Sequelize.STRING},
             Surname:{ type:Sequelize.STRING},
-            Email:{type:Sequelize.STRING, validate:{ isEmail:{msg:"L'adresse mail n'est pas conforme"}, notNull:{msg:"L'adresse mail ne peut pas etre vide"}}},
+            Email:{type:Sequelize.STRING,unique: true, validate:{ isEmail:{msg:"L'adresse mail n'est pas conforme"}, notNull:{msg:"L'adresse mail ne peut pas etre vide"}}},
             Password:{type:Sequelize.STRING, validate:{len:{args:6, msg:"le mot de passe doit faire au moins 6 charactere"}, notNull:{msg:"Le mot de passe ne peut pas etre vide"}}},
             Birthday:{type:Sequelize.DATE},
             Img:{type:Sequelize.STRING}
@@ -39,10 +40,17 @@ if (typeof define !== 'function') {
 
 
         user.hasMany(message);
-        // user.hasMany(message, { as :"Receiver_ID" });
-        //TODO don t work for the moment lets see after
 
+       // user.hasMany(message, { as :"Receiver_ID" });
+        //TODO don t work for the moment lets see after
+        user.hasMany(event,{as : "Events"});
+        event.hasMany(user,{as:"Members"});
+        user.hasOne(event,{as:"Creator", foreignKey: 'Creator_id'});
+
+        message.sync();
         user.sync();
+        event.sync();
+
         return user;
     });
 

@@ -19,9 +19,6 @@ if (typeof define !== 'function') {
             sender_Id:Sequelize.INTEGER
         });
 
-        message.sync();
-
-
 
         return message;
 
