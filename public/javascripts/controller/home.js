@@ -26,15 +26,15 @@ define([
     var app = {
         init:function () {
             datepicker();
-
             var model = user.init('inscription');
 
             $('#inscription').live('submit', function (event) {
-                event.preventDefault();
                 user.create(model);
+                event.preventDefault();
             });
             require(["helpers/googlemaps"], function (maps) {
                 maps.init();
+                maps.autocomplete();
                 $('#searchEvent').live('submit', function (event) {
                     event.preventDefault();
                     maps.searchLocations()

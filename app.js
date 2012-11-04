@@ -7,8 +7,9 @@ define([
     'http',
     'ejs',
     'path',
-    './helpers/helper'
-], function (express, routes, http,ejs, path,helpers) {
+    './helpers/helper',
+    './model/relation'
+], function (express, routes, http,ejs, path,helpers,relation) {
 
     var app = express();
 
@@ -26,6 +27,7 @@ define([
         app.use(express.static(path.join(__dirname, 'public')));
         app.use(app.router);
         routes.route(app);
+        relation.create();
         //helpers.manifest();
     });
 

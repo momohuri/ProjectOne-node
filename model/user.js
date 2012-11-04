@@ -39,18 +39,6 @@ if (typeof define !== 'function') {
         });
 
 
-        user.hasMany(message);
-
-       // user.hasMany(message, { as :"Receiver_ID" });
-        //TODO don t work for the moment lets see after
-        user.hasMany(event,{as : "Events"});
-        event.hasMany(user,{as:"Members"});
-        user.hasOne(event,{as:"Creator", foreignKey: 'Creator_id'});
-
-        message.sync();
-        user.sync();
-        event.sync();
-
         return user;
     });
 

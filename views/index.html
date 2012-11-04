@@ -13,6 +13,8 @@
     <script data-main="javascripts/main" src="javascripts/extern/require.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <!--limage qui ce charge pas vient de ce css-->
     <style>
         body {
             padding-top: 60px;
@@ -40,8 +42,11 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="#">
+            <a class="brand hidden-phone" href="#" >
                 Daily-events
+            </a>
+            <a class="brand visible-phone" href="#" >
+                D-E
             </a>
             <div id="menu">
 

@@ -1,5 +1,6 @@
 define([
-    "async!http://maps.google.com/maps/api/js?v=3&sensor=false"
+    "async!http://maps.google.com/maps/api/js?v=3&sensor=false",
+    "extern/jquery-ui"
 ], function (gmaps) {
 
         // Fonction de callback en cas d’erreur
@@ -25,27 +26,20 @@ define([
             geocoder = new google.maps.Geocoder();
             var latlng = new google.maps.LatLng(lat, lng);
             geocoder.geocode({'latLng':latlng}, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                        for (var i = 0; i < results[0].address_components.length; i++) {
-                            for (var b = 0; b < results[0].address_components[i].types.length; b++) {
-                                if (results[0].address_components[i].types[b] == "administrative_area_level_2") {
-                                    var city = results[0].address_components[i].long_name;
-                                    $('#inputPlace').val(city);
-                                    break;
-                                }
-                            }
-                        }
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        $('#inputPlace').val(results[0].formatted_address);
                     }
                 }
-            });
+
+            )
+            ;
         }
 
-         function centerOnCity(center) {
-             var latlng = new google.maps.LatLng(center.lat(), center.lng());
-             //map = new google.maps.Map(document.getElementById("map"));
-             document.map.panTo(latlng);
-         }
+        function centerOnCity(center) {
+            var latlng = new google.maps.LatLng(center.lat(), center.lng());
+            //map = new google.maps.Map(document.getElementById("map"));
+            document.map.panTo(latlng);
+        }
 
         var app = {
             init:function () {
@@ -64,7 +58,7 @@ define([
 
 // Initialisation de la carte avec les options
                 var map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
-                document.map =map;
+                document.map = map;
 
                 if (navigator.geolocation) {
 
@@ -90,17 +84,52 @@ define([
 
 
             },
-            searchLocations:function(){
-                    var address = document.getElementById("inputPlace").value;
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({address: address}, function(results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            centerOnCity(results[0].geometry.location);
-                        } else {
-                            alert(address + ' not found');
-                        }
-                    });
-                }
+            searchLocations:function () {
+                var address = document.getElementById("inputPlace").value;
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({address:address}, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        centerOnCity(results[0].geometry.location);
+                    } else {
+                        alert(address + ' not found');
+                    }
+                });
+            },
+            autocomplete:function(){
+                $( "#inputPlace" ).autocomplete({
+                    source: function( request, response ) {
+                        $.ajax({
+                            url: "http://ws.geonames.org/searchJSON",
+                            dataType: "jsonp",
+                            data: {
+                                featureClass: "P",
+                                country:"FR",
+                                style: "full",
+                                maxRows: 12,
+                                name_startsWith: request.term
+                            },
+                            success: function( data ) {
+                                response( $.map( data.geonames, function( item ) {
+                                    return {
+                                        label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+                                        value: item.name
+                                    }
+                                }));
+                            }
+                        });
+                    },
+                    minLength: 2,
+                    select: function( event, ui ) {
+                        this.value= ui.item.label;
+                    },
+                    open: function() {
+                        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                    },
+                    close: function() {
+                        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                    }
+                });
+            }
         }
         return app;
 
