@@ -1,7 +1,6 @@
 define([
     '../helpers/dao',
     "../helpers/function"
-
 ], function (dao, functionH) {
 
     var user = new Backbone.Model(

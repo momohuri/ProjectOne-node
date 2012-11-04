@@ -22,6 +22,7 @@ if (typeof define !== 'function') {
                 }else{
                     User.hashthispassword();
                     User.save();
+                    //todo sen GUID
                     res.send({work:true});
                 }
             },
