@@ -9,6 +9,9 @@ define([
                 event.preventDefault();
                 event.create(model);
             });
+            require(["helpers/googlemaps"],function(maps){
+                maps.init();
+            });
 
         }
     }
