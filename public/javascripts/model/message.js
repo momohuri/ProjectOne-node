@@ -18,7 +18,6 @@ define([
             ko.applyBindings(view_model, $('#' + form)[0]);
             return view_model;
         },
-
         send:function (message) {
             dao.QueryOnline('addMessage', message.model().attributes,
                 function (res) {

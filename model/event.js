@@ -8,7 +8,6 @@ if (typeof define !== 'function') {
         "sequelize"
     ], function (Sequelize) {
 
-
         if (!global.sequelize) {
             var sequelize = global.sequelize = new Sequelize("projectone", "root");
         } else {
@@ -20,9 +19,16 @@ if (typeof define !== 'function') {
             Name:{ type:Sequelize.STRING},
             Address:{ type:Sequelize.STRING},
             lat:{type:Sequelize.STRING},
-            long:{type:Sequelize.STRING},
+            lng:{type:Sequelize.STRING},
             date:{type:Sequelize.DATE},
             Img:{type:Sequelize.STRING}
+        },{
+            instanceMethods:{
+
+                },
+            classMethods:{
+
+            }
         });
 
         return event;

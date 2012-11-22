@@ -58,6 +58,7 @@ define([
 
 // Initialisation de la carte avec les options
                 var map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
+                public map;
                 document.map = map;
 
                 if (navigator.geolocation) {
@@ -77,14 +78,10 @@ define([
                     navigator.geolocation.getCurrentPosition(affichePosition, erreurPosition);
 
                 } else {
-
                     console.log("Ce navigateur ne supporte pas la géolocalisation");
-
                 }
-
-
             },
-            searchLocations:function () {
+            searchLocations:function (next) {
                 var address = document.getElementById("inputPlace").value;
                 var geocoder = new google.maps.Geocoder();
                 geocoder.geocode({address:address}, function (results, status) {
@@ -93,41 +90,51 @@ define([
                     } else {
                         alert(address + ' not found');
                     }
+                    next(results)
                 });
             },
-            autocomplete:function(){
-                $( "#inputPlace" ).autocomplete({
-                    source: function( request, response ) {
+            autocomplete:function () {
+                $("#inputPlace").autocomplete({
+                    source:function (request, response) {
                         $.ajax({
-                            url: "http://ws.geonames.org/searchJSON",
-                            dataType: "jsonp",
-                            data: {
-                                featureClass: "P",
+                            url:"http://ws.geonames.org/searchJSON",
+                            dataType:"jsonp",
+                            data:{
+                                featureClass:"P",
                                 country:"FR",
-                                style: "full",
-                                maxRows: 12,
-                                name_startsWith: request.term
+                                style:"full",
+                                maxRows:12,
+                                name_startsWith:request.term
                             },
-                            success: function( data ) {
-                                response( $.map( data.geonames, function( item ) {
+                            success:function (data) {
+                                response($.map(data.geonames, function (item) {
                                     return {
-                                        label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                                        value: item.name
+                                        label:item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+                                        value:item.name
                                     }
                                 }));
                             }
                         });
                     },
-                    minLength: 2,
-                    select: function( event, ui ) {
-                        this.value= ui.item.label;
+                    minLength:2,
+                    select:function (event, ui) {
+                        this.value = ui.item.label;
                     },
-                    open: function() {
-                        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                    open:function () {
+                        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
                     },
-                    close: function() {
-                        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                    close:function () {
+                        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
                     }
+                });
+            },
+            addMarker:function(lat,lng){
+              //  var map= document.getElementById('map');
+                var myLatlng= new google.maps.LatLng(lat,lng);
+                var marker = new google.maps.Marker({
+                    map:map,
+                    position: myLatlng,
+                    title:"coucou"
                 });
             }
         }

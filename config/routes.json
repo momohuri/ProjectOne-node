@@ -30,6 +30,12 @@
             "func":"Disconnect",
             "method":"post"
         },
+        "getEvent":{
+            "route":"/getEvent",
+            "controller":"guest",
+            "func":"getEvent",
+            "method":"post"
+        },
         "404":{
             "route":"*",
             "render":"404"
