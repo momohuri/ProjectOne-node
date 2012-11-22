@@ -1,21 +1,20 @@
 <form class="form-inline well">
-    <div id="alerte" class="alert alert-error" style="display:none"><strong>La date de retour doit être
-        postérieure à la date de départ !</strong></div>
     <fieldset>
         <label class="control-label" for="event">Titre de votre évènement :</label>
         <input type="text" id="event" class="search-query" required><br/><br/>
         <label class="control-label" for="eventDesc">Description de votre évènement :</label>
         <input type="text" id="eventDesc" class="search-query" required><br/><br/>
-        <label for="start" class="control-label">Date de départ : </label>
-        <input id="start" type="text" class="input-mini" data-date-format="dd/mm/yy" required>
-        <label for="end" class="control-label">Date de retour : </label>
-        <input id="end" type="text" class="input-mini" data-date-format="dd/mm/yy" required><br/><br/>
+        <label for="startDate" class="control-label">Date de départ : </label>
+        <input type="text" name="enDate" id="startDate" value="" required="">
+        <label for="endDate" class="control-label">Date de retour : </label>
+        <input type="text" id="endDate" value="" required/><br/><br/>
         <label class="control-label" for="inputPlace">Lieu :</label>
 
-        <input type="text" id="inputPlace" class="search-query" required>
-        <input type="text" name="basic_example_1" id="basic_example_1" value="" class="hasDatepicker">
-        <button type="submit" id='Search' class="btn">Search</button>
+        <input type="text" id="inputPlace" class="search-query" required><br/><br/>
+        <button type="submit" id='Search' class="btn">Rechercher</button>
     </fieldset>
 </form>
+
+
 <div id="map" class="img-polaroid"  ></div>
         <!--test-->
