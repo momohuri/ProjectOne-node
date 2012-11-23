@@ -3,10 +3,10 @@ define([
     'controller/message',
     'controller/event',
     'controller/menu',
+    'controller/inscription',
     'helpers/function',
     'model/user'
-], function (homeC, messageC, eventC, menuC, functionH, user) {
-
+], function (homeC, messageC, eventC, menuC, inscriptionC, functionH, user) {
         //vue qui n a pas besoin d etre logger et c la meme on et offline
         var loadView = function (view, next) {
             $.get('templates/menu-nonlogged.html', function (data) {
@@ -94,7 +94,8 @@ define([
                 "inscription":"home",
                 "message":"message",
                 "event":"event",
-                "*actions":"defaultRoute" // Backbone will try match the route above first
+                "inscription":"inscription",
+                "*actions":"defaultRoute"
             },
             home:function () {
                 loadViewloggerOnOffline('home', function (online) {
@@ -112,6 +113,14 @@ define([
                 loadViewLogged('event', function () {
                     eventC.init();
                 });
+            },
+            inscription:function () {
+                loadViewOnOffline('inscription', function (online) {
+                        if (online) {
+                            inscriptionC.init();
+                        }
+                    }
+                )
             },
             defaultRoute:function () {
                 loadViewOnOffline('home', function (online) {

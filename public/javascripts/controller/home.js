@@ -1,9 +1,8 @@
 define([
-    "../model/user",
     "../model/event",
     "extern/bootstrap-datepicker",
     "extern/bootstrap.min"
-], function (Muser,Mevent) {
+], function (Mevent) {
 
     function datepicker() {
         $('#start').datepicker();
@@ -15,12 +14,6 @@ define([
     var app = {
         init:function () {
             datepicker();
-            var model = Muser.init('inscription');
-
-            $('#inscription').live('submit', function (event) {
-                Muser.create(model);
-                event.preventDefault();
-            });
             require(["helpers/googlemaps"], function (maps) {
                 maps.init();
                 maps.autocomplete();

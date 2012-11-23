@@ -64,6 +64,7 @@ define([
                 // Initialisation de la carte avec les options
                 map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
 
+                var geolocalisation = false;
 
                 if (navigator.geolocation) {
 
@@ -72,11 +73,8 @@ define([
                         codeLatLng(position.coords.latitude, position.coords.longitude);
                         // On instancie un nouvel objet LatLng pour Google Maps
                         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-                        // Ajout d'un marqueur à la position trouvée
-
                         map.panTo(latlng);
-
+                        geolocalisation = true;
                     }
 
                     navigator.geolocation.getCurrentPosition(affichePosition, erreurPosition);
@@ -84,6 +82,7 @@ define([
                 } else {
                     console.log("Ce navigateur ne supporte pas la géolocalisation");
                 }
+                next(navigator.geolocation)
             },
             searchLocations:function (next) {
                 var address = document.getElementById("inputPlace").value;

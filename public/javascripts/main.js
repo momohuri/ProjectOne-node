@@ -6,7 +6,7 @@ require.config({
     }
 });
 
-require(["routes",'extern/jquery.min','extern/backbone'], function(routes) {
+require(["routes",'extern/jquery.min','extern/jquery-ui','extern/backbone'], function(routes) {
 
     routes.init();
 });
