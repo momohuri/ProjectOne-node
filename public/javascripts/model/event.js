@@ -1,6 +1,7 @@
 define([
     '../helpers/dao',
-    "../helpers/function"
+    "../helpers/function",
+    "../extern/bootstrap-list"
 
 ], function (dao, functionH) {
 
@@ -31,6 +32,10 @@ define([
                 function (res) {
                     next(res);
                 });
+        },
+        addToList:function(item){
+            $('#myList').list()
+           // $('#event-list').append('<li>test</li>');
         }
     }
     return app;

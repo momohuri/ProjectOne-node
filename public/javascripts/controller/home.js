@@ -15,7 +15,18 @@ define([
         init:function () {
             datepicker();
             require(["helpers/googlemaps"], function (maps) {
-                maps.init();
+                maps.init(function(geolocalisation){
+                    if(geolocalisation){
+                        Mevent.getEvent(geolocalisation.coords.latitude, geolocalisation.coords.longitude,30,function(events){
+                            maps.clearMarker();
+                            events.forEach(function(item){
+                                maps.addMarker(item.lat,item.lng,item.Name,item.Description);
+                                Mevent.addToList(item);
+                            })
+                        });
+                    }
+                });
+
                 maps.autocomplete();
                 $('#searchEvent').live('submit', function (event) {
                     event.preventDefault();

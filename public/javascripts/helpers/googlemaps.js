@@ -42,7 +42,7 @@ define([
         }
 
         var app = {
-            init:function () {
+            init:function (next) {
 
                 markersArray = [];
                 //tableau qui contienrat tout nos markers
@@ -69,20 +69,22 @@ define([
                 if (navigator.geolocation) {
 
                     // Fonction de callback en cas de succès
-                    function affichePosition(position) {
+                    function affichePosition(position, next) {
                         codeLatLng(position.coords.latitude, position.coords.longitude);
                         // On instancie un nouvel objet LatLng pour Google Maps
                         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                         map.panTo(latlng);
-                        geolocalisation= true;
                     }
 
+
                     navigator.geolocation.getCurrentPosition(affichePosition, erreurPosition);
+
+                    navigator.geolocation.getCurrentPosition(next, erreurPosition);
 
                 } else {
                     console.log("Ce navigateur ne supporte pas la géolocalisation");
                 }
-               // next(geolocalisation)
+
             },
             searchLocations:function (next) {
                 var address = document.getElementById("inputPlace").value;
