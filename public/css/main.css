@@ -9,3 +9,9 @@
 input {
     max-width: 100%;
 }
+
+.page-map, .ui-content, #map { width: 100%; padding: 0; }
+
+#map img {
+    max-width: none;
+}

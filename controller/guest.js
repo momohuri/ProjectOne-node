@@ -51,15 +51,13 @@ if (typeof define !== 'function') {
             getEvent:function (req, res) {
                 var lng = req.body.lng;
                 var lat = req.body.lat;
-                var distance=req.body.distance;
-                event.findAll({having:[" ( 3959 * cos( cos( radians(?) ) * cos( radians( lat ) ) *" +
-                    " cos( radians( lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( lat ) ))) < ?",
-                    lat,lng,lat,distance]}).success(function (Events) {
+                var distance = req.body.distance;
+                event.findAll({where:[" ( 6371 * acos( cos( radians(?) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians(?) ) + sin( radians(?) ) * sin( radians( `lat` ) ) ) ) < ?",
+                    lat, lng, lat, distance]}).success(function (Events) {
                         res.send(Events)
                     })
 
             }
-
         }
 
         return Controller;

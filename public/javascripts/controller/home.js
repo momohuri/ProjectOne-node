@@ -29,8 +29,9 @@ define([
                     maps.searchLocations(function (res) {
                         //todo le 30 correspond a la distance, faut le rendre dynamique
                         Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(),30,function(events){
+                            maps.clearMarker();
                             events.forEach(function(item){
-                                maps.addMarker(item.lat,item.lng)
+                                maps.addMarker(item.lat,item.lng,item.Name,item.Description)
                             })
                         });
                     });

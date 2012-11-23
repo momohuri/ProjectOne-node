@@ -1,5 +1,5 @@
 define([
-    "async!http://maps.google.com/maps/api/js?v=3&sensor=false",
+    "async!http://maps.google.com/maps/api/js?sensor=false",
     "extern/jquery-ui"
 ], function (gmaps) {
 
@@ -38,28 +38,32 @@ define([
         function centerOnCity(center) {
             var latlng = new google.maps.LatLng(center.lat(), center.lng());
             //map = new google.maps.Map(document.getElementById("map"));
-            document.map.panTo(latlng);
+            map.panTo(latlng);
         }
 
         var app = {
             init:function () {
-                var centerpos = new google.maps.LatLng(48.579400, 7.7519);
 
-// Ansi que des options pour la carte, centrée sur latlng
+                markersArray = [];
+                //tableau qui contienrat tout nos markers
+
+                var centerpos = new google.maps.LatLng(48.579400, 7.7519);
                 var optionsGmaps = {
                     center:centerpos,
                     mapTypeControlOptions:{
                         style:google.maps.MapTypeControlStyle.DROPDOWN_MENU
                     },
                     streetViewControl:false,
+                    scaleControl:false,
                     mapTypeId:google.maps.MapTypeId.ROADMAP,
+                    mapTypeControl:true,
                     zoom:15
                 };
 
-// Initialisation de la carte avec les options
-                var map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
-                public map;
-                document.map = map;
+
+                // Initialisation de la carte avec les options
+                map = new google.maps.Map(document.getElementById("map"), optionsGmaps);
+
 
                 if (navigator.geolocation) {
 
@@ -128,14 +132,32 @@ define([
                     }
                 });
             },
-            addMarker:function(lat,lng){
-              //  var map= document.getElementById('map');
-                var myLatlng= new google.maps.LatLng(lat,lng);
+            addMarker:function (lat, lng, title, description) {
+                //  var map= document.getElementById('map');
+                var myLatlng = new google.maps.LatLng(lat, lng);
                 var marker = new google.maps.Marker({
                     map:map,
-                    position: myLatlng,
-                    title:"coucou"
+                    position:myLatlng,
+                    title:title,
+                    html:description
                 });
+
+                markersArray.push(marker);
+                infowindow = new google.maps.InfoWindow({
+                    content:"holding...",
+                    maxWidth:275
+                });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.setContent(this.html);
+                    infowindow.open(map, this);
+                });
+
+            },
+            clearMarker:function () {
+                for (var i = 0; i < markersArray.length; i++) {
+                    markersArray[i].setMap(null);
+                }
             }
         }
         return app;

@@ -18,6 +18,7 @@ if (typeof define !== 'function') {
         var event = sequelize.define('Event', {
             Name:{ type:Sequelize.STRING},
             Address:{ type:Sequelize.STRING},
+            Description:{ type:Sequelize.STRING},
             lat:{type:Sequelize.STRING},
             lng:{type:Sequelize.STRING},
             date:{type:Sequelize.DATE},
