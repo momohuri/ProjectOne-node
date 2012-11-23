@@ -74,7 +74,7 @@ define([
                         // On instancie un nouvel objet LatLng pour Google Maps
                         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                         map.panTo(latlng);
-                        geolocalisation = true;
+                        geolocalisation= true;
                     }
 
                     navigator.geolocation.getCurrentPosition(affichePosition, erreurPosition);
@@ -82,7 +82,7 @@ define([
                 } else {
                     console.log("Ce navigateur ne supporte pas la géolocalisation");
                 }
-                next(navigator.geolocation)
+               // next(geolocalisation)
             },
             searchLocations:function (next) {
                 var address = document.getElementById("inputPlace").value;

@@ -7,6 +7,5 @@ require.config({
 });
 
 require(["routes",'extern/jquery.min','extern/jquery-ui','extern/backbone'], function(routes) {
-
-    routes.init();
+    setTimeout(routes.init,20);
 });
