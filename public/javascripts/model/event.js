@@ -27,15 +27,41 @@ define([
                 });
 
         },
-        getEvent:function (lat, lng,distance,next) {
-            dao.QueryOnline('getEvent', {lat:lat, lng:lng,distance:distance},
+        getEvent:function (lat, lng, distance, next) {
+            dao.QueryOnline('getEvent', {lat:lat, lng:lng, distance:distance},
                 function (res) {
                     next(res);
                 });
         },
-        addToList:function(item){
-            $('#myList').list()
-           // $('#event-list').append('<li>test</li>');
+        createList:function (events) {
+            function listChangeHandler(event) {
+                var message = "selected index: " + event.selectedIndex + "\n" +
+                    "selected item: " + event.srcElement.get()[0].outerHTML;
+                alert(message);
+            }
+
+            function createDataProvider(events) {
+                var result = [];
+                events.forEach(function (item) {
+                    result.push(item.Name)
+                });
+
+                return result;
+            }
+
+            function empty() {
+                var result = [];
+                result.push('Pas de resultats')
+                return result;
+            }
+
+            if (events.length > 0) {
+                $('#myList').list('setDataProvider', createDataProvider(events))
+            } else {
+                $('#myList').list('setDataProvider', empty())
+            }
+
+            $('#myList').on('change', listChangeHandler)
         }
     }
     return app;

@@ -133,14 +133,14 @@ define([
                     }
                 });
             },
-            addMarker:function (lat, lng, title, description) {
+            addMarker:function (lat, lng, title, number) {
                 //  var map= document.getElementById('map');
                 var myLatlng = new google.maps.LatLng(lat, lng);
                 var marker = new google.maps.Marker({
                     map:map,
                     position:myLatlng,
                     title:title,
-                    html:description
+                    html:number
                 });
 
                 markersArray.push(marker);
@@ -150,8 +150,7 @@ define([
                 });
 
                 google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.setContent(this.html);
-                    infowindow.open(map, this);
+                    $('#myList').list('setSelectedIndex', this.html);
                 });
 
             },

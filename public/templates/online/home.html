@@ -1,29 +1,26 @@
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span5">
-            <!--//icilalsite des events-->
-            <div class="list" id="myList">
-                <ul id="event-list">
-                    <li>lalal<br><br><br><br><br>lilou</li>
-                    <li>lalal<br><br><br><br><br>lilou</li>  <li>lalal<br><br><br><br><br>lilou</li>  <li>lalal<br><br><br><br><br>lilou</li>
-                </ul>
+        <div class="row">
+            <div class="span12">
+                <form id="searchEvent" class="form-inline well">
+                    <fieldset>
+                        <label for="start" class="control-label">Date de l'evenement : </label>
+                        <input id="start" type="text" class="input-mini" data-date-format="dd/mm/yy" required>
+                        <label class="control-label" for="inputPlace">Lieu :</label>
+                        <input type="text" id="inputPlace" class="search-query" required>
+                        <button type="submit" id='Search' class="btn">Search</button>
+                    </fieldset>
+
+                </form>
             </div>
         </div>
-
-        <div id="searchEventDiv" class="span7">
-            <form id="searchEvent" class="form-inline well">
-                <fieldset>
-                    <label for="start" class="control-label">Date de l'evenement : </label>
-                    <input id="start" type="text" class="input-mini" data-date-format="dd/mm/yy" required>
-                    <label class="control-label" for="inputPlace">Lieu :</label>
-                    <input type="text" id="inputPlace" class="search-query" required>
-                    <button type="submit" id='Search' class="btn">Search</button>
-                </fieldset>
-
-            </form>
-
-            <div id="map" class="img-polaroid"></div>
-
+        <div class="row">
+            <div class="span5">
+                <div class="list" id="myList"></div>
+            </div>
+            <div class="span7">
+                <div id="map" class="img-polaroid "></div>
+            </div>
         </div>
     </div>
 

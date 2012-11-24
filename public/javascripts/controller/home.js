@@ -18,10 +18,12 @@ define([
                 maps.init(function(geolocalisation){
                     if(geolocalisation){
                         Mevent.getEvent(geolocalisation.coords.latitude, geolocalisation.coords.longitude,30,function(events){
+                            Mevent.createList(events);
                             maps.clearMarker();
+                            var i=0;
                             events.forEach(function(item){
-                                maps.addMarker(item.lat,item.lng,item.Name,item.Description);
-                                Mevent.addToList(item);
+                                maps.addMarker(item.lat,item.lng,item.Name,i);
+                                i++;
                             })
                         });
                     }
@@ -33,9 +35,12 @@ define([
                     maps.searchLocations(function (res) {
                         //todo le 30 correspond a la distance, faut le rendre dynamique
                         Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(),30,function(events){
+                            Mevent.createList(events);
                             maps.clearMarker();
+                            var i=0;
                             events.forEach(function(item){
-                                maps.addMarker(item.lat,item.lng,item.Name,item.Description)
+                                maps.addMarker(item.lat,item.lng,item.Name,i)
+                                i++;
                             })
                         });
                     });

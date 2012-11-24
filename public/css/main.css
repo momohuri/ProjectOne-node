@@ -3,9 +3,6 @@
     display: block;
 }
 
-#searchEventDiv{
-    height: 460px;
-}
 input {
     max-width: 100%;
 }
@@ -27,7 +24,7 @@ input {
     position: relative;
     border: 1px solid silver;
     background-color: #ffffff;
-    height: 200px;
+    height: 300px;
 }
 .list ul,
 .list li {
