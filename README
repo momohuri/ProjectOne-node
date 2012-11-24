@@ -11,8 +11,10 @@
  //       || / / //       //   / /  / /
 //____/ / ||/ / ((____   //   / /  / /
 
-A little project with online and offline support
 
+A project for a intel/supinfo contest. The goal is to have a web site that allow you to see all the events that are around. 
+And to create new one.
+It should work on all device and also offline.(to see your current events)
 
 All in AMD
 
