@@ -35,8 +35,8 @@ define([
         },
         createList:function (events) {
             function listChangeHandler(event) {
-                var message = "selected index: " + event.selectedIndex + "\n" +
-                    "selected item: " + event.srcElement.get()[0].outerHTML;
+                var message = "selected index: " + event.item + "\n" +
+
                 alert(message);
             }
 
