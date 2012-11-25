@@ -5,14 +5,16 @@
 //____/ / ((___( ( / / //      / /
 
 
-    //   / /
+    //----/ /
    //____           ___       __    __  ___
   / ____  ||  / / //___) ) //   ) )  / /
  //       || / / //       //   / /  / /
 //____/ / ||/ / ((____   //   / /  / /
 
-A little project with online and offline support
 
+A project for a intel/supinfo contest. The goal is to have a web site that allow you to see all the events that are around. 
+And to create new one.
+It should work on all device and also offline.(to see your current events)
 
 All in AMD
 
@@ -22,4 +24,6 @@ Database mysql
 
 Client side Knockback bootstrap localstoragedb jquery
 
-Everything should work with phonegap for windows and android phone (and maybe IOS)
+Everything should work with phonegap for windows, android phone and IOS
+
+v1 should be here aroun the 15th decemeber
