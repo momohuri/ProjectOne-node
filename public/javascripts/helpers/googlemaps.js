@@ -35,11 +35,6 @@ define([
             ;
         }
 
-        function centerOnCity(center) {
-            var latlng = new google.maps.LatLng(center.lat(), center.lng());
-            //map = new google.maps.Map(document.getElementById("map"));
-            map.panTo(latlng);
-        }
 
         var app = {
             init:function (next) {
@@ -91,7 +86,9 @@ define([
                 var geocoder = new google.maps.Geocoder();
                 geocoder.geocode({address:address}, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-                        centerOnCity(results[0].geometry.location);
+                        lat = results[0].geometry.location.lat();
+                        lng = results[0].geometry.location.lng();
+                        app.centerOnPlace(lat, lng);
                     } else {
                         alert(address + ' not found');
                     }
@@ -133,21 +130,17 @@ define([
                     }
                 });
             },
-            addMarker:function (lat, lng, title, number) {
+            addMarker:function (lat, lng, item, number) {
                 //  var map= document.getElementById('map');
                 var myLatlng = new google.maps.LatLng(lat, lng);
                 var marker = new google.maps.Marker({
                     map:map,
                     position:myLatlng,
-                    title:title,
+                    title:item['Name'],
                     html:number
                 });
 
                 markersArray.push(marker);
-                infowindow = new google.maps.InfoWindow({
-                    content:"holding...",
-                    maxWidth:275
-                });
 
                 google.maps.event.addListener(marker, 'click', function () {
                     $('#myList').list('setSelectedIndex', this.html);
@@ -158,6 +151,10 @@ define([
                 for (var i = 0; i < markersArray.length; i++) {
                     markersArray[i].setMap(null);
                 }
+            },
+            centerOnPlace:function (lat, lng) {
+                var latlng = new google.maps.LatLng(lat, lng);
+                map.panTo(latlng);
             }
         }
         return app;

@@ -22,7 +22,7 @@ define([
                             maps.clearMarker();
                             var i=0;
                             events.forEach(function(item){
-                                maps.addMarker(item.lat,item.lng,item.Name,i);
+                                maps.addMarker(item.lat,item.lng,item,i);
                                 i++;
                             })
                         });
@@ -39,7 +39,7 @@ define([
                             maps.clearMarker();
                             var i=0;
                             events.forEach(function(item){
-                                maps.addMarker(item.lat,item.lng,item.Name,i)
+                                maps.addMarker(item.lat,item.lng,item,i)
                                 i++;
                             })
                         });

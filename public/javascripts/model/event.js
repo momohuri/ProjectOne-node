@@ -1,9 +1,11 @@
 define([
     '../helpers/dao',
     "../helpers/function",
+    "../helpers/googlemaps",
     "../extern/bootstrap-list"
 
-], function (dao, functionH) {
+
+], function (dao, functionH, gmaps) {
 
     var event = new Backbone.Model(
         {
@@ -35,15 +37,15 @@ define([
         },
         createList:function (events) {
             function listChangeHandler(event) {
-                var message = "selected index: " + event.item + "\n" +
-
-                alert(message);
+                if (event.item.lat != undefined) {
+                    gmaps.centerOnPlace(event.item.lat, event.item.lng);
+                }
             }
 
             function createDataProvider(events) {
                 var result = [];
                 events.forEach(function (item) {
-                    result.push(item.Name)
+                    result.push(item)
                 });
 
                 return result;
@@ -51,15 +53,25 @@ define([
 
             function empty() {
                 var result = [];
-                result.push('Pas de resultats')
+                var item = {};
+                item.Name = 'Pas de resultats';
+                result.push(item);
                 return result;
             }
 
+            function listItemLabelFunction(item) {
+                var descrition = item.Name + " " + item.Description;
+                return descrition;
+            }
+
             if (events.length > 0) {
-                $('#myList').list('setDataProvider', createDataProvider(events))
+                $('#myList').list('setDataProvider', createDataProvider(events));
+                $('#myList').list('setLabelFunction', listItemLabelFunction);
+
             } else {
                 $('#myList').list('setDataProvider', empty())
             }
+
 
             $('#myList').on('change', listChangeHandler)
         }
