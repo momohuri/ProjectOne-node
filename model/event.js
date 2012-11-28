@@ -22,13 +22,14 @@ if (typeof define !== 'function') {
             lat:{type:Sequelize.STRING},
             lng:{type:Sequelize.STRING},
             date:{type:Sequelize.DATE},
-            Img:{type:Sequelize.STRING}
+            Img:{type:Sequelize.STRING},
+            Link:{type:Sequelize.STRING},
+            Type:{type:Sequelize.STRING},
+            dateEnd:{type:Sequelize.DATE}
         },{
             instanceMethods:{
-
                 },
             classMethods:{
-
             }
         });
 

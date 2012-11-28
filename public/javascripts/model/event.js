@@ -29,8 +29,8 @@ define([
                 });
 
         },
-        getEvent:function (lat, lng, distance, next) {
-            dao.QueryOnline('getEvent', {lat:lat, lng:lng, distance:distance},
+        getEvent:function (lat, lng, distance,date, next) {
+            dao.QueryOnline('getEvent', {lat:lat, lng:lng, distance:distance,date:date},
                 function (res) {
                     next(res);
                 });
@@ -60,17 +60,15 @@ define([
             }
 
             function listItemLabelFunction(item) {
-                var descrition = item.Name + " " + item.Description;
+                var descrition = "fsda<br><br><br>sa";
                 return descrition;
             }
-
-            if (events.length > 0) {
+            if (events.length!=0) {
                 $('#myList').list('setDataProvider', createDataProvider(events));
-                $('#myList').list('setLabelFunction', listItemLabelFunction);
-
             } else {
                 $('#myList').list('setDataProvider', empty())
             }
+            $('#myList').list('setLabelFunction', listItemLabelFunction);
 
 
             $('#myList').on('change', listChangeHandler)

@@ -521,7 +521,8 @@
                 if ( i >= 0 && i < this.dataProvider.length ){
                     var data = this.dataProvider[i];
                     var label =  this.labelFunction ? this.labelFunction( data ) : data.toString();
-                    item.text( label );
+                   // item.text( label );
+                    item[0].innerHTML=label;
                 }
             }
             if ( item !== null && item !== undefined ) {
