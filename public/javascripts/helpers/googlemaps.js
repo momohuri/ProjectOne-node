@@ -42,7 +42,7 @@ define([
                 markersArray = [];
                 //tableau qui contienrat tout nos markers
 
-                var centerpos = new google.maps.LatLng(48.579400, 7.7519);
+                var centerpos = new google.maps.LatLng(50.6423071, 3.0532962);
                 var optionsGmaps = {
                     center:centerpos,
                     mapTypeControlOptions:{
@@ -52,7 +52,7 @@ define([
                     scaleControl:false,
                     mapTypeId:google.maps.MapTypeId.ROADMAP,
                     mapTypeControl:true,
-                    zoom:15
+                    zoom:12
                 };
 
 
@@ -62,7 +62,6 @@ define([
                 var geolocalisation = false;
 
                 if (navigator.geolocation) {
-
                     // Fonction de callback en cas de succès
                     function affichePosition(position, next) {
                         codeLatLng(position.coords.latitude, position.coords.longitude);

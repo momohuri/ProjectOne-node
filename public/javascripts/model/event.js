@@ -52,15 +52,18 @@ define([
             }
 
             function empty() {
-                var result = [];
-                var item = {};
-                item.Name = 'Pas de resultats';
-                result.push(item);
+                var result = [0];
                 return result;
             }
 
             function listItemLabelFunction(item) {
-                var descrition = "fsda<br><br><br>sa";
+                if(item!=0){
+                    var date= new Date(item.date);
+                    var descrition =item.Name+" le "+date.toLocaleDateString()+"<br>Categorie:"+item.Type+"  <a href='"+item.Link+"'>Plus d'info</a>";
+                }else{
+                    var descrition = "Il n'y a pas d'Evenement... Cree le votre"
+                }
+
                 return descrition;
             }
             if (events.length!=0) {

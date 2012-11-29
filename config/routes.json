@@ -36,6 +36,7 @@
             "func":"getEvent",
             "method":"post"
         },
+
         "404":{
             "route":"*",
             "render":"404"
