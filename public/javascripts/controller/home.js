@@ -6,13 +6,15 @@ define([
 ], function (Mevent) {
 
     function datepicker() {
+        var date = new Date;
+        $('#startDate').val(date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear())
         $('#startDate').daterangepicker({
-            presetRanges: [
-                {text: 'Aujourd\'hui', dateStart: 'Today', dateEnd: 'Today' },
-                {text: 'Cette semaine', dateStart: 'Today', dateEnd: 'next week' },
-                {text: 'La fin des temps', dateStart: 'Today', dateEnd: 'next week' }
+            presetRanges:[
+                {text:'Aujourd\'hui', dateStart:'Today', dateEnd:'Today' },
+                {text:'Cette semaine', dateStart:'Today', dateEnd:'next week' },
+                {text:'La fin des temps', dateStart:'Today', dateEnd:'next year' }
             ]
-        } );
+        });
     }
 
     var app = {
@@ -21,8 +23,9 @@ define([
             require(["helpers/googlemaps"], function (maps) {
                 maps.init(function (geolocalisation) {
                     if (geolocalisation) {
-                        var date = '20' + $('#startDate').val().substr(6, 8) + '-' + $('#startDate').val().substr(3, 2) + '-' + $('#startDate').val().substr(0, 2);
-                        Mevent.getEvent(geolocalisation.coords.latitude, geolocalisation.coords.longitude, 30, date, function (events) {
+                        var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[0]));
+                        var dateEnd= false;
+                        Mevent.getEvent(geolocalisation.coords.latitude, geolocalisation.coords.longitude, 30,dateStart,dateEnd, function (events) {
                                 if (typeof(events) != 'undefined') {
                                     Mevent.createList(events);
                                     maps.clearMarker();
@@ -44,8 +47,15 @@ define([
                     event.preventDefault();
                     maps.searchLocations(function (res) {
                         //todo le 30 correspond a la distance, faut le rendre dynamique
-                        var date = '20' + $('#startDate').val().substr(6, 8) + '-' + $('#startDate').val().substr(3, 2) + '-' + $('#startDate').val().substr(0, 2);
-                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), 30, date, function (events) {
+
+                        var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[0]));
+                        if (typeof( $('#startDate').val().toString().split(' ')[2])!='undefined') {
+                            var dateEnd = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[2]));
+                        }else{
+                            var dateEnd=false;
+                        }
+
+                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), 30, dateStart,dateEnd, function (events) {
                             if (typeof(events) != 'undefined') {
                                 Mevent.createList(events);
                                 maps.clearMarker();

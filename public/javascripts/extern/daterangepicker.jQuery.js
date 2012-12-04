@@ -35,7 +35,7 @@ jQuery.fn.daterangepicker = function(settings){
 		//Each obj must have text, dateStart, dateEnd. dateStart, dateEnd accept date.js string or a function which returns a date object
 		presets: {
 			specificDate: 'Date precise',
-			dateRange: 'Date Range'
+			dateRange: 'Entre 2 date'
 		},
 		rangeStartTitle: 'Start date',
 		rangeEndTitle: 'End date',
