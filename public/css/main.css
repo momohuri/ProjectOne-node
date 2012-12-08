@@ -49,7 +49,6 @@ input {
     transform: -webkit-translate3d(0px, 0px, 0px);
 }
 .list li {
-    padding: 10px;
     display: block;
     position: absolute;
     width: 100%;
@@ -60,6 +59,13 @@ input {
     transform: -moz-translate3d(0px, 0px, 0px);
     transform: -webkit-translate3d(0px, 0px, 0px);
 }
+.padding li{
+    padding: 10px;
+}
+.paddingAfter li{
+    padding:10px;
+}
+
 .listSelected {
     color: #ffffff;
     border-top: 1px solid #094C99;

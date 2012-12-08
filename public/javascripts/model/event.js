@@ -74,7 +74,8 @@ define([
             $('#myList').list('setLabelFunction', listItemLabelFunction);
 
 
-            $('#myList').on('change', listChangeHandler)
+            $('#myList').on('change', listChangeHandler);
+            $('div.list').attr('class','list padding2');
         }
     }
     return app;

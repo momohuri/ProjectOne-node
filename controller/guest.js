@@ -52,9 +52,12 @@ if (typeof define !== 'function') {
                 var lng = req.body.lng;
                 var lat = req.body.lat;
                 var distance = req.body.distance;
+                if(!req.body.dateEnd){
+                    req.body.dateEnd= req.body.date;
+                }
                 event.findAll({where:[" ( 6371 * acos( cos( radians(?) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians(?) ) + sin( radians(?) ) * sin( radians( `lat` ) ) ) ) < ?" +
-                    "and DATE(date)=?",
-                    lat, lng, lat, distance,req.body.date]}).success(function (Events) {
+                    "and DATE(date)BETWEEN ? AND ?;",
+                    lat, lng, lat, distance,req.body.date,req.body.dateEnd]}).success(function (Events) {
                         res.send(Events)
                     })
 
