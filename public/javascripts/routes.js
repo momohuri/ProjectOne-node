@@ -11,8 +11,9 @@ define([
         var AppRouter = Backbone.Router.extend({
             routes:{
                 "message":"message",
-                "event":"event",
+                "createEvent":"createEvent",
                 "inscription":"inscription",
+                "searchEvent":"searchEvent",
                 "*actions":"defaultRoute"
             },
             message:function () {
@@ -20,10 +21,17 @@ define([
                     messageC.init();
                 });
             },
-            event:function () {
+            createEvent:function () {
                 loadViewLogged('event', function () {
                     eventC.init();
                 });
+            },
+            searchEvent:function () {
+                loadViewOnOffnoMenu('searchEvent', function (online) {
+                    if (online) {
+                        homeC.init();
+                    }
+                })
             },
             inscription:function () {
                 loadViewOnOffline('inscription', function (online) {
@@ -34,7 +42,7 @@ define([
                 )
             },
             defaultRoute:function () {
-                loadViewOnOffline('home', function (online) {
+                loadViewOnOffnoMenu('searchEvent', function (online) {
                     if (online) {
                         homeC.init();
                     }
@@ -56,8 +64,7 @@ define([
             }, 'html');
         }
 
-
-//vue quand on a pas logger et qui affiche ou une vue online ou une vue offline
+        //vue quand on a pas logger et qui affiche ou une vue online ou une vue offline
         var loadViewOnOffline = function (view, next) {
             $.get('templates/menu-nonlogged.html', function (data) {
                 $('#menu').html(data);
@@ -121,6 +128,38 @@ define([
                     });
                 } else {
                     window.location.hash = '';
+                }
+            });
+        }
+
+        //meme page mais menu different
+        var loadViewOnOffnoMenu=function(view,next){
+            user.isLogged(function (logged) {
+                if (logged) {
+                    $.get('templates/menu-logged.html', function (data) {
+                        $('#menu').html(data);
+                        menuC.nonlogged();
+                    }, 'html');
+                }else{
+                    $.get('templates/menu-nonlogged.html', function (data) {
+                        $('#menu').html(data);
+                        menuC.nonlogged();
+                    }, 'html');
+                }
+            });
+
+            ko.removeNode($('#into'));
+            functionH.isConnected(function (isConnected) {
+                if (isConnected) {
+                    $.get('templates/online/' + view + '.html', function (data) {
+                        $('#into').html(data);
+                        next({online:true});
+                    }, 'html');
+                } else {
+                    $.get('templates/offline/' + view + '.html', function (data) {
+                        $('#into').html(data);
+                        next({online:false});
+                    }, 'html');
                 }
             });
         }

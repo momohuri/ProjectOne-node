@@ -17,19 +17,24 @@ if (typeof define !== 'function') {
             },
             subscribe:function (req, res) {
                 var User = user.build(req.body);
-                var err = User.validate();
-                if (err) {
-                    res.send({err:err});
-                } else {
-                    User.hashthispassword();
-                    User.save();
-                    //todo send GUID
-                    res.send({work:true});
-                }
+                user.find({  where:[' Email=?', req.body.Email]}).on('success', function (row) {
+                    if (row != null) {
+                        res.send({err:{err:['Email deja utilise']}});
+                    } else {
+                        var err = User.validate();
+                        if (err) {
+                            res.send({err:err});
+                        } else {
+                            User.hashthispassword();
+                            User.save();
+                            //todo send GUID
+                            res.send({work:true});
+                        }
+                    }
+                });
             },
             connect:function (req, res) {
                 if (req.body.password != '' && req.body.user != '') {
-
                     user.find({
                         where:[' Email=?', req.body.user]
                     }).on('success', function (row) {
@@ -52,17 +57,17 @@ if (typeof define !== 'function') {
                 var lng = req.body.lng;
                 var lat = req.body.lat;
                 var distance = req.body.distance;
-                if(!req.body.dateEnd){
-                    req.body.dateEnd= req.body.date;
+                if (!req.body.dateEnd) {
+                    req.body.dateEnd = req.body.date;
                 }
                 event.findAll({where:[" ( 6371 * acos( cos( radians(?) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians(?) ) + sin( radians(?) ) * sin( radians( `lat` ) ) ) ) < ?" +
                     "and DATE(date)BETWEEN ? AND ?;",
-                    lat, lng, lat, distance,req.body.date,req.body.dateEnd]}).success(function (Events) {
+                    lat, lng, lat, distance, req.body.date, req.body.dateEnd]}).success(function (Events) {
                         res.send(Events)
                     })
 
             }
-        }
+        };
 
         return Controller;
     });

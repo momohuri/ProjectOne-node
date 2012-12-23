@@ -24,7 +24,7 @@ define([
             dao.QueryOnline('addUser', model.model().attributes,
                 function (res) {
                     if(res.work == true ){
-                        window.location.hash = 'message';
+                        window.location.hash = 'searchEvent';
                     }else{
                         functionH.alert("inscription", res.err);
                      }
@@ -47,7 +47,7 @@ define([
                                 sessionStorage.setItem('id', res.id);
                                 dao.createOffline(function () {
                                     dao.InsertOffline('user', {Email:user, Password:password}, function () {
-                                        window.location.hash = 'message';
+                                        window.location.hash = 'searchEvent';
                                         //todo real page
                                     });
                                 });
@@ -62,7 +62,7 @@ define([
                             if (res.length != 0) {
                                 //todo make offline id session
                                 sessionStorage.setItem('id', 'idOffline');
-                                window.location.hash = 'message';
+                                window.location.hash = 'searchEvent';
 
                             } else {
                                 functionH.alert("login", res.err);

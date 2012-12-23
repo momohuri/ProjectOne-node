@@ -143,6 +143,9 @@ define([
 
                 google.maps.event.addListener(marker, 'click', function () {
                     $('#myList').list('setSelectedIndex', this.html);
+                    $('#myList').list.showModal( $('#myList').data().list.dataProvider[this.html]);
+
+
                 });
 
             },

@@ -19,6 +19,8 @@ define([
 
     var app = {
         init:function () {
+
+            var model = Mevent.init('myModal');
             datepicker();
             require(["helpers/googlemaps"], function (maps) {
                 maps.init(function (geolocalisation) {
@@ -47,7 +49,6 @@ define([
                     event.preventDefault();
                     maps.searchLocations(function (res) {
                         //todo le 30 correspond a la distance, faut le rendre dynamique
-
                         var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[0]));
                         if (typeof( $('#startDate').val().toString().split(' ')[2])!='undefined') {
                             var dateEnd = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[2]));
@@ -63,7 +64,7 @@ define([
                                 events.forEach(function (item) {
                                     maps.addMarker(item.lat, item.lng, item, i)
                                     i++;
-                                })
+                                });
                             }
                         });
                     });
