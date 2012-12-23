@@ -51,9 +51,11 @@
         <h3 data-bind="text: Name"></h3>
     </div>
     <div class="modal-body">
-        <p data-bind="text: Description"></p>
-        <p data-bind="text: Date"></p>
-        <p data-bind="text: Address"></p>
+        <p>Description: <span data-bind="text: Description"></span></p>
+        <p>Date de debut: <span data-bind="text: Date"></span></p>
+        <p>Adresse: <span data-bind="text: Address"></span></p>
+        <p>Categorie: <span data-bind="text: Type"></span> </p>
+        <p> <a  target="_blank" data-bind="attr: { href: Link}">Plus d'info</a></p>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>

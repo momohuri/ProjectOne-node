@@ -12,7 +12,9 @@ define([
             Name:'',
             Description:'',
             Date:'',
-            Address:''
+            Address:'',
+            Type:'',
+            Link:''
         });
 
 
@@ -54,8 +56,7 @@ define([
             }
 
             function empty() {
-                var result = [0];
-                return result;
+                return [0];
             }
             
             function listItemLabelFunction(item) {
@@ -68,16 +69,16 @@ define([
 
                 return descrition;
             }
-
+            var myList= $('#myList');
             if (events.length!=0) {
-                $('#myList').list('setDataProvider', createDataProvider(events));
+                myList.list('setDataProvider', createDataProvider(events));
             } else {
-                $('#myList').list('setDataProvider', empty())
+                myList.list('setDataProvider', empty())
             }
 
-            $('#myList').list('setLabelFunction', listItemLabelFunction);
+            myList.list('setLabelFunction', listItemLabelFunction);
 
-            $('#myList').on('change', listChangeHandler);
+            myList.on('change', listChangeHandler);
 
             $('div.list').attr('class','list padding2');
 
@@ -85,13 +86,15 @@ define([
                 event.set('Name',self.Name);
                 event.set('Description',self.Description);
                 event.set('Address',self.Address);
+                event.set('Type',self.Type);
+                event.set('Link',self.Link);
                 event.set('Date',new Date(self.date).toLocaleString());
                 $('#myModal').modal();
             }
         }
 
 
-    }
+    };
     return app;
 
 });
