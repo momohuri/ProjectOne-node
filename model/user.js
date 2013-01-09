@@ -13,7 +13,7 @@ if (typeof define !== 'function') {
 
 
         if (!global.sequelize) {
-            var sequelize = global.sequelize = new Sequelize("projectone", "root", "root");
+            var sequelize = global.sequelize = new Sequelize("projectone", "root");
         } else {
             var sequelize = global.sequelize;
         }
