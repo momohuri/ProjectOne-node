@@ -9,7 +9,7 @@ if (typeof define !== 'function') {
         "./user"
     ], function (Sequelize,user) {
         if(!global.sequelize){
-            var sequelize= global.sequelize = new Sequelize("projectone", "root");
+            var sequelize= global.sequelize = new Sequelize("projectone", "root", "root");
         }else{
             var sequelize= global.sequelize;
         }
