@@ -6,8 +6,8 @@ define([
         init:function () {
             var model = Muser.init('inscription');
             $('#inscription').live('submit', function (event) {
-                Muser.create(model);
                 event.preventDefault();
+                Muser.create(model);
             });
         }
     }

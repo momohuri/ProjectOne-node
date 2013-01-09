@@ -2,7 +2,7 @@ define([
     "../model/event",
     'extern/jquery-ui'
 
-], function (event) {
+], function (Mevent) {
 
     function dateTimePicker() {
         require(["extern/jquery-ui-timepicker-addon"],function(){
@@ -47,12 +47,14 @@ define([
     var app = {
         init:function () {
             dateTimePicker();
-            var model = event.init('event');
+            var model = Mevent.init('event');
             $('#event').live('submit',function(event){
                 event.preventDefault();
-                event.create(model);
+                debugger
+                Mevent.create(model);
             });
             require(["helpers/googlemaps"],function(maps){
+                maps.autocomplete();
                 maps.init();
             });
         }

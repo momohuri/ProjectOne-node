@@ -73,7 +73,7 @@ define([
 
                     navigator.geolocation.getCurrentPosition(affichePosition, erreurPosition);
 
-                    navigator.geolocation.getCurrentPosition(next, erreurPosition);
+                    //navigator.geolocation.getCurrentPosition(next, erreurPosition);
 
                 } else {
                     console.log("Ce navigateur ne supporte pas la géolocalisation");

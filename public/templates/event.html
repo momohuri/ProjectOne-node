@@ -1,17 +1,17 @@
-<form class="form-inline well">
+<form class="form-inline well" id="event">
     <fieldset>
         <label class="control-label" for="event">Titre de votre évènement :</label>
-        <input type="text" id="event" class="search-query" required><br/><br/>
+        <input type="text" id="eventName" data-bind="value: Name" class="search-query" required><br/><br/>
         <label class="control-label" for="eventDesc">Description de votre évènement :</label>
-        <input type="text" id="eventDesc" class="search-query" required><br/><br/>
-        <label for="startDate" class="control-label">Date de départ : </label>
-        <input type="text" name="enDate" id="startDate" value="" required="">
-        <label for="endDate" class="control-label">Date de retour : </label>
-        <input type="text" id="endDate" value="" required/><br/><br/>
+        <input type="text" id="eventDesc" data-bind="value: Description"  class="search-query" required><br/><br/>
+        <label for="startDate" class="control-label">Date de début : </label>
+        <input type="text" name="enDate" data-bind="value: Date"  id="startDate" value="" required="">
+        <label for="endDate" class="control-label">Date de fin : </label>
+        <input type="text" id="endDate" data-bind="value: DateEnd"  value="" required/><br/><br/>
         <label class="control-label" for="inputPlace">Lieu :</label>
 
-        <input type="text" id="inputPlace" class="search-query" required><br/><br/>
-        <button type="submit" id='Search' class="btn">Rechercher</button>
+        <input type="text" id="inputPlace" data-bind="value: Address"  class="search-query" required><br/><br/>
+        <button type="submit" id='submit' class="btn">Rechercher</button>
     </fieldset>
 </form>
 

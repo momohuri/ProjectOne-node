@@ -12,6 +12,7 @@ define([
             Name:'',
             Description:'',
             Date:'',
+            DateEnd:'',
             Address:'',
             Type:'',
             Link:''
