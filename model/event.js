@@ -21,11 +21,11 @@ if (typeof define !== 'function') {
             Description:{ type:Sequelize.STRING},
             lat:{type:Sequelize.STRING},
             lng:{type:Sequelize.STRING},
-            date:{type:Sequelize.DATE},
+            Date:{type:Sequelize.DATE},
             Img:{type:Sequelize.STRING},
             Link:{type:Sequelize.STRING},
             Type:{type:Sequelize.STRING},
-            dateEnd:{type:Sequelize.DATE}
+            DateEnd:{type:Sequelize.DATE}
         },{
             instanceMethods:{
                 },

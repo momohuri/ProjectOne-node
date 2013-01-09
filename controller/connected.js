@@ -5,7 +5,8 @@ if (typeof define !== 'function') {
 //class name :
 (function (define) {
     define([
-    ], function () {
+        "../model/event"
+    ], function (Mevent) {
         var Controller = {
             Disconnect:function (req, res) {
                req.session.user=null;
@@ -17,6 +18,20 @@ if (typeof define !== 'function') {
                }else{
                    res.send(false);
                }
+            },
+            addEvent:function(req,res){
+                if( req.session.user!=null){
+                    var Event = Mevent.build(req.body);
+                    var err = Event.validate();
+                    if(err){
+                        res.send({err:err});
+                    }else{
+                        Event.save();
+                        res.send({work:true});
+                    }
+                }else{
+                    res.send({err:{err:['Veuillez vous connecter!']}});
+                }
             }
         }
         return Controller;

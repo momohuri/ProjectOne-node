@@ -48,9 +48,12 @@ define([
         init:function () {
             dateTimePicker();
             var model = Mevent.init('event');
+
             $('#event').live('submit',function(event){
                 event.preventDefault();
-                debugger
+                model.model().set("lat",$('#inputPlace').attr("data-lat"));
+                model.model().set("lng",$('#inputPlace').attr("data-lng"));
+                model.model().set("Address",$('#inputPlace').val());
                 Mevent.create(model);
             });
             require(["helpers/googlemaps"],function(maps){

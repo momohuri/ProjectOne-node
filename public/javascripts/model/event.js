@@ -15,6 +15,8 @@ define([
             DateEnd:'',
             Address:'',
             Type:'',
+            lat:'',
+            lng:'',
             Link:''
         });
 
@@ -29,7 +31,11 @@ define([
         create:function (event) {
             dao.QueryOnline('addEvent', event.model().attributes,
                 function (res) {
-                    functionH.alert("event", res.err);
+                    if(res.err){
+                        functionH.alert("event", res.err);
+                    }else{
+                        functionH.alert("event", {err:["ca fonctionne"]});
+                    }
                 });
 
         },

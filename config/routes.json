@@ -35,6 +35,11 @@
             "controller":"guest",
             "func":"getEvent",
             "method":"post"
+        },"addEvent":{
+            "route":"/addEvent",
+            "controller":"connected",
+            "func":"addEvent",
+            "method":"post"
         },
 
         "404":{

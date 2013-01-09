@@ -1,5 +1,5 @@
 define([
-    "async!http://maps.google.com/maps/api/js?sensor=false",
+    "async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false",
     "extern/jquery-ui"
 ], function (gmaps) {
 
@@ -67,6 +67,9 @@ define([
                         codeLatLng(position.coords.latitude, position.coords.longitude);
                         // On instancie un nouvel objet LatLng pour Google Maps
                         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        var lattitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        $("#inputPlace").attr("data-lat",lattitude).attr("data-lng",longitude);
                         map.panTo(latlng);
                     }
 
@@ -95,39 +98,18 @@ define([
                 });
             },
             autocomplete:function () {
-                $("#inputPlace").autocomplete({
-                    source:function (request, response) {
-                        $.ajax({
-                            url:"http://ws.geonames.org/searchJSON",
-                            dataType:"jsonp",
-                            data:{
-                                featureClass:"P",
-                                country:"FR",
-                                style:"full",
-                                maxRows:12,
-                                name_startsWith:request.term
-                            },
-                            success:function (data) {
-                                response($.map(data.geonames, function (item) {
-                                    return {
-                                        label:item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                                        value:item.name
-                                    }
-                                }));
-                            }
-                        });
-                    },
-                    minLength:2,
-                    select:function (event, ui) {
-                        this.value = ui.item.label;
-                    },
-                    open:function () {
-                        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-                    },
-                    close:function () {
-                        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-                    }
-                });
+                   var options = {
+                   };
+                   var input = document.getElementById('inputPlace');
+                   var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+                     google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                        var place = autocomplete.getPlace();
+                        var lattitude = place.geometry.location.lat();
+                        var longitude = place.geometry.location.lng();
+                        app.centerOnPlace(lattitude,longitude);
+                        $("#inputPlace").attr("data-lat",lattitude).attr("data-lng",longitude);
+                    });
             },
             addMarker:function (lat, lng, item, number) {
                 //  var map= document.getElementById('map');
