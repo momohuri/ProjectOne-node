@@ -522,6 +522,7 @@
                     var data = this.dataProvider[i];
                     var label =  this.labelFunction ? this.labelFunction( data ) : data.toString();
                    // item.text( label );
+                    //modif maison
                     item[0].innerHTML=label;
                 }
             }
