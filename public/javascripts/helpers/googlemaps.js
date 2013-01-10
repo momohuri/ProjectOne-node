@@ -27,7 +27,7 @@ define([
             var latlng = new google.maps.LatLng(lat, lng);
             geocoder.geocode({'latLng':latlng}, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-                        $('#inputPlace').val(results[0].formatted_address);
+                        $('#inputPlace').trigger('changeAddress',[results[0].formatted_address]);
                     }
                 }
 
@@ -40,7 +40,7 @@ define([
             init:function (next) {
 
                 markersArray = [];
-                //tableau qui contienrat tout nos markers
+                //tableau qui contiendrat tout nos markers
 
                 var centerpos = new google.maps.LatLng(50.6423071, 3.0532962);
                 var optionsGmaps = {
@@ -69,9 +69,9 @@ define([
                         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                         var lattitude = position.coords.latitude;
                         var longitude = position.coords.longitude;
-                        $("#inputPlace").attr("data-lat",lattitude).attr("data-lng",longitude);
+                        $('#inputPlace').trigger('changeLatLng',[lattitude,longitude]);
                         map.panTo(latlng);
-                    }
+                    } // Fonction de callback en cas de succès
 
 
                     navigator.geolocation.getCurrentPosition(affichePosition, erreurPosition);
@@ -107,8 +107,10 @@ define([
                         var place = autocomplete.getPlace();
                         var lattitude = place.geometry.location.lat();
                         var longitude = place.geometry.location.lng();
-                        app.centerOnPlace(lattitude,longitude);
-                        $("#inputPlace").attr("data-lat",lattitude).attr("data-lng",longitude);
+
+
+                        $('#inputPlace').trigger('changeLatLng',[lattitude,longitude]);
+
                     });
             },
             addMarker:function (lat, lng, item, number) {

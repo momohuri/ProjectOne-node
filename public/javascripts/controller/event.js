@@ -51,12 +51,19 @@ define([
 
             $('#event').live('submit',function(event){
                 event.preventDefault();
-                model.model().set("lat",$('#inputPlace').attr("data-lat"));
-                model.model().set("lng",$('#inputPlace').attr("data-lng"));
-                model.model().set("Address",$('#inputPlace').val());
                 Mevent.create(model);
             });
             require(["helpers/googlemaps"],function(maps){
+                $('#inputPlace').live('changeLatLng',function(event,lat,lng){
+                    model.model().set("lat",lat);
+                    model.model().set("lng",lng);
+                    maps.centerOnPlace(lat,lng);
+                });
+                $('#inputPlace').live('changeAddress',function(event,address){
+                    model.model().set("Address",address);
+                });
+
+
                 maps.autocomplete();
                 maps.init();
             });

@@ -23,6 +23,10 @@ define([
             var model = Mevent.init('myModal');
             datepicker();
             require(["helpers/googlemaps"], function (maps) {
+                $('#inputPlace').live(' changeAddress',function(event,address){
+                    $('#inputPlace').val(address);
+                });
+
                 maps.init(function (geolocalisation) {
                     if (geolocalisation) {
                         var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[0]));
