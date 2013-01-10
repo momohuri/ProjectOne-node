@@ -23,9 +23,15 @@ define([
             var model = Mevent.init('myModal');
             datepicker();
             require(["helpers/googlemaps"], function (maps) {
-                $('#inputPlace').live(' changeAddress',function(event,address){
+
+                $('#inputPlace').live('changeAddress',function(event,address){
                     $('#inputPlace').val(address);
+                    $('#searchEvent').submit();
                 });
+                $('#inputPlace').live('blur',function(){
+                    $('#searchEvent').submit();
+                });
+
 
                 maps.init(function (geolocalisation) {
                     if (geolocalisation) {
