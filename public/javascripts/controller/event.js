@@ -54,12 +54,12 @@ define([
                 Mevent.create(model);
             });
             require(["helpers/googlemaps"],function(maps){
-                $('#inputPlace').live('changeLatLng',function(event,lat,lng){
+                $('#inputPlace')
+                    .live('changeLatLng',function(event,lat,lng){
                     model.model().set("lat",lat);
                     model.model().set("lng",lng);
                     maps.centerOnPlace(lat,lng);
-                });
-                $('#inputPlace').live('changeAddress',function(event,address){
+                    }).live('changeAddress',function(event,address){
                     model.model().set("Address",address);
                 });
 

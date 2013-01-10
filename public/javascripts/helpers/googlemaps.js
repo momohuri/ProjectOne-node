@@ -126,8 +126,8 @@ define([
                 markersArray.push(marker);
 
                 google.maps.event.addListener(marker, 'click', function () {
-                    $('#myList').list('setSelectedIndex', this.html);
-                    $('#myList').list.showModal( $('#myList').data().list.dataProvider[this.html]);
+                    $('#myList').list('setSelectedIndex', this.html)
+                    .list.showModal( $('#myList').data().list.dataProvider[this.html]);
 
 
                 });

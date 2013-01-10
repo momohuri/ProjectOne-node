@@ -8,7 +8,7 @@ define([
     function datepicker() {
         var date = new Date;
         $('#startDate').val(date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear())
-        $('#startDate').daterangepicker({
+            .daterangepicker({
             presetRanges:[
                 {text:'Aujourd\'hui', dateStart:'Today', dateEnd:'Today' },
                 {text:'Cette semaine', dateStart:'Today', dateEnd:'next week' },
@@ -27,8 +27,7 @@ define([
                 $('#inputPlace').live('changeAddress',function(event,address){
                     $('#inputPlace').val(address);
                     $('#searchEvent').submit();
-                });
-                $('#inputPlace').live('blur',function(){
+                }).live('blur',function(){
                     $('#searchEvent').submit();
                 });
 
