@@ -26,8 +26,10 @@ if (typeof define !== 'function') {
                     if(err){
                         res.send({err:err});
                     }else{
-                        Event.save();
-                        res.send({work:true});
+                        Event.save().success(function(dbEntry){
+                            res.send({id:dbEntry.id});
+                        });
+
                     }
                 }else{
                     res.send({err:{err:['Veuillez vous connecter!']}});

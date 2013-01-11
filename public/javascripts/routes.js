@@ -14,6 +14,7 @@ define([
                 "createEvent":"createEvent",
                 "inscription":"inscription",
                 "searchEvent":"searchEvent",
+                "eventDescription/:id":"eventDescription",
                 "*actions":"defaultRoute"
             },
             message:function () {
@@ -40,6 +41,13 @@ define([
                         }
                     }
                 )
+            },
+            eventDescription:function (id) {
+                loadView('eventDescription', function (online) {
+                    if (online) {
+                        console.log("lol");
+                    }
+                });
             },
             defaultRoute:function () {
                 loadViewOnOffnoMenu('searchEvent', function (online) {
@@ -85,7 +93,7 @@ define([
                 }
             });
         }
-//vue quand on a pas logger meme vue on ou offline
+//vue quand on a est logger meme vue on ou offline
         var loadViewLogged = function (view, next) {
             user.isLogged(function (logged) {
                 if (logged) {

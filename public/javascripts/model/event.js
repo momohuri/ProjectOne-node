@@ -34,7 +34,7 @@ define([
                     if(res.err){
                         functionH.alert("event", res.err);
                     }else{
-                        functionH.alert("event", {err:["ca fonctionne"]});
+                        window.location.hash = 'eventDescription/'+res.id;
                     }
                 });
 
