@@ -50,14 +50,12 @@ define([
             var model = Mevent.init('event');
 
             $('#event').live('submit',function(event){
-                event.preventDefault();
-
-
-
+                //event.preventDefault();
                 model.model().attributes.Date = $.datepicker.formatDate('yy-mm-dd', new Date(model.model().attributes.Date.toString().split(' ')[0])) + ' ' + model.model().attributes.Date.toString().slice(11,16);
                 model.model().attributes.DateEnd = $.datepicker.formatDate('yy-mm-dd', new Date(model.model().attributes.Date.toString().split(' ')[0])) + ' ' + model.model().attributes.Date.toString().slice(11,16);
-
                 Mevent.create(model);
+                  console.log(model.model().attributes.DateEnd);
+                return false
             });
             require(["helpers/googlemaps"],function(maps){
                 $('#inputPlace')

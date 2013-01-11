@@ -27,7 +27,6 @@ define([
             ko.applyBindings(view_model, $('#' + div)[0]);
             return view_model;
         },
-
         create:function (event) {
             dao.QueryOnline('addEvent', event.model().attributes,
                 function (res) {
@@ -37,7 +36,6 @@ define([
                         window.location.hash = 'eventDescription/'+res.id;
                     }
                 });
-
         },
         getEvent:function (lat, lng, distance,date,dateEnd, next) {
             dao.QueryOnline('getEvent', {lat:lat, lng:lng, distance:distance,date:date,dateEnd:dateEnd},
