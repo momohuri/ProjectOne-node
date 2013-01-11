@@ -63,7 +63,22 @@ if (typeof define !== 'function') {
                 event.findAll({where:[" ( 6371 * acos( cos( radians(?) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians(?) ) + sin( radians(?) ) * sin( radians( `lat` ) ) ) ) < ?" +
                     "and DATE(date)BETWEEN ? AND ?;",
                     lat, lng, lat, distance, req.body.date, req.body.dateEnd]}).success(function (Events) {
-                        res.send(Events)
+                        res.send(Events);
+                    })
+
+            },  getEventById:function (req, res) {
+                var id = parseInt(req.body.id,10);
+                event.find(id).success(function (Event) {
+                    var eventDescription = {
+                        Name : Event.Name,
+                        Description : Event.Description,
+                        Address : Event.Address,
+                        lat : Event.lat,
+                        lng : Envent.lng,
+                        Date : Event.Date,
+                        DateEnd : Event.DateEnd
+                    }
+                    res.send(eventDescription);
                     })
 
             }

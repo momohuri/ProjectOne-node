@@ -45,6 +45,12 @@ define([
                     next(res);
                 });
         },
+        getEventById:function (id, next) {
+            dao.QueryOnline('getEventById', {id:id},
+                function (res) {
+                    next(res);
+                });
+        },
         createList:function (events) {
             function listChangeHandler(event) {
                 if (event.item.lat != undefined) {

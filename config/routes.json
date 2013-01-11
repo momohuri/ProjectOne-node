@@ -35,7 +35,14 @@
             "controller":"guest",
             "func":"getEvent",
             "method":"post"
-        },"addEvent":{
+        },
+        "getEventById":{
+            "route":"/getEventById",
+            "controller":"guest",
+            "func":"getEventById",
+            "method":"post"
+        },
+        "addEvent":{
             "route":"/addEvent",
             "controller":"connected",
             "func":"addEvent",

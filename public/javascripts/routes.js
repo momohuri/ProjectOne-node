@@ -4,9 +4,10 @@ define([
     'controller/event',
     'controller/menu',
     'controller/inscription',
+    'controller/eventDescription',
     'helpers/function',
     'model/user'
-], function (homeC, messageC, eventC, menuC, inscriptionC, functionH, user) {
+], function (homeC, messageC, eventC, menuC, inscriptionC, eventDescriptionC, functionH, user) {
 
         var AppRouter = Backbone.Router.extend({
             routes:{
@@ -44,9 +45,7 @@ define([
             },
             eventDescription:function (id) {
                 loadView('eventDescription', function (online) {
-                    if (online) {
-                        console.log("lol");
-                    }
+                        eventDescriptionC.init(id);
                 });
             },
             defaultRoute:function () {
