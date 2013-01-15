@@ -5,7 +5,7 @@ define([
         init:function () {
             var model = message.init('message');
 
-            $('#message').live('submit',function(event){
+            $('#message').on('submit',function(event){
                 event.preventDefault();
                 message.send(model);
             });

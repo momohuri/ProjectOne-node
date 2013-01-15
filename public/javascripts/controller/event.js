@@ -59,11 +59,11 @@ define([
             });
             require(["helpers/googlemaps"],function(maps){
                 $('#inputPlace')
-                    .live('changeLatLng',function(event,lat,lng){
+                    .on('changeLatLng',function(event,lat,lng){
                     model.model().set("lat",lat);
                     model.model().set("lng",lng);
                     maps.centerOnPlace(lat,lng);
-                    }).live('changeAddress',function(event,address){
+                    }).on('changeAddress',function(event,address){
                     model.model().set("Address",address);
                 });
 

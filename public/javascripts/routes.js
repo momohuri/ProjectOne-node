@@ -6,10 +6,15 @@ define([
     'controller/inscription',
     'controller/eventDescription',
     'helpers/function',
-    'model/user'
+    'model/user',
+    'extern/backbone.routefilter.min'
+
 ], function (homeC, messageC, eventC, menuC, inscriptionC, eventDescriptionC, functionH, user) {
 
         var AppRouter = Backbone.Router.extend({
+            before:function(route){
+                $('*').off();
+            },
             routes:{
                 "message":"message",
                 "createEvent":"createEvent",
@@ -170,8 +175,6 @@ define([
                 }
             });
         }
-
-
 
         var app = {
             init:function () {

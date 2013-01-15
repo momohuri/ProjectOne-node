@@ -5,7 +5,7 @@ define([
     var app = {
         init:function () {
             var model = Muser.init('inscription');
-            $('#inscription').live('submit', function (event) {
+            $('#inscription').on('submit', function (event) {
                 event.preventDefault();
                 Muser.create(model);
             });

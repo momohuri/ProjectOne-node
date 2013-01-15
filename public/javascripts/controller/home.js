@@ -24,10 +24,10 @@ define([
             datepicker();
             require(["helpers/googlemaps"], function (maps) {
 
-                $('#inputPlace').live('changeAddress',function(event,address){
+                $('#inputPlace').on('changeAddress',function(event,address){
                     $('#inputPlace').val(address);
                     $('#searchEvent').submit();
-                }).live('blur',function(){
+                }).on('blur',function(){
                     $('#searchEvent').submit();
                 });
 
@@ -54,7 +54,7 @@ define([
                 });
 
                 maps.autocomplete();
-                $('#searchEvent').live('submit', function (event) {
+                $('#searchEvent').on('submit', function (event) {
                     event.preventDefault();
                     maps.searchLocations(function (res) {
                         //todo le 30 correspond a la distance, faut le rendre dynamique
