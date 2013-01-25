@@ -92,7 +92,7 @@ define([
             var myList= $('#myList');
             if (events.length!=0) {
                 myList.list('setDataProvider', createDataProvider(events));
-            } else {/usr/bin/node
+            } else {
                 myList.list('setDataProvider', empty())
             }
 
