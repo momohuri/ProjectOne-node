@@ -42,6 +42,11 @@ define([
                     next(res);
                 });
         },
+        getMyEventsOnline:function(next){
+            dao.QueryOnline('getMyEvents',{},function(res){
+                next(res);
+            });
+        },
         getEventById:function (id, next) {
             dao.QueryOnline('getEventById', {id:id},
                 function (res) {

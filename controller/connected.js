@@ -5,8 +5,9 @@ if (typeof define !== 'function') {
 //class name :
 (function (define) {
     define([
-        "../model/event"
-    ], function (Mevent) {
+        "../model/event",
+        "../model/user"
+    ], function (Mevent,Muser) {
         var Controller = {
             Disconnect:function (req, res) {
                req.session.user=null;
@@ -26,14 +27,20 @@ if (typeof define !== 'function') {
                     if(err){
                         res.send({err:err});
                     }else{
-                        Event.save().success(function(dbEntry){
+                        var User= Muser.build(req.session.user);
+                        User.setCreator(Event).success(function(dbEntry){
                             res.send({id:dbEntry.id});
                         });
-
                     }
                 }else{
                     res.send({err:{err:['Veuillez vous connecter!']}});
                 }
+            },
+            getMyEvents:function(req,res){
+                var User= Muser.build(req.session.user);
+                User.getCreated(function(events){
+
+                })
             }
         }
         return Controller;
