@@ -30,7 +30,11 @@ if (typeof define !== 'function') {
             instanceMethods:{
                 hashthispassword:function () {
                     this.Password = hash.generate(this.Password);
-                }},
+                },
+                getCreated:function(){
+                    sequelize.query()
+                }
+            },
             classMethods:{
                 verify:function (password,hashedPassword) {
                   return hash.verify(password, hashedPassword)

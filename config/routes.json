@@ -48,6 +48,12 @@
             "func":"addEvent",
             "method":"post"
         },
+        "getMyEvents":{
+            "route":"/getMyEvents",
+            "controller":"connected",
+            "func":"getMyEvents",
+            "method":"post"
+            },
 
         "404":{
             "route":"*",
