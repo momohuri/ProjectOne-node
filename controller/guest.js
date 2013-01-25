@@ -74,12 +74,12 @@ if (typeof define !== 'function') {
                         Description : Event.Description,
                         Address : Event.Address,
                         lat : Event.lat,
-                        lng : Envent.lng,
+                        lng : Event.lng,
                         Date : Event.Date,
                         DateEnd : Event.DateEnd
                     }
                     res.send(eventDescription);
-                    })
+                })
 
             }
         };

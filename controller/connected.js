@@ -21,7 +21,7 @@ if (typeof define !== 'function') {
             },
             addEvent:function(req,res){
                 if( req.session.user!=null){
-                    var Event = Mevent.build(rex<q.body);
+                    var Event = Mevent.build(req.body);
                     var err = Event.validate();
                     if(err){
                         res.send({err:err});
