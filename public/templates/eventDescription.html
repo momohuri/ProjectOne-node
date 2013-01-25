@@ -1,7 +1,18 @@
 <div>
     <h3> Votre Event</h3>
 
-    <ul id="eventDescription">
+    <div id="testIsLogged" >
+        <p data-bind="ifnot: IsLogged" class="text-warning">Vous devez vous connecter pour rejoindre cet evenement</p>
+
+        <div data-bind="if: IsLogged">
+            <form id="joinEvent">
+                <button type="submit" id='submit' class="btn">Rejoindre l'evenement</button>
+            </form>
+       </div>
+    </div>
+
+
+    <ul class="unstyled well" id="eventDescription">
         <li> Titre: <span data-bind="text : Name" /> </li>
         <li> Description: <span data-bind="text : Description" /> </li>
         <li> Adresse: <span data-bind="text : Address" /> </li>

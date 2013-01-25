@@ -1,7 +1,8 @@
 define([
     "../model/event",
+    "../model/user",
     "../extern/date"
-], function (Mevent) {
+], function (Mevent,Muser) {
 
     var app = {
 
@@ -14,6 +15,12 @@ define([
                 event.DateEnd = dateEndFormat.toLocaleFormat();
                 model.model().set(event);
 
+            });
+            var user = Muser.init('testIsLogged');
+
+            $('#joinEvent').live('submit',function(event){
+
+                debugger
             });
 
         }

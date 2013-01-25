@@ -10,6 +10,7 @@ define([
             Email:'',
             Password:'',
             Birthday:'',
+            IsLogged:'',
             Img:''
         });
 
@@ -33,8 +34,10 @@ define([
         },
         isLogged:function (next) {
             if (sessionStorage.getItem('id') != null) {
+                user.set("IsLogged",true)
                 next(true);
             } else {
+                user.set("IsLogged",false)
                 next(false);
             }
         },

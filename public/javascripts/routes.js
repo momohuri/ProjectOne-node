@@ -49,7 +49,7 @@ define([
                 )
             },
             eventDescription:function (id) {
-                loadView('eventDescription', function (online) {
+                loadViewSameMenu('eventDescription', function (online) {
                         eventDescriptionC.init(id);
                 });
             },
@@ -69,6 +69,27 @@ define([
                 $('#menu').html(data);
                 menuC.nonlogged();
             }, 'html');
+            ko.removeNode($('#into'));
+            $.get('templates/' + view + '.html', function (data) {
+                $('#into').html(data);
+                next();
+            }, 'html');
+        }
+//vue qui n a pas besoin d etre logger et c la meme on et offline et on ne change pas le menu
+        var loadViewSameMenu = function (view, next) {
+            user.isLogged(function (logged) {
+                if (logged) {
+                    $.get('templates/menu-logged.html', function (data) {
+                        $('#menu').html(data);
+                        menuC.logged();
+                    }, 'html');
+                }else{
+                    $.get('templates/menu-nonlogged.html', function (data) {
+                        $('#menu').html(data);
+                        menuC.nonlogged();
+                    }, 'html');
+                }
+            });
             ko.removeNode($('#into'));
             $.get('templates/' + view + '.html', function (data) {
                 $('#into').html(data);
