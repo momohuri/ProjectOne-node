@@ -41,7 +41,7 @@ if (typeof define !== 'function') {
                             if (row != null) {
                                 if (user.verify(req.body.password, row.Password)) {
                                     req.session.user = row;
-                                    res.send({work:true, Email:row.Email, Password:row.Password, id:req.session.id});
+                                    res.send({work:true, Email:row.Email, Password:row.Password, id:req.session.id, userId:row.id});
                                 } else {
                                     res.send({err:{err:['Email ou Mdp existe pas']}});
                                 }
@@ -76,7 +76,8 @@ if (typeof define !== 'function') {
                         lat : Event.lat,
                         lng : Event.lng,
                         Date : Event.date,
-                        DateEnd : Event.dateEnd
+                        DateEnd : Event.dateEnd,
+                        CreatorId : Event.Creator_id
                     }
                     res.send(eventDescription);
                 })
