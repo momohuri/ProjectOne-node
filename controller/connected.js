@@ -39,7 +39,7 @@ if (typeof define !== 'function') {
             getMyEvents:function(req,res){
                 var User= Muser.build(req.session.user);
                 User.getCreated(function(events){
-
+                     res.send(events);
                 })
             }
         }

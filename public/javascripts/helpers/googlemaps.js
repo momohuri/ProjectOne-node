@@ -81,6 +81,7 @@ define([
                 } else {
                     console.log("Ce navigateur ne supporte pas la géolocalisation");
                 }
+                next();
 
             },
             searchLocations:function (next) {

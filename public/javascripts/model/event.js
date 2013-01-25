@@ -86,10 +86,12 @@ define([
 
                 return descrition;
             }
+
+            debugger
             var myList= $('#myList');
             if (events.length!=0) {
                 myList.list('setDataProvider', createDataProvider(events));
-            } else {
+            } else {/usr/bin/node
                 myList.list('setDataProvider', empty())
             }
 

@@ -31,8 +31,10 @@ if (typeof define !== 'function') {
                 hashthispassword:function () {
                     this.Password = hash.generate(this.Password);
                 },
-                getCreated:function(){
-                    sequelize.query()
+                getCreated:function(next){
+                    sequelize.query('SELECT * FROM projectone.Events where Creator_id='+this.id, null, { raw: true }).success(function(data){
+                        next(data);
+                    })
                 }
             },
             classMethods:{

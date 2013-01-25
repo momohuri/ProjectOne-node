@@ -1,1 +1,31 @@
-coucou
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="row">
+            <div class="span5">
+                <div class="list padding" id="myList"></div>
+            </div>
+            <div class="span7">
+                <div id="map" class="img-polaroid "></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 data-bind="text: Name"></h3>
+    </div>
+    <div class="modal-body">
+        <p>Description: <span data-bind="text: Description"></span></p>
+        <p>Date de debut: <span data-bind="text: Date"></span></p>
+        <p>Adresse: <span data-bind="text: Address"></span></p>
+        <p>Categorie: <span data-bind="text: Type"></span> </p>
+        <p> <a  target="_blank" data-bind="attr: { href: Link}">Plus d'info</a></p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+    </div>
+</div>

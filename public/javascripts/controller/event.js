@@ -69,7 +69,7 @@ define([
 
 
                 maps.autocomplete();
-                maps.init();
+                maps.init(function(){});
             });
         }
     }

@@ -5,8 +5,26 @@ define([
 
     var app = {
         init:function(){
-            Mevent.getMyEventsOnline(function(res){
 
+
+                var model = Mevent.init('myModal');
+                debugger
+                require(["helpers/googlemaps"], function (maps) {
+                    maps.init(function (geolocalisation) {
+                            Mevent.getMyEventsOnline(function(events){
+                                    if (typeof(events) != 'undefined') {
+                                        Mevent.createList(events);
+                                        maps.clearMarker();
+                                        var i = 0;
+                                        events.forEach(function (item) {
+                                            maps.addMarker(item.lat, item.lng, item, i);
+                                            i++;
+                                        })
+                                    }
+                                }
+                            );
+
+                });
             })
         }
     }
