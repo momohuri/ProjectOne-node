@@ -1,11 +1,10 @@
 define([
     '../helpers/dao',
     "../helpers/function",
-    "../helpers/googlemaps",
     "../extern/bootstrap-list"
 
 
-], function (dao, functionH, gmaps) {
+], function (dao, functionH) {
 
     var event = new Backbone.Model(
         {
@@ -52,8 +51,10 @@ define([
         createList:function (events) {
             function listChangeHandler(event) {
                 if (event.item.lat != undefined) {
-                    gmaps.centerOnPlace(event.item.lat, event.item.lng);
-                    $('#myList').list.showModal(event.item);
+                    require(["../helpers/googlemaps"],function(gmaps){
+                        gmaps.centerOnPlace(event.item.lat, event.item.lng);
+                        $('#myList').list.showModal(event.item);
+                    })
                 }
             }
 

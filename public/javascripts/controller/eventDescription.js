@@ -7,7 +7,7 @@ define([
         init:function (id) {
             var model = Mevent.init('eventDescription');
             Mevent.getEventById(id,function(event){
-                console.log(event);
+                model.model().set(event);
             });
 
         }
