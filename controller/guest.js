@@ -75,8 +75,8 @@ if (typeof define !== 'function') {
                         Address : Event.Address,
                         lat : Event.lat,
                         lng : Event.lng,
-                        Date : Event.Date,
-                        DateEnd : Event.DateEnd
+                        Date : Event.date,
+                        DateEnd : Event.dateEnd
                     }
                     res.send(eventDescription);
                 })

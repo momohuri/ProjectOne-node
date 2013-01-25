@@ -1,5 +1,6 @@
 define([
-    "../model/event"
+    "../model/event",
+    "../extern/date"
 ], function (Mevent) {
 
     var app = {
@@ -7,7 +8,12 @@ define([
         init:function (id) {
             var model = Mevent.init('eventDescription');
             Mevent.getEventById(id,function(event){
+                var dateFormat = new Date(event.Date);
+                var dateEndFormat = new Date(event.Date);
+                event.Date = dateFormat.toLocaleFormat();
+                event.DateEnd = dateEndFormat.toLocaleFormat();
                 model.model().set(event);
+
             });
 
         }
