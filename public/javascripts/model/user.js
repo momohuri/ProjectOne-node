@@ -5,12 +5,14 @@ define([
 
     var user = new Backbone.Model(
         {
+            Id: '',
             Name:'',
             Surname:'',
             Email:'',
             Password:'',
             Birthday:'',
             IsLogged:'',
+            IsCreator:'',
             Img:''
         });
 
@@ -34,10 +36,10 @@ define([
         },
         isLogged:function (next) {
             if (sessionStorage.getItem('id') != null) {
-                user.set("IsLogged",true)
+                user.set("IsLogged",true);
                 next(true);
             } else {
-                user.set("IsLogged",false)
+                user.set("IsLogged",false);
                 next(false);
             }
         },
@@ -48,6 +50,7 @@ define([
                         function (res) {
                             if (res.work) {
                                 sessionStorage.setItem('id', res.id);
+                                sessionStorage.setItem('userId', res.userId);
                                 dao.createOffline(function () {
                                     dao.InsertOffline('user', {Email:user, Password:password}, function () {
                                         window.location.hash = 'searchEvent';
