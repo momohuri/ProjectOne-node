@@ -87,6 +87,8 @@ define([
 
                 return descrition;
             }
+
+            debugger
             var myList= $('#myList');
             if (events.length!=0) {
                 myList.list('setDataProvider', createDataProvider(events));
