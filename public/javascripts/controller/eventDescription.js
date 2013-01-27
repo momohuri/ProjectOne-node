@@ -14,14 +14,15 @@ define([
                 event.Date = dateFormat.toLocaleFormat();
                 event.DateEnd = dateEndFormat.toLocaleFormat();
                 model.model().set(event);
+                if(model.model().attributes.CreatorId == sessionStorage.userId){
+                    user.model().set("IsCreator",true);
+                }else{
+                    user.model().set("IsCreator",false);
+                }
             });
             var user = Muser.init('testIsLogged');
+debugger
 
-            if(model.model().attributes.CreatorId == sessionStorage.userId){
-                user.model().set("IsCreator",true);
-            }else{
-                user.model().set("IsCreator",false);
-            }
 
 
 
