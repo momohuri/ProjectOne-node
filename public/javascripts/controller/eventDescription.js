@@ -21,7 +21,6 @@ define([
                 }
             });
             var user = Muser.init('testIsLogged');
-debugger
 
 
 
