@@ -5,7 +5,7 @@
         <p data-bind="ifnot: IsLogged" class="text-warning">Vous devez vous connecter pour rejoindre cet evenement</p>
 
         <div data-bind="if: IsLogged">
-            <div data-bind="if: IsCreator">
+            <div data-bind="ifnot: IsCreator">
                 <form id="joinEvent">
                     <button type="submit" id='submit' class="btn">Rejoindre l'evenement</button>
                 </form>
