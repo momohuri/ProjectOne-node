@@ -9,6 +9,7 @@ if (typeof define !== 'function') {
         "./event",
         "./message"
     ], function (user,event,message) {
+
         var relation = {
             create:function () {
                 user.hasMany(message);

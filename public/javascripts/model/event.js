@@ -57,11 +57,12 @@ define([
         createList:function (events) {
             function listChangeHandler(event) {
                 if (event.item.lat != undefined) {
-                    require(["../helpers/googlemaps"],function(gmaps){
+                    require(["helpers/googlemaps"],function(gmaps){
                         gmaps.centerOnPlace(event.item.lat, event.item.lng);
-                        $('#myList').list.showModal(event.item);
+
                     })
                 }
+                $('#myList').list.showModal(event.item);
             }
 
             function createDataProvider(events) {
@@ -87,8 +88,6 @@ define([
 
                 return descrition;
             }
-
-            debugger
             var myList= $('#myList');
             if (events.length!=0) {
                 myList.list('setDataProvider', createDataProvider(events));
@@ -103,13 +102,10 @@ define([
             $('div.list').attr('class','list padding2');
 
             $.fn.list.showModal=function(self){
-                event.set('Name',self.Name);
-                event.set('Description',self.Description);
-                event.set('Address',self.Address);
-                event.set('Type',self.Type);
-                event.set('Link',self.Link);
-                event.set('Date',new Date(self.date).toLocaleString());
                 $('#myModal').modal();
+                event.set(self)
+                debugger
+
             }
         }
 
