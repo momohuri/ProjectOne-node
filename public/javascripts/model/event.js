@@ -16,7 +16,7 @@ define([
             Type:'',
             lat:'',
             lng:'',
-            CreatorId:'',
+            Creator_id:'',
             Link:''
         });
 
