@@ -37,9 +37,9 @@ if (typeof define !== 'function') {
                 }
             },
             joinEvent:function(req,res){
-                var eventId = parseInt(req.body.Id,10);
+                var eventId = parseInt(req.body.id,10);
                 Mevent.find(eventId).success(function (Event) {
-                   Event.setMembers([req.session.user]).success(function() {
+                   Event.addMember(req.session.user).success(function() {
                    res.send({work:true});
                 })
                 });
