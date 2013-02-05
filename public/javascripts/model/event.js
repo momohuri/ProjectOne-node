@@ -8,6 +8,7 @@ define([
 
     var event = new Backbone.Model(
         {
+            Id:'',
             Name:'',
             Description:'',
             Date:'',
@@ -19,6 +20,17 @@ define([
             Creator_id:'',
             Link:''
         });
+    event.prototype = Backbone.Model.prototype;
+    event.prototype.joinEvent = function(){
+        dao.QueryOnline('joinEvent', {id:this.Id},function (res,next) {
+            debugger
+            if(res.err){
+            functionH.alert("event", res.err);
+        }else{
+             next(res);
+        }
+    });
+    };
 
 
     var app = {
