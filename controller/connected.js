@@ -47,7 +47,6 @@ if (typeof define !== 'function') {
             getMyEvents:function(req,res){
                 var User= Muser.build(req.session.user);
                 User.getEvents().success(function(associatedEvents) {
-
                     var events=[];
                     associatedEvents.forEach(function(item){
                         events.push({
