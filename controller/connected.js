@@ -36,6 +36,14 @@ if (typeof define !== 'function') {
                     res.send({err:{err:['Veuillez vous connecter!']}});
                 }
             },
+            joinEvent:function(req,res){
+                var eventId = parseInt(req.body.Id,10);
+                Mevent.find(eventId).success(function (Event) {
+                   Event.setMembers([req.session.user]).success(function() {
+                   res.send({work:true});
+                })
+                });
+            },
             getMyEvents:function(req,res){
                 var User= Muser.build(req.session.user);
                 User.getEvents().success(function(associatedEvents) {

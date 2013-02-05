@@ -7,14 +7,14 @@ define([
     var app = {
 
         init:function (id) {
-            var model = Mevent.init('eventDescription');
+            var myEvent = Mevent.init('eventDescription');
             Mevent.getEventById(id,function(event){
                 var dateFormat = new Date(event.Date);
                 var dateEndFormat = new Date(event.Date);
                 event.Date = dateFormat.toLocaleFormat();
                 event.DateEnd = dateEndFormat.toLocaleFormat();
-                model.model().set(event);
-                if(model.model().attributes.CreatorId == sessionStorage.userId){
+                myEvent.model().set(event);
+                if(myEvent.model().attributes.CreatorId == sessionStorage.userId){
                     user.model().set("IsCreator",true);
                 }else{
                     user.model().set("IsCreator",false);
@@ -27,7 +27,8 @@ define([
 
             $('#joinEvent').live('submit',function(event){
 
-                debugger
+                myEvent.model().joinEvent();
+
             });
 
         }

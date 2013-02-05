@@ -54,6 +54,12 @@
             "func":"getMyEvents",
             "method":"post"
             },
+        "joinEvent":{
+            "route":"/joinEvent",
+            "controller":"connected",
+            "func":"joinEvent",
+            "method":"post"
+        },
 
         "404":{
             "route":"*",

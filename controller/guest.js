@@ -92,6 +92,7 @@ if (typeof define !== 'function') {
                 var id = parseInt(req.body.id,10);
                 event.find(id).success(function (Event) {
                     var eventDescription = {
+                        Id : Event.id,
                         Name : Event.Name,
                         Description : Event.Description,
                         Address : Event.Address,
