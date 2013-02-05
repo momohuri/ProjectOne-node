@@ -7,7 +7,7 @@ if (typeof define !== 'function') {
     define([
         "../model/event",
         "../model/user"
-    ], function (event, user) {
+    ], function (event, Muser) {
         var Controller = {
             isConnected:function (req, res) {
                 res.send({work:true});
@@ -16,17 +16,17 @@ if (typeof define !== 'function') {
                 res.render('index');
             },
             subscribe:function (req, res) {
-                var User = user.build(req.body);
+                var user = Muser.build(req.body);
                 user.find({  where:[' Email=?', req.body.Email]}).on('success', function (row) {
                     if (row != null) {
                         res.send({err:{err:['Email deja utilise']}});
                     } else {
-                        var err = User.validate();
+                        var err = user.validate();
                         if (err) {
                             res.send({err:err});
                         } else {
-                            User.hashthispassword();
-                            User.save();
+                            user.hashthispassword();
+                            user.save();
                             //todo send GUID
                             res.send({work:true});
                         }
@@ -35,13 +35,35 @@ if (typeof define !== 'function') {
             },
             connect:function (req, res) {
                 if (req.body.password != '' && req.body.user != '') {
-                    user.find({
+                    Muser.find({
                         where:[' Email=?', req.body.user]
-                    }).on('success', function (row) {
-                            if (row != null) {
-                                if (user.verify(req.body.password, row.Password)) {
-                                    req.session.user = row;
-                                    res.send({work:true, Email:row.Email, Password:row.Password, id:req.session.id, userId:row.id});
+                    }).on('success', function (User) {
+                            if (User != null) {
+                                if (Muser.verify(req.body.password, User.Password)) {
+
+                                     User.getEvents().success(function(associatedEvents) {
+                                        var events=[];
+                                        associatedEvents.forEach(function(item){
+                                            events.push({
+                                                Name:item.Name,
+                                                Description:item.Description,
+                                                Date:item.Date,
+                                                DateEnd:item.DateEnd,
+                                                Address:item.Address,
+                                                Type:item.Type,
+                                                lat:item.lat,
+                                                lng:item.lng,
+                                                CreatorId:item.Creator_Id,
+                                                Link:item.Link
+                                            })
+                                        })
+                                        User.getCreated(function(eventCreated){
+                                            events = events.concat(eventCreated);
+                                            res.send({work:true, Email:User.Email, Password:User.Password, id:req.session.id, userId:User.id,events:events});
+                                            req.session.user=User;
+                                        })
+                                    });
+
                                 } else {
                                     res.send({err:{err:['Email ou Mdp existe pas']}});
                                 }

@@ -5,10 +5,7 @@ define([
 
     var app = {
         init:function(){
-
-
                 var model = Mevent.init('myModal');
-                debugger
                 require(["helpers/googlemaps"], function (maps) {
                     maps.init(function (geolocalisation) {
                             Mevent.getMyEventsOnline(function(events){

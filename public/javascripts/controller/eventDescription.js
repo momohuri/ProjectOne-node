@@ -11,8 +11,8 @@ define([
             Mevent.getEventById(id,function(event){
                 var dateFormat = new Date(event.Date);
                 var dateEndFormat = new Date(event.Date);
-                event.Date = dateFormat.toLocaleFormat();
-                event.DateEnd = dateEndFormat.toLocaleFormat();
+                event.Date = dateFormat.toLocaleString();
+                event.DateEnd = dateEndFormat.toLocaleString();
                 myEvent.model().set(event);
                 if(myEvent.model().attributes.CreatorId == sessionStorage.userId){
                     user.model().set("IsCreator",true);
@@ -21,7 +21,6 @@ define([
                 }
             });
             var user = Muser.init('testIsLogged');
-
 
 
 
