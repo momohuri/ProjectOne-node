@@ -54,7 +54,6 @@ define([
                                 dao.createOffline(function () {
                                     dao.InsertOffline('user', {Email:user, Password:password}, function () {
                                         window.location.hash = 'searchEvent';
-                                        //todo real page
                                     });
                                 });
 
