@@ -42,7 +42,6 @@ if (typeof define !== 'function') {
 
                     var events=[];
                     associatedEvents.forEach(function(item){
-                        console.log(item)
                         events.push({
                             Name:item.Name,
                             Description:item.Description,
