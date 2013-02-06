@@ -39,10 +39,18 @@ if (typeof define !== 'function') {
             joinEvent:function(req,res){
                 var eventId = parseInt(req.body.id,10);
                 Mevent.find(eventId).success(function (Event) {
-                   Event.addMember(req.session.user).success(function() {
-                   res.send({work:true});
-                })
-                });
+                   Muser.find(req.session.user.id).success(function(userToAdd) {
+                        Event.addMember(userToAdd).success(function() {
+                            res.send({work:true});
+                        }).error(function(error) {
+                           console.log("error 1 "+error);
+                        })
+                    }).error(function(error) {
+                           console.log("error 2 "+error);
+                       });
+                }).error(function(error) {
+                        console.log("error 3 "+error);
+                    });
             },
             getMyEvents:function(req,res){
                 var User= Muser.build(req.session.user);
