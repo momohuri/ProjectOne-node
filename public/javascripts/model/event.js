@@ -2,8 +2,6 @@ define([
     '../helpers/dao',
     "../helpers/function",
     "../extern/bootstrap-list"
-
-
 ], function (dao, functionH) {
 
     var event = new Backbone.Model(

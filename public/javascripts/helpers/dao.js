@@ -1,6 +1,8 @@
 define([
+    './function',
     '../extern/localstoragedb.min'
-], function () {
+
+], function (functionH) {
 
     var app = {
         QueryOnline:function (url, data, next) {
@@ -27,6 +29,8 @@ define([
             next(result);
         },
         InsertOffline:function (table, value, next) {
+            debugger
+            value = functionH.remove_empty(value);
             var exist = document.db.query(table,value);
             if(exist==0){
                 document.db.insert(table, value);
@@ -39,6 +43,7 @@ define([
             if (document.db.isNew()) {
                 //ici la liste de nos table
                 document.db.createTable("user", ["Email", "Password"]);
+                document.db.createTable("events",["Name","Address","Description","lat","lng","Date","Img","Link","Type","DateEnd"]);
                 document.db.commit();
             }
             next();

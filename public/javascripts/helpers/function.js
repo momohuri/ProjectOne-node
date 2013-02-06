@@ -14,8 +14,6 @@ define([
                 }
             });
         },
-
-
         alert:function (idForm,error){
             var err='';
             for(item in error){
@@ -25,7 +23,27 @@ define([
             };
             $('.alert').remove();
             $('#'+idForm).append('<div style="margin-top:10px;" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>' + err + '</div>');
+        },
+
+        //remove null from json
+        remove_empty: function ( target ) {
+            Object.keys( target ).map( function ( key ) {
+                if ( target[ key ] instanceof Object ) {
+                    if ( ! Object.keys( target[ key ] ).length ) {
+                        delete target[ key ];
+                    }
+                    else {
+                        remove_empty( target[ key ] );
+                    }
+                }
+                else if ( target[ key ] === null ) {
+                    delete target[ key ];
+                }
+            } );
+            return target;
         }
+
+
     }
     return app;
 

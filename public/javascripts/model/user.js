@@ -46,16 +46,19 @@ define([
         login:function (user, password) {
             functionH.isConnected(function (online) {
                 if (online) {
+                    dao.createOffline(function () {
+                    });
+                    //todo faire quelque chose ici....
                     dao.QueryOnline('UserConnect', {user:user, password:password},
                         function (res) {
                             if (res.work) {
                                 sessionStorage.setItem('id', res.id);
                                 sessionStorage.setItem('userId', res.userId);
-                                dao.createOffline(function () {
-                                    dao.InsertOffline('user', {Email:user, Password:password}, function () {
-                                        window.location.hash = 'searchEvent';
-                                    });
-                                });
+                                res.events.forEach(function(item){
+                                    dao.InsertOffline('events',item,function(){});
+                                })
+                                dao.InsertOffline('user', {Email:user, Password:password}, function () {});
+                                window.location.hash = 'searchEvent';
 
                             } else {
                                 functionH.alert("login", res.err);
