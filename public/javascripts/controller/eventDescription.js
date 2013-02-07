@@ -25,8 +25,8 @@ define([
         });
     }
     function getComment(id){
-        dao.queryOnline('getComments',{idEvent:id},function(res){
-            
+        dao.QueryOnline('getComments',{idEvent:id},function(res){
+
         })
     }
 
