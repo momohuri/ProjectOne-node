@@ -8,11 +8,12 @@ define([
     'ejs',
     'path',
     './helpers/helper',
-    './model/relation'
-], function (express, routes, http,ejs, path,helpers,relation) {
+    './model/relation',
+    'sequelize'
+], function (express, routes, http,ejs, path,helpers,relation,Sequelize) {
 
     var app = express();
-
+    global.sequelize = new Sequelize("projectone", "root", "root");
     app.configure(function () {
         app.set('port', process.env.PORT || 3000);
         app.set('views', __dirname + '/views');
@@ -29,6 +30,7 @@ define([
         routes.route(app);
         relation.create();
         helpers.manifest();
+
     });
 
 
