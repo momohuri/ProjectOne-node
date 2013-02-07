@@ -1,8 +1,10 @@
 define([
     "../model/event",
     "../model/user",
+    "../helpers/dao",
     "../extern/date"
-], function (Mevent,Muser) {
+
+], function (Mevent,Muser,dao) {
 
     function getMembersByEvent(id){
         Mevent.getMembersByEvent(id,function(events){
@@ -48,11 +50,19 @@ define([
                 $('#joinEvent').on('submit',function(event){
                     myEvent.model().joinEvent();
                     user.model().set("IsMember",true);
+                    return false;
                 });
             });
             var user = Muser.init('testIsLogged');
 
-
+            $('#addComment').on('submit',function(evt){
+                //todo pas de model ici, moche la dao!!!!
+                dao.QueryOnline('addComment', {idEvent:id,comment:{Comment:$('#comment')[0].value}},
+                    function (res) {
+                        $('#comments').prepend('<li>'+$('#comment')[0].value+'</li>')
+                    });
+                return false;
+            });
 
         }
     }

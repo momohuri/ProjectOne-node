@@ -6,8 +6,9 @@ if (typeof define !== 'function') {
 (function (define) {
     define([
         "../model/event",
-        "../model/user"
-    ], function (event, Muser) {
+        "../model/user",
+        "../model/comment"
+    ], function (Mevent, Muser,Mcomment) {
         var Controller = {
             isConnected:function (req, res) {
                 res.send({work:true});
@@ -85,15 +86,16 @@ if (typeof define !== 'function') {
                 if (!req.body.dateEnd) {
                     req.body.dateEnd = req.body.date;
                 }
-                event.findAll({where:[" ( 6371 * acos( cos( radians(?) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians(?) ) + sin( radians(?) ) * sin( radians( `lat` ) ) ) ) < ?" +
+                Mevent.findAll({where:[" ( 6371 * acos( cos( radians(?) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians(?) ) + sin( radians(?) ) * sin( radians( `lat` ) ) ) ) < ?" +
                     "and DATE(date)BETWEEN ? AND ?;",
                     lat, lng, lat, distance, req.body.date, req.body.dateEnd]}).success(function (Events) {
                         res.send(Events);
                     })
 
-            },  getEventById:function (req, res) {
+            },
+            getEventById:function (req, res) {
                 var id = parseInt(req.body.id,10);
-                event.find(id).success(function (Event) {
+                Mevent.find(id).success(function (Event) {
                     var eventDescription = {
                         Id : id,
                         Name : Event.Name,
@@ -124,6 +126,19 @@ if (typeof define !== 'function') {
                     }
                 })
 
+            },
+            getComments:function(req,res){
+                var id = parseInt(req.body.idEvent,10);
+                Mevent.find(id).success(function(result){
+                    result.getComments().success(function(items){
+                        var comments = [];
+                        items.forEach(function(item){
+                            comments.push({Comment:item.Comment})
+                        })
+
+                        res.send({comments:comments})
+                    })
+                });
             }
         };
 

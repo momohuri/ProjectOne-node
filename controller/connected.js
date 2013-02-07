@@ -6,8 +6,9 @@ if (typeof define !== 'function') {
 (function (define) {
     define([
         "../model/event",
-        "../model/user"
-    ], function (Mevent,Muser) {
+        "../model/user",
+        "../model/comment"
+    ], function (Mevent,Muser,Mcomment) {
         var Controller = {
             Disconnect:function (req, res) {
                req.session.user=null;
@@ -22,6 +23,7 @@ if (typeof define !== 'function') {
             },
             addEvent:function(req,res){
                 if( req.session.user!=null){
+                    delete req.body.HasCreator;
                     var Event = Mevent.build(req.body);
                     var err = Event.validate();
                     if(err){
@@ -107,6 +109,32 @@ if (typeof define !== 'function') {
                     })
                 })
 
+            },
+            addComment:function(req,res){
+                var eventId = parseInt(req.body.idEvent,10);
+
+                if( req.session.user!=null){
+
+                    var Comment = Mcomment.build(req.body.comment);
+                    var err = Comment.validate();
+                    if(err){
+                        res.send({err:err});
+                    }else{
+                        var User= Muser.build(req.session.user);
+                        User.addComment(Comment).success(function(){
+                            Mevent.find(eventId).success(function(eventToComment){
+                                eventToComment.addComment(Comment).success(function(){
+                                    res.send({work:true});
+                                });
+                            });
+                        }).error(function(error) {
+                                console.log("error 1 "+error);
+                                res.send({err:"error 1"});
+                            })
+                    }
+                }else{
+                    res.send({err:{err:['Veuillez vous connecter!']}});
+                }
             }
         }
         return Controller;
