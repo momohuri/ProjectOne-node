@@ -83,7 +83,7 @@ if (typeof define !== 'function') {
                 var lng = req.body.lng;
                 var lat = req.body.lat;
                 var distance = req.body.distance;
-                if (!req.body.dateEnd) {
+                if (req.body.dateEnd) {
                     req.body.dateEnd = req.body.date;
                 }
                 Mevent.findAll({where:[" ( 6371 * acos( cos( radians(?) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians(?) ) + sin( radians(?) ) * sin( radians( `lat` ) ) ) ) < ?" +
