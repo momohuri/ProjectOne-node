@@ -8,7 +8,11 @@ if (typeof define !== 'function') {
         "sequelize"
     ], function (Sequelize) {
 
+        if (!global.sequelize) {
+            var sequelize = global.sequelize = new Sequelize("projectone", "root", "root");
+        } else {
             var sequelize = global.sequelize;
+        }
 
 
 
