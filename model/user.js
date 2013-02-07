@@ -11,8 +11,17 @@ if (typeof define !== 'function') {
         "password-hash"
     ], function (Sequelize, message,event, hash) {
 
-                if (!global.sequelize) {
-            var sequelize = global.sequelize = new Sequelize("projectone", "root", "root");
+        if (!global.sequelize) {
+            if(process.env.VCAP_SERVICES){
+                var env = JSON.parse(process.env.VCAP_SERVICES);
+                var mysql_config = env["mysql-5.1"][0]["credentials"];
+                var username = mysql_config["username"];
+                var pass=mysql_config["password"];
+            }else{
+                var username='root';
+                var pass='root';
+            }
+                var sequelize = global.sequelize = new Sequelize("projectone", username,pass);
         } else {
             var sequelize = global.sequelize;
         }
@@ -34,7 +43,10 @@ if (typeof define !== 'function') {
                 getCreated:function(next){
                     sequelize.query('SELECT * FROM projectone.Events where Creator_id='+this.id, null, { raw: true }).success(function(data){
                         next(data);
-                    })
+                    }).error(function(err){
+                            console.log('err',err)
+                            next([]);
+                        })
                 }
             },
             classMethods:{

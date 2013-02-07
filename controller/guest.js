@@ -66,7 +66,10 @@ if (typeof define !== 'function') {
                                             res.send({work:true, Email:User.Email, Password:User.Password, id:req.session.id, userId:User.id,events:events});
                                             req.session.user=User;
                                         })
-                                    });
+                                    }).error(function(err){
+                                             console.log('err2',err);
+                                             res.send(true)
+                                         });
 
                                 } else {
                                     res.send({err:{err:['Email ou Mdp existe pas']}});

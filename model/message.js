@@ -9,7 +9,16 @@ if (typeof define !== 'function') {
         "./user"
     ], function (Sequelize,user) {
         if (!global.sequelize) {
-            var sequelize = global.sequelize = new Sequelize("projectone", "root", "root");
+            if(process.env.VCAP_SERVICES){
+                var env = JSON.parse(process.env.VCAP_SERVICES);
+                var mysql_config = env["mysql-5.1"][0]["credentials"];
+                var username = mysql_config["username"];
+                var pass=mysql_config["password"];
+            }else{
+                var username='root';
+                var pass='root';
+            }
+            var sequelize = global.sequelize = new Sequelize("projectone", username,pass);
         } else {
             var sequelize = global.sequelize;
         }
