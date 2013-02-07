@@ -76,13 +76,18 @@ if (typeof define !== 'function') {
                     var eventId = parseInt(req.body.id,10);
                     Mevent.find(eventId).success(function (Event) {
                       Muser.find(Event.Creator_id).success(function (creator) {
+                          if(creator){
                             var userCreator = {
                                 Name : creator.Name,
                                 Surname:creator.Surname,
                                 Email:creator.Email
                             }
                             res.send(userCreator);
+                          }else{
+                              res.send({err:"Pas de créateur car c'est un evenement professionel"});
+                          }
                         });
+
                     });
                 },
             getMyEvents:function(req,res){

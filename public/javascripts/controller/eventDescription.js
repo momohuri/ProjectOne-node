@@ -2,9 +2,10 @@ define([
     "../model/event",
     "../model/user",
     "../helpers/dao",
+    "../helpers/function",
     "../extern/date"
 
-], function (Mevent,Muser,dao) {
+], function (Mevent,Muser,dao,functionH) {
 
     function getMembersByEvent(id){
         Mevent.getMembersByEvent(id,function(events){
@@ -17,11 +18,10 @@ define([
     }
     function getCreatorByEvent(id){
         Mevent.getCreatorByEvent(id,function(creator){
-            var viewModel = {
-                creator: creator
-            };
-            ko.applyBindings(viewModel,$("#creator")[0]);
-
+                var viewModel = {
+                    creator: creator
+                };
+                ko.applyBindings(viewModel,$("#creator")[0]);
         });
     }
     function getComment(id){
