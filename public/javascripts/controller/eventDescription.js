@@ -25,8 +25,12 @@ define([
         });
     }
     function getComment(id){
-        dao.QueryOnline('getComments',{idEvent:id},function(res){
+        dao.QueryOnline('getComments',{idEvent:id},function(comments){
             debugger
+            var viewModel = {
+                comments: ko.observableArray(comments)
+            };
+            ko.applyBindings(viewModel,$("#comments")[0]);
         })
     }
 

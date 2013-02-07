@@ -136,7 +136,7 @@ if (typeof define !== 'function') {
                             comments.push({Comment:item.Comment})
                         })
 
-                        res.send({comments:comments})
+                        res.send(comments);
                     })
                 });
             }
