@@ -26,7 +26,7 @@ define([
     }
     function getComment(id){
         dao.QueryOnline('getComments',{idEvent:id},function(res){
-
+            debugger
         })
     }
 
