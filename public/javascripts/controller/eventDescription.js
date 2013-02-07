@@ -4,10 +4,31 @@ define([
     "../extern/date"
 ], function (Mevent,Muser) {
 
+    function getMembersByEvent(id){
+        Mevent.getMembersByEvent(id,function(events){
+            var viewModel = {
+                members: ko.observableArray(events)
+            };
+            ko.applyBindings(viewModel,$("#listMembers")[0]);
+
+        });
+    }
+    function getCreatorByEvent(id){
+        Mevent.getCreatorByEvent(id,function(creator){
+            var viewModel = {
+                creator: creator
+            };
+            ko.applyBindings(viewModel,$("#creator")[0]);
+
+        });
+    }
+
     var app = {
 
         init:function (id) {
             var myEvent = Mevent.init('eventDescription');
+            getMembersByEvent(id);
+            getCreatorByEvent(id);
             Mevent.getEventById(id,function(event){
                 var dateFormat = new Date(event.Date);
                 var dateEndFormat = new Date(event.Date);

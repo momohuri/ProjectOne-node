@@ -16,8 +16,11 @@ if (typeof define !== 'function') {
                 res.render('index');
             },
             subscribe:function (req, res) {
+                delete req.body.IsLogged;
+                delete req.body.IsCreator;
+                delete req.body.IsMember;
                 var user = Muser.build(req.body);
-                user.find({  where:[' Email=?', req.body.Email]}).on('success', function (row) {
+                Muser.find({where:[' Email=?', req.body.Email]}).on('success', function (row) {
                     if (row != null) {
                         res.send({err:{err:['Email deja utilise']}});
                     } else {
