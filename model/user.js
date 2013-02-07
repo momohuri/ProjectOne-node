@@ -11,8 +11,12 @@ if (typeof define !== 'function') {
         "password-hash"
     ], function (Sequelize, message,event, hash) {
 
+                if (!global.sequelize) {
+            var sequelize = global.sequelize = new Sequelize("projectone", "root", "root");
+        } else {
             var sequelize = global.sequelize;
-        
+        }
+
 
 
         var user = sequelize.define('User', {
