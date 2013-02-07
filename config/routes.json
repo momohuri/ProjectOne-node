@@ -43,11 +43,11 @@
             "method":"post"
             },
         "getCreatorByEvent":{
-        "route":"/getCreatorByEvent",
-        "controller":"connected",
-        "func":"getCreatorByEvent",
-        "method":"post"
-    },
+            "route":"/getCreatorByEvent",
+            "controller":"connected",
+            "func":"getCreatorByEvent",
+            "method":"post"
+        },
         "getEventById":{
             "route":"/getEventById",
             "controller":"guest",

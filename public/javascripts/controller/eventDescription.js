@@ -24,6 +24,11 @@ define([
 
         });
     }
+    function getComment(id){
+        dao.queryOnline('getComments',{idEvent:id},function(res){
+            
+        })
+    }
 
     var app = {
 
@@ -31,6 +36,7 @@ define([
             var myEvent = Mevent.init('eventDescription');
             getMembersByEvent(id);
             getCreatorByEvent(id);
+            getComment(id);
             Mevent.getEventById(id,function(event){
                 var dateFormat = new Date(event.Date);
                 var dateEndFormat = new Date(event.Date);
@@ -55,12 +61,16 @@ define([
             });
             var user = Muser.init('testIsLogged');
 
+
+
             $('#addComment').on('submit',function(evt){
                 //todo pas de model ici, moche la dao!!!!
                 dao.QueryOnline('addComment', {idEvent:id,comment:{Comment:$('#comment')[0].value}},
                     function (res) {
-                        $('#comments').prepend('<li>'+$('#comment')[0].value+'</li>')
-                    });
+                        if(!res.err){
+                            $('#comments').prepend('<li>'+$('#comment')[0].value+'</li>');
+                        }
+                     });
                 return false;
             });
 
