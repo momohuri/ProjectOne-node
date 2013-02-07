@@ -60,6 +60,18 @@
             "func":"joinEvent",
             "method":"post"
         },
+        "getComments":{
+            "route":"/getComments",
+            "controller":"guest",
+            "func":"getComments",
+            "method":"post"
+        },
+        "addComment":{
+            "route":"/addComment",
+            "controller":"connected",
+            "func":"addComment",
+            "method":"post"
+        },
 
         "404":{
             "route":"*",

@@ -7,8 +7,9 @@ if (typeof define !== 'function') {
     define([
         "./user",
         "./event",
-        "./message"
-    ], function (user,event,message) {
+        "./message",
+        "./comment"
+    ], function (user,event,message,comment) {
 
         var relation = {
             create:function () {
@@ -19,9 +20,15 @@ if (typeof define !== 'function') {
                 event.hasMany(user,{as:"Members"});
                 user.hasOne(event,{as:"Creator", foreignKey: 'Creator_id'});
 
-                message.sync();
+                event.hasMany(comment);
+                user.hasMany(comment);
+                //comment.hasOne(event);
+                //comment.hasOne(user);
+
+                //message.sync();
                 user.sync();
                 event.sync();
+                comment.sync();
 
             }
         }
