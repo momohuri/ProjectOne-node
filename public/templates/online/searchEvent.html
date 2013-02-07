@@ -55,9 +55,9 @@
         <p>Date de debut: <span data-bind="text: Date"></span></p>
         <p>Adresse: <span data-bind="text: Address"></span></p>
         <p>Categorie: <span data-bind="text: Type"></span> </p>
-        <!-- ko if: Link == '' -->
-        <p data-bind=" if Link==''"> <a  target="_blank" data-bind="attr: { href: Link}">Plus d'info</a></p>
-        <!-- /ko -->
+        <p data-bind="if: HasCreator"> <a onclick="$('#myModal').modal('hide');" data-bind="attr: { href: Link}">Plus d'info</a></p>
+        <p data-bind="ifnot: HasCreator"> <a target="_blank" onclick="$('#myModal').modal('hide');" data-bind="attr: { href: Link}">Plus d'info</a></p>
+
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>

@@ -6,7 +6,7 @@ define([
 
     var event = new Backbone.Model(
         {
-            Id:'',
+            id:'',
             Name:'',
             Description:'',
             Date:'',
@@ -16,11 +16,12 @@ define([
             lat:'',
             lng:'',
             Creator_id:'',
+            HasCreator:'',
             Link:''
         });
     event.prototype = Backbone.Model.prototype;
     event.prototype.joinEvent = function(){
-        dao.QueryOnline('joinEvent', {id:this.attributes.Id},function (res) {
+        dao.QueryOnline('joinEvent', {id:this.attributes.id},function (res) {
             if(res.err){
             functionH.alert("event", res.err);
         }else{
@@ -118,7 +119,17 @@ define([
 
             $.fn.list.showModal=function(self){
                 $('#myModal').modal();
-                event.set(self)
+
+                event.set(self);
+                if(self.Creator_id){
+                    event.set("HasCreator",true);
+                    if (self.Link) {
+                    }else{
+                        event.set("Link","/#eventDescription/"+self.id);
+                    }
+                }else{
+                    event.set("HasCreator",false);
+                }
             }
         }
 
