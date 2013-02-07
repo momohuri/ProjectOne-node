@@ -19,7 +19,7 @@ define([
 
     var app = {
         init:function () {
-
+            $("#filter").slideUp();
             var model = Mevent.init('myModal');
             datepicker();
             require(["helpers/googlemaps"], function (maps) {
@@ -31,11 +31,32 @@ define([
                     $('#searchEvent').submit();
                 });
 
+                $("#v-slider").slider({
+                    orientation: "horizontal",
+                    range: "min",
+                    min: 1,
+                    max: 100,
+                    value: 30,
+                    slide: function (event, ui) {
+                        $("#amount").html(ui.value);
+                    }
+                });
+                $("#amount").html($("#v-slider").slider("value"));
+
+                $("#buttonSlide").on('click',function(){
+                    $("#filter").slideToggle(500);
+                    if($("#buttonSlide i").hasClass("icon-chevron-left")){
+                        $("#buttonSlide i").removeClass("icon-chevron-left").addClass("icon-chevron-down");
+                    }else{
+                        $("#buttonSlide i").removeClass("icon-chevron-down").addClass("icon-chevron-left");
+                    }
+            });
+
 
                 maps.init(function (geolocalisation) {
                     if (geolocalisation) {
                         var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[0]));
-                        var dateEnd= false;
+                        var dateEnd= true;
                         Mevent.getEvent(geolocalisation.coords.latitude, geolocalisation.coords.longitude, 30,dateStart,dateEnd, function (events) {
                                 if (typeof(events) != 'undefined') {
                                     Mevent.createList(events);
@@ -57,15 +78,14 @@ define([
                 $('#searchEvent').on('submit', function (event) {
                     event.preventDefault();
                     maps.searchLocations(function (res) {
-                        //todo le 30 correspond a la distance, faut le rendre dynamique
                         var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[0]));
                         if (typeof( $('#startDate').val().toString().split(' ')[2])!='undefined') {
                             var dateEnd = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[2]));
                         }else{
-                            var dateEnd=false;
+                            var dateEnd=true;
                         }
 
-                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), 30, dateStart,dateEnd, function (events) {
+                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), $("#v-slider").slider("value"), dateStart,dateEnd, function (events) {
                             if (typeof(events) != 'undefined') {
                                 Mevent.createList(events);
                                 maps.clearMarker();
