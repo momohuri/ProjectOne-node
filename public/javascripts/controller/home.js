@@ -62,7 +62,7 @@ define([
                         if (typeof( $('#startDate').val().toString().split(' ')[2])!='undefined') {
                             var dateEnd = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[2]));
                         }else{
-                            var dateEnd=false;
+                            var dateEnd=dateStart;
                         }
 
                         Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), 30, dateStart,dateEnd, function (events) {
