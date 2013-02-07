@@ -58,6 +58,17 @@ define([
                 next(res);
             });
         },
+        getMembersByEvent:function(id,next){
+            dao.QueryOnline('getMembersByEvent',{id:id},
+                function(res){
+                    next(res);
+            });
+        },getCreatorByEvent:function(id,next){
+            dao.QueryOnline('getCreatorByEvent',{id:id},
+                function(res){
+                    next(res);
+                });
+        },
         getMyEventsOffline:function(next){
             dao.QueryOffline('events', {}, function (res) {
                 next(res);

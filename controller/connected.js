@@ -57,6 +57,34 @@ if (typeof define !== 'function') {
                         res.send({err:"error 3"});
                     });
             },
+            getMembersByEvent:function(req,res){
+                var eventId = parseInt(req.body.id,10);
+                    Mevent.find(eventId).success(function (Event) {
+                        Event.getMembers().success(function(Members){
+                            var listMembers=[];
+                            Members.forEach(function(item){
+                                listMembers.push({
+                                    Name:item.Name,
+                                    Surname:item.Surname,
+                                    Email:item.Email
+                                })
+                            });
+                            res.send(listMembers);
+                        });
+                    });
+            },getCreatorByEvent:function(req,res){
+                    var eventId = parseInt(req.body.id,10);
+                    Mevent.find(eventId).success(function (Event) {
+                      Muser.find(Event.Creator_id).success(function (creator) {
+                            var userCreator = {
+                                Name : creator.Name,
+                                Surname:creator.Surname,
+                                Email:creator.Email
+                            }
+                            res.send(userCreator);
+                        });
+                    });
+                },
             getMyEvents:function(req,res){
                 var User= Muser.build(req.session.user);
                 User.getEvents().success(function(associatedEvents) {

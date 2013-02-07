@@ -36,6 +36,18 @@
             "func":"getEvent",
             "method":"post"
         },
+        "getMembersByEvent":{
+            "route":"/getMembersByEvent",
+            "controller":"connected",
+            "func":"getMembersByEvent",
+            "method":"post"
+            },
+        "getCreatorByEvent":{
+        "route":"/getCreatorByEvent",
+        "controller":"connected",
+        "func":"getCreatorByEvent",
+        "method":"post"
+    },
         "getEventById":{
             "route":"/getEventById",
             "controller":"guest",

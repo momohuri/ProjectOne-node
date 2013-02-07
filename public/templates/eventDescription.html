@@ -29,16 +29,43 @@
         </div>
 
 
-        <div class="span6 ">
-            <form id="addComment" class="form-inline well">
-               <label for="comment" class="control-label">Un commentaire: </label>
-                <input id="comment" type="text" placeholder="Bonjour">
-                <button type="submit" id="submitComment"class="btn">Envoyer</button>
+        <div class="span6 unstyled well">
+            <form id="addComment">
+                <input type="text" placeholder="Commentaire">
+                <button type="submit" id="submitComment"class="btn">Ajouter le commentaire</button>
             </form>
-        </div>
-        <ul id="comments">
+            <ul id="comments">
 
-        </ul>
+            </ul>
+        </div>
+
+
+        <div class="span6 well" style="clear: both; margin-left: 0px;">
+            <div id="creator">
+                <strong>Créateur</strong>
+                <hr style="margin: 5px 0;">
+                <ul class="unstyled ">
+                    <li>
+                        <span data-bind="text: creator.Name"> </span>
+                        <span data-bind="text: creator.Surname"> </span>
+                        <span data-bind="text: creator.Email"> </span>
+                    </li>
+                </ul>
+            </div>
+            <div id="listMembers" >
+                <strong>Liste des membres</strong>
+                <hr style="margin: 5px 0;">
+                <ul class="unstyled " data-bind="foreach: members">
+                    <li>
+                        <span data-bind="text: Name"> </span>
+                        <span data-bind="text: Surname"> </span>
+                        <span data-bind="text: Email"> </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+
 
 </div>

@@ -5,7 +5,7 @@ define([
 
     var user = new Backbone.Model(
         {
-            Id: '',
+            id: '',
             Name:'',
             Surname:'',
             Email:'',
