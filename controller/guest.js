@@ -102,7 +102,23 @@ if (typeof define !== 'function') {
                         DateEnd : Event.dateEnd,
                         CreatorId : Event.Creator_id
                     }
-                    res.send(eventDescription);
+                    if(req.session.user){
+                        Muser.find(req.session.user.id).success(function(userHasMember) {
+                            Event.hasMembers([userHasMember]).success(function(result){
+                                    if(result){
+                                        eventDescription.IsMember = true;
+                                        res.send(eventDescription);
+                                    }else{
+                                        eventDescription.IsMember = false;
+                                        res.send(eventDescription);
+                                    }
+                                }
+                            );
+                        });
+                    }else{
+                        eventDescription.IsMember = false;
+                        res.send(eventDescription);
+                    }
                 })
 
             }

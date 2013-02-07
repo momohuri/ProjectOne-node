@@ -41,15 +41,18 @@ if (typeof define !== 'function') {
                 Mevent.find(eventId).success(function (Event) {
                    Muser.find(req.session.user.id).success(function(userToAdd) {
                         Event.addMember(userToAdd).success(function() {
-                            res.send({work:true});
+                            res.send({succ:{succ:["Vous avez rejoins l'évènement!"]}});
                         }).error(function(error) {
                            console.log("error 1 "+error);
+                           res.send({err:"error 1"});
                         })
                     }).error(function(error) {
                            console.log("error 2 "+error);
+                           res.send({err:"error 2"});
                        });
                 }).error(function(error) {
                         console.log("error 3 "+error);
+                        res.send({err:"error 3"});
                     });
             },
             getMyEvents:function(req,res){

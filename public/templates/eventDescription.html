@@ -6,9 +6,11 @@
 
         <div data-bind="if: IsLogged">
             <div data-bind="ifnot: IsCreator">
+                <div data-bind="ifnot: IsMember">
                 <form id="joinEvent">
                     <button type="submit" id='submit' class="btn">Rejoindre l'evenement</button>
                 </form>
+            </div>
             </div>
        </div>
     </div>

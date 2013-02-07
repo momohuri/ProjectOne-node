@@ -19,18 +19,22 @@ define([
                 }else{
                     user.model().set("IsCreator",false);
                 }
+                if(myEvent.model().attributes.IsMember){
+                    user.model().set("IsMember",true);
+                }else{
+                    user.model().set("IsMember",false);
+                }
+                $('#joinEvent').on('submit',function(event){
+                    myEvent.model().joinEvent();
+                    user.model().set("IsMember",true);
+                });
             });
             var user = Muser.init('testIsLogged');
 
 
 
-            $('#joinEvent').live('submit',function(event){
-
-                myEvent.model().joinEvent();
-
-            });
-
         }
     }
     return app;
 });
+

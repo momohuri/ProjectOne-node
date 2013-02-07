@@ -13,6 +13,7 @@ define([
             Birthday:'',
             IsLogged:'',
             IsCreator:'',
+            IsMember:'',
             Img:''
         });
 

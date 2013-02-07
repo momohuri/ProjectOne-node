@@ -24,6 +24,16 @@ define([
             $('.alert').remove();
             $('#'+idForm).append('<div style="margin-top:10px;" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>' + err + '</div>');
         },
+        success:function (idForm,error){
+            var succ='';
+            for(item in error){
+                for(var i=0; i<error[item].length;i++){
+                    succ+=error[item][i]+'<br/>';
+                }
+            };
+            $('.alert').remove();
+            $('#'+idForm).append('<div style="margin-top:10px;" class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>' + succ + '</div>');
+        },
 
         //remove null from json
         remove_empty: function ( target ) {

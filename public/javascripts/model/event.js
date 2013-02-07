@@ -21,11 +21,10 @@ define([
     event.prototype = Backbone.Model.prototype;
     event.prototype.joinEvent = function(){
         dao.QueryOnline('joinEvent', {id:this.attributes.Id},function (res) {
-            debugger
             if(res.err){
             functionH.alert("event", res.err);
         }else{
-            functionH.alert("ca marche");
+            functionH.success("testIsLogged", res.succ);
         }
     });
     };
