@@ -22,7 +22,11 @@ define([
                 }
             };
             $('.alert').remove();
-            $('#'+idForm).append('<div style="margin-top:10px;" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>' + err + '</div>');
+            $('#'+idForm).append('<div style="margin-top:10px;" class="alert alert-error"><button type="button" id="close" class="close" data-dismiss="alert">×</button>' + err + '</div>');
+            $("#close").on("click",function(){
+                $("#close").off();
+                $('.alert').remove();
+            });
         },
         success:function (idForm,error){
             var succ='';
@@ -32,7 +36,11 @@ define([
                 }
             };
             $('.alert').remove();
-            $('#'+idForm).append('<div style="margin-top:10px;" class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>' + succ + '</div>');
+            $('#'+idForm).append('<div style="margin-top:10px;" class="alert alert-success"><button id="close" type="button" class="close" data-dismiss="alert alert-success">&times;</button>' + succ + '</div>');
+            $("#close").on("click",function(){
+                $("#close").off();
+                $('.alert').remove();
+            });
         },
 
         //remove null from json
