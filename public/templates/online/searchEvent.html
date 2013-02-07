@@ -6,12 +6,15 @@
                     <fieldset>
 
                         <label for="startDate" class="control-label">Choisir une date : </label>
-                        <i class="icon-calendar icon-large" style="margin-left: 9px; margin-right: 2px; padding-left: 0px; z-index: 1; position: relative; margin-top: 3px;"></i>
-                        <input id="startDate" type="text" style="padding-left: 27px; margin-left: -29px;width:160px;" >
-
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-calendar icon-large"></i></span>
+                            <input id="startDate" type="text" style="width:160px;" >
+                        </div>
                         <label class="control-label" for="inputPlace">Lieu :</label>
-                        <input type="text" id="inputPlace" style="width: 350px;" required>
-
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-home icon-large"></i></span>
+                            <input type="text" id="inputPlace" style="width: 350px;" required>
+                        </div>
                         <button type="submit" id='Search' class="btn">Search</button>
 
                         <a id="buttonSlide" class="btn btn-small" style="float:right" href="#"> <i class="icon-chevron-down icon-large"></i></a>
@@ -37,7 +40,11 @@
                             </div>
                             <div style="float: left; margin-left: 20px;">
                                 <label for="amount">Distance : </label>
-                                <span id="amount" class="uneditable-input" style="width: 25px;text-align:right;"></span>
+                                <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-road icon-large"></i></span>
+                                    <span id="amount" class="uneditable-input" style="width: 25px;text-align:right;"></span>
+                                </div>
+
                             </div>
                         </div>
 

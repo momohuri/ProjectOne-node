@@ -65,6 +65,23 @@ define([
             var user = Muser.init('testIsLogged');
 
 
+            $('#listAdress').on('submit',function(evt){
+                if($('#address')[0].value != ""){
+                    $('#listEmailAddress').prepend('<input type="text" class="addressToSend" style="display:block;" value="'+$('#address')[0].value+'" />');
+                    $('#address').val("");
+                }
+            });
+
+            $('#sendMail').on('submit',function(evt){
+                var address = "";
+                $('#listEmailAddress .addressToSend').each(function(){
+                    if($(this).val() != ""){
+                        address += $(this).val()+";";
+                    }
+                });
+                alert(address);
+            });
+
 
             $('#addComment').on('submit',function(evt){
                 //todo pas de model ici, moche la dao!!!!

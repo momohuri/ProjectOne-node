@@ -31,15 +31,27 @@
 
         </div>
 
-        <div style="width: 48%;">
-
-            <ul class="unstyled well" id="eventDescription">
-                <li> Titre: <span data-bind="text : Name" /> </li>
-                <li> Description: <span data-bind="text : Description" /> </li>
-                <li> Adresse: <span data-bind="text : Address" /> </li>
-                <li> Date de debut: <span data-bind="text : Date" /> </li>
-                <li> Date de fin: <span data-bind="text : DateEnd" /> </li>
+        <div class="well" style="width: 44.52%;">
+            <strong>Déscription</strong>
+            <hr style="margin: 5px 0;">
+            <ul class="unstyled " id="eventDescription">
+                <li> <b>Titre :</b> <span data-bind="text : Name" /> </li>
+                <li> <b>Description :</b> <span data-bind="text : Description" /> </li>
+                <li> <b>Adresse :</b> <span data-bind="text : Address" /> </li>
+                <li> <b>Date de debut :</b> <span data-bind="text : Date" /> </li>
+                <li> <b>Date de fin :</b> <span data-bind="text : DateEnd" /> </li>
             </ul>
+            <br>
+            <strong>Partagez avec vos amis</strong>
+            <hr style="margin: 5px 0;">
+            <div id="listEmailAddress"></div>
+            <form id="listAdress" class="form-inline">
+                <input type="text" id="address" placeholder="email address">
+                <button type="submit" id="submitAddress"class="btn">Ajouter l'adresse email</button>
+            </form>
+            <form id="sendMail" class="form-inline">
+                <button type="submit" id="submitSendMail"class="btn">Envoyer un email a chaque contact</button>
+            </form>
         </div>
 
 
