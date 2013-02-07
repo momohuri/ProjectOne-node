@@ -72,6 +72,7 @@ define([
                     function (res) {
                         if(!res.err){
                             $('#comments').prepend('<li>'+$('#comment')[0].value+'</li>');
+                            $('#comment').val("");
                         }
                      });
                 return false;
