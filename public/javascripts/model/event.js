@@ -70,6 +70,7 @@ define([
         },
         createList:function (events) {
             function listChangeHandler(event) {
+                //todo pas faire le require if offline
                 if (event.item.lat != undefined) {
                     require(["helpers/googlemaps"],function(gmaps){
                         gmaps.centerOnPlace(event.item.lat, event.item.lng);

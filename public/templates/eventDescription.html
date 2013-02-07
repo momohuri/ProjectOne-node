@@ -16,11 +16,25 @@
     </div>
 
 
-    <ul class="unstyled well" id="eventDescription">
-        <li> Titre: <span data-bind="text : Name" /> </li>
-        <li> Description: <span data-bind="text : Description" /> </li>
-        <li> Adresse: <span data-bind="text : Address" /> </li>
-        <li> Date de debut: <span data-bind="text : Date" /> </li>
-        <li> Date de fin: <span data-bind="text : DateEnd" /> </li>
-    </ul>
+    <div class="row-fluid">
+        <div class="span6">
+
+            <ul class="unstyled well" id="eventDescription">
+                <li> Titre: <span data-bind="text : Name" /> </li>
+                <li> Description: <span data-bind="text : Description" /> </li>
+                <li> Adresse: <span data-bind="text : Address" /> </li>
+                <li> Date de debut: <span data-bind="text : Date" /> </li>
+                <li> Date de fin: <span data-bind="text : DateEnd" /> </li>
+            </ul>
+        </div>
+
+
+        <div class="span6 unstyled well">
+            <form id="addComment">
+                <input type="text" placeholder="Commentaire">
+                <button type="submit" id="submitComment"class="btn">Ajouter le commentaire</button>
+            </form>
+        </div>
+    </div>
+
 </div>
