@@ -122,6 +122,10 @@ define([
                 event.set(self);
                 if(self.Creator_id){
                     event.set("HasCreator",true);
+                    if (self.Link) {
+                    }else{
+                        event.set("Link","/#eventDescription/"+self.id);
+                    }
                 }else{
                     event.set("HasCreator",false);
                 }
