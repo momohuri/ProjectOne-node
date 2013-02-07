@@ -23,6 +23,15 @@ define([
 
                 });
             })
+        },
+        initOff:function(){
+            var model = Mevent.init('myModal');
+            Mevent.getMyEventsOffline(function(events){
+                    if (typeof(events) != 'undefined') {
+                        Mevent.createList(events);
+                    }
+                }
+            );
         }
     }
     return app;

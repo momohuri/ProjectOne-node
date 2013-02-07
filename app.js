@@ -28,7 +28,7 @@ define([
         app.use(app.router);
         routes.route(app);
         relation.create();
-//        helpers.manifest();
+        helpers.manifest();
     });
 
 

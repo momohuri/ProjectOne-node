@@ -29,7 +29,6 @@ define([
             next(result);
         },
         InsertOffline:function (table, value, next) {
-            debugger
             value = functionH.remove_empty(value);
             var exist = document.db.query(table,value);
             if(exist==0){
