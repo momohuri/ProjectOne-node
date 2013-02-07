@@ -21,7 +21,8 @@ define([
         });
     event.prototype = Backbone.Model.prototype;
     event.prototype.joinEvent = function(){
-        dao.QueryOnline('joinEvent', {id:this.attributes.id},function (res) {
+
+        dao.QueryOnline('joinEvent', {id:this.attributes.Id},function (res) {
             if(res.err){
             functionH.alert("event", res.err);
         }else{
