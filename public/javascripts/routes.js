@@ -56,8 +56,12 @@ define([
                 });
             },
             myEvent:function(){
-                loadViewLogged('myEvents',function(){
-                    myEventsC.init();
+                loadViewloggerOnOffline('myEvents',function(online){
+                    if(online){
+                        myEventsC.init();
+                    }else{
+                        myEventsC.initOff();
+                    }
                 })
             },
             defaultRoute:function () {
@@ -115,12 +119,12 @@ define([
                 if (isConnected) {
                     $.get('templates/online/' + view + '.html', function (data) {
                         $('#into').html(data);
-                        next({online:true});
+                        next(true);
                     }, 'html');
                 } else {
                     $.get('templates/offline/' + view + '.html', function (data) {
                         $('#into').html(data);
-                        next({online:false});
+                        next(false);
                     }, 'html');
                 }
             });
@@ -157,12 +161,12 @@ define([
                         if (isConnected) {
                             $.get('templates/online/' + view + '.html', function (data) {
                                 $('#into').html(data);
-                                next({online:true});
+                                next(true);
                             }, 'html');
                         } else {
                             $.get('templates/offline/' + view + '.html', function (data) {
                                 $('#into').html(data);
-                                next({online:false});
+                                next(false);
                             }, 'html');
                         }
                     });
@@ -193,12 +197,12 @@ define([
                 if (isConnected) {
                     $.get('templates/online/' + view + '.html', function (data) {
                         $('#into').html(data);
-                        next({online:true});
+                        next(true);
                     }, 'html');
                 } else {
                     $.get('templates/offline/' + view + '.html', function (data) {
                         $('#into').html(data);
-                        next({online:false});
+                        next(false);
                     }, 'html');
                 }
             });

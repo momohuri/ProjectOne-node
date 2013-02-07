@@ -31,6 +31,8 @@ define([
                 if ( target[ key ] instanceof Object ) {
                     if ( ! Object.keys( target[ key ] ).length ) {
                         delete target[ key ];
+                    }else if (Object.keys( target[ key ] ).length==0){
+                        delete target[ key ];
                     }
                     else {
                         remove_empty( target[ key ] );
@@ -38,8 +40,10 @@ define([
                 }
                 else if ( target[ key ] === null ) {
                     delete target[ key ];
+                } else if (target[ key ] == '' ) {
+                    delete target[ key ];
                 }
-            } );
+            });
             return target;
         }
 

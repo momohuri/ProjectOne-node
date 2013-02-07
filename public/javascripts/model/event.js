@@ -58,6 +58,11 @@ define([
                 next(res);
             });
         },
+        getMyEventsOffline:function(next){
+            dao.QueryOffline('events', {}, function (res) {
+                next(res);
+            });
+        },
         getEventById:function (id, next) {
             dao.QueryOnline('getEventById', {id:id},
                 function (res) {
@@ -114,8 +119,6 @@ define([
             $.fn.list.showModal=function(self){
                 $('#myModal').modal();
                 event.set(self)
-                debugger
-
             }
         }
 
