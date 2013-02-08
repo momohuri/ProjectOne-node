@@ -21,14 +21,23 @@ define([
         });
     event.prototype = Backbone.Model.prototype;
     event.prototype.joinEvent = function(){
-
         dao.QueryOnline('joinEvent', {id:this.attributes.Id},function (res) {
             if(res.err){
-            functionH.alert("event", res.err);
-        }else{
-            functionH.success("testIsLogged", res.succ);
-        }
-    });
+                functionH.alert("event", res.err);
+            }else{
+                functionH.success("testIsLogged", res.succ);
+            }
+        });
+    };
+    event.prototype.shareEventByMail = function(emails){
+        debugger
+        dao.QueryOnline('shareEventByMail', {email:emails,eventLink:this.attributes.Link},function (res) {
+            if(!res.err){
+                functionH.success("testIsLogged", res.succ);
+            }else{
+                functionH.alert("testIsLogged", res.err);
+            }
+        });
     };
 
 

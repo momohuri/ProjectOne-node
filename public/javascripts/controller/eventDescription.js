@@ -61,27 +61,28 @@ define([
                     user.model().set("IsMember",true);
                     return false;
                 });
+                $('#listAdress').on('submit',function(evt){
+                    if($('#address')[0].value != ""){
+                        $('#listEmailAddress').prepend('<input type="text" class="addressToSend" style="display:block;" value="'+$('#address')[0].value+'" />');
+                        $('#address').val("");
+                    }
+                });
+
+                $('#sendMail').on('submit',function(evt){
+                    var address = [];
+                    $('#listEmailAddress .addressToSend').each(function(){
+                        if($(this).val() != ""){
+                            address.push($(this).val());
+                        }
+                    });
+                    myEvent.model().shareEventByMail(address);
+                });
             });
             var user = Muser.init('testIsLogged');
             var user = Muser.init('testCreator');
             var user = Muser.init('addComment');
 
-            $('#listAdress').on('submit',function(evt){
-                if($('#address')[0].value != ""){
-                    $('#listEmailAddress').prepend('<input type="email" class="addressToSend" style="display:block;" value="'+$('#address')[0].value+'" />');
-                    $('#address').val("");
-                }
-            });
 
-            $('#sendMail').on('submit',function(evt){
-                var address = "";
-                $('#listEmailAddress .addressToSend').each(function(){
-                    if($(this).val() != ""){
-                        address += $(this).val()+";";
-                    }
-                });
-                alert(address);
-            });
 
 
             $('#addComment').on('submit',function(evt){
