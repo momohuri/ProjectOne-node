@@ -63,11 +63,11 @@ define([
                 });
             });
             var user = Muser.init('testIsLogged');
-
+            var user = Muser.init('testCreator');
 
             $('#listAdress').on('submit',function(evt){
                 if($('#address')[0].value != ""){
-                    $('#listEmailAddress').prepend('<input type="text" class="addressToSend" style="display:block;" value="'+$('#address')[0].value+'" />');
+                    $('#listEmailAddress').prepend('<input type="email" class="addressToSend" style="display:block;" value="'+$('#address')[0].value+'" />');
                     $('#address').val("");
                 }
             });
