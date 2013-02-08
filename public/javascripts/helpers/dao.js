@@ -18,35 +18,35 @@ define([
         },
         QueryOffline:function (table, where, next) {
 
-//            var result = document.db.query(table, function (row) {
-//                var exist = true;
-//                for (var item in where) {
-//                    if (row[item] != where[item]) {
-//                        exist = false;
-//                    }
-//                }
-//                return exist;
-//            });
-      //      next(result);
-            next(true);
+            var result = document.db.query(table, function (row) {
+                var exist = true;
+                for (var item in where) {
+                    if (row[item] != where[item]) {
+                        exist = false;
+                    }
+                }
+                return exist;
+            });
+            next(result);
+            //next(true);
         },
         InsertOffline:function (table, value, next) {
-//            value = functionH.remove_empty(value);
-//            var exist = document.db.query(table,value);
-//            if(exist==0){
-//                document.db.insert(table, value);
-//                document.db.commit();
-//            }
+            value = functionH.remove_empty(value);
+            var exist = document.db.query(table,value);
+            if(exist==0){
+                document.db.insert(table, value);
+                document.db.commit();
+            }
             next();
         },
         createOffline:function (next) {
-//            document.db = new localStorageDB("dailyEvent");
-//            if (document.db.isNew()) {
-//                //ici la liste de nos table
-//                document.db.createTable("user", ["Email", "Password"]);
-//                document.db.createTable("events",["Name","Address","Description","lat","lng","Date","Img","Link","Type","DateEnd"]);
-//                document.db.commit();
-//            }
+            document.db = new localStorageDB("dailyEvent");
+            if (document.db.isNew()) {
+                //ici la liste de nos table
+                document.db.createTable("user", ["Email", "Password"]);
+                document.db.createTable("events",["Name","Address","Description","lat","lng","Date","Img","Link","Type","DateEnd"]);
+                document.db.commit();
+            }
             next();
         }
 

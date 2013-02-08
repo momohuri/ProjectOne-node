@@ -29,7 +29,9 @@ define([
         app.use(app.router);
         routes.route(app);
         relation.create();
-        helpers.manifest();
+        //if(typeof(process.env.VCAP_SERVICES)!='undefined'){
+            helpers.manifest();
+        //}
 
     });
 

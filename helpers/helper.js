@@ -7,16 +7,44 @@ if (typeof define !== 'function') {
     define([
         'fs',
         'walk',
-        'sequelize'
-    ], function (fs,walk,Sequelize) {
+        'sequelize',
+        'uglify-js',
+        'uglifycss'
+    ], function (fs,walk,Sequelize,UglifyJS,uglifycss) {
         var helpers = {
             manifest:function () {
-                var files   = [];
+
+               var files   = [];
                 var walker  = walk.walk('./public', { followLinks: false });
 
                 walker.on('file', function(root, stat, next) {
                     // Add this file to the list of files
                     files.push(root.substr(8,root.length) + '/' + stat.name);
+
+                    if(stat.name.substr(-2,2)=='js'){
+                    var result = UglifyJS.minify(root + '/' + stat.name);
+                     result= result.code;
+                     // minified output
+                     }else if (stat.name.substr(-3,3)=='css'){
+
+                        var result= uglifycss.processFiles([root + '/' + stat.name]) ;
+                    }
+                    if( stat.name.substr(-3,3)=='css'){
+                    fs.unlink(root + '/' + stat.name, function (err) {
+                            if(!err){
+                                fs.writeFile(root + '/' + stat.name, result, function (err) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        console.log("win");
+                                    }
+                                });
+                            }else{
+                                console.log(err)
+                            }
+
+                        });
+                    }
                     next();
                 });
 
