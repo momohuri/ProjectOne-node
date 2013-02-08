@@ -81,10 +81,12 @@ define([
                         }
                     });
                     myEvent.model().shareEventByMail(address, sessionStorage.name+" "+sessionStorage.surname);
+                    return false;
                 });
             });
             var user = Muser.init('testIsLogged');
             var user = Muser.init('testCreator');
+            var user = Muser.init('testCreator2');
             var user = Muser.init('addComment');
 
 

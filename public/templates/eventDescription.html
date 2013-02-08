@@ -43,7 +43,7 @@
                 <li> <b>Date de debut :</b> <span data-bind="text : Date" /> </li>
                 <li> <b>Date de fin :</b> <span data-bind="text : DateEnd" /> </li>
             </ul>
-            <div id="testCreator" data-bind="if: IsCreator">
+            <div id="testCreator" data-bind="if: IsMember">
                 <br>
                 <strong>Partagez avec vos amis</strong>
                 <hr style="margin: 5px 0;">
@@ -51,6 +51,19 @@
                 <form id="listAdress" class="form-inline">
                    <input type="email" id="address" placeholder="email address">
                    <button type="submit" id="submitAddress"class="btn">Ajouter l'adresse email</button>
+                </form>
+                <form id="sendMail" class="form-inline">
+                    <button type="submit" id="submitSendMail"class="btn">Envoyer un email a chaque contact</button>
+                </form>
+            </div>
+            <div id="testCreator2" data-bind="if: IsCreator">
+                <br>
+                <strong>Partagez avec vos amis</strong>
+                <hr style="margin: 5px 0;">
+                <div id="listEmailAddress"></div>
+                <form id="listAdress" class="form-inline">
+                    <input type="email" id="address" placeholder="email address">
+                    <button type="submit" id="submitAddress"class="btn">Ajouter l'adresse email</button>
                 </form>
                 <form id="sendMail" class="form-inline">
                     <button type="submit" id="submitSendMail"class="btn">Envoyer un email a chaque contact</button>
