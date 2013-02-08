@@ -7,6 +7,7 @@ define([
             $('#disconnectButtonMenu').on('click',function(event){
                 event.preventDefault();
                 user.unlogue();
+                return false;
             });
         },
         nonlogged:function(){
