@@ -75,8 +75,6 @@ define([
                             address += $(this).val()+";";
                         }
                     });
-                    alert(address);
-                    debugger
                     myEvent.model().shareEventByMail(address, sessionStorage.name+" "+sessionStorage.surname);
                 });
             });
