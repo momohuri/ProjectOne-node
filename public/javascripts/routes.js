@@ -154,7 +154,7 @@ define([
                 if (logged) {
                     $.get('templates/menu-logged.html', function (data) {
                         $('#menu').html(data);
-                        menuC.nonlogged();
+                        menuC.logged();
                     }, 'html');
                     ko.removeNode($('#into'));
                     functionH.isConnected(function (isConnected) {

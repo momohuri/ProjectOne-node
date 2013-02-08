@@ -52,7 +52,7 @@ define([
                     //todo faire quelque chose ici....
                     dao.QueryOnline('UserConnect', {user:user, password:password},
                         function (res) {
-                            if (res.work) {
+                            if (!res.err) {
                                 sessionStorage.setItem('id', res.id);
                                 sessionStorage.setItem('userId', res.userId);
                                 sessionStorage.setItem('name', res.Name);
@@ -65,7 +65,7 @@ define([
                                 window.location.hash = 'myEvents';
 
                             } else {
-                                functionH.alert("login", res.err);
+                                functionH.alert("loginFormConnexion", res.err);
                             }
                         });
                 } else {
@@ -77,7 +77,7 @@ define([
                                 window.location.hash = 'myEvents';
 
                             } else {
-                                functionH.alert("login", res.err);
+                                functionH.alert("loginFormConnexion", res.err);
                             }
                         })
                     });
