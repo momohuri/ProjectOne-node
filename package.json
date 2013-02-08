@@ -12,6 +12,8 @@
       "ejs": "*",
       "password-hash": "*",
       "sequelize": "*",
-      "walk":"*"
+      "walk":"*",
+      "uglify-js":"*",
+      "uglifycss":"*"
   }
 }
