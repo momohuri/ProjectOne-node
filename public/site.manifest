@@ -40,6 +40,7 @@ CACHE MANIFEST
 /javascripts/extern/backbone.routefilter.min.js
 /javascripts/extern/knockback-full-stack.min.js
 /javascripts/extern/require.min.js
+/javascripts/extern/jquery.ui.touch-punch.min.js
 /javascripts/extern/bootstrap-datepicker.js
 /javascripts/extern/backbone.js
 /javascripts/extern/daterangepicker.jQuery.js

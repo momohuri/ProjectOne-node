@@ -100,7 +100,7 @@ if (typeof define !== 'function') {
                 var id = parseInt(req.body.id,10);
                 Mevent.find(id).success(function (Event) {
                     var eventDescription = {
-                        Id : id,
+                        id : id,
                         Name : Event.Name,
                         Description : Event.Description,
                         Address : Event.Address,
@@ -109,6 +109,12 @@ if (typeof define !== 'function') {
                         Date : Event.date,
                         DateEnd : Event.dateEnd,
                         CreatorId : Event.Creator_id
+
+                    }
+                    if(Event.Link!=''){
+                        eventDescription.Link=Event.Link;
+                    }else{
+                        eventDescription.Link='/#eventDescription/'+eventDescription.id;
                     }
                     if(req.session.user){
                         Muser.find(req.session.user.id).success(function(userHasMember) {
