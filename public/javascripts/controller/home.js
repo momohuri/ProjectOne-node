@@ -32,16 +32,6 @@ define([
                     $('#searchEvent').submit();
                 });
 
-                $("#v-slider").slider({
-                    orientation: "horizontal",
-                    range: "min",
-                    min: 1,
-                    max: 100,
-                    value: 30,
-                    slide: function (event, ui) {
-                        $("#amount").html(ui.value);
-                    }
-                });
                 $("#amount").html($("#v-slider").slider("value"));
 
                 $("#buttonSlide").on('click',function(){

@@ -55,6 +55,7 @@ define([
                             if (res.work) {
                                 sessionStorage.setItem('id', res.id);
                                 sessionStorage.setItem('userId', res.userId);
+
                                 res.events.forEach(function(item){
                                     dao.InsertOffline('events',item,function(){});
                                 })
