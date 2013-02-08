@@ -7,10 +7,10 @@
         <div data-bind="if: IsLogged">
             <div data-bind="ifnot: IsCreator">
                 <div data-bind="ifnot: IsMember">
-                <form id="joinEvent">
-                    <button type="submit" id='submit' class="btn">Rejoindre l'evenement</button>
-                </form>
-            </div>
+                    <form id="joinEvent">
+                        <button type="submit" id='submit' class="btn">Rejoindre l'evenement</button>
+                    </form>
+                </div>
             </div>
        </div>
     </div>
@@ -18,7 +18,9 @@
 
     <div>
         <div class=" unstyled well" style="width: 48%; float: right; margin-left: 0px; margin-right: -30px;">
-            <form id="addComment" class="form-inline">
+            <strong>Commentaires</strong>
+            <hr style="margin: 5px 0;">
+            <form id="addComment" data-bind="if: IsLogged" class="form-inline">
                 <input type="text" id="comment" placeholder="Commentaire">
                 <button type="submit" id="submitComment"class="btn">Ajouter le commentaire</button>
             </form>
@@ -41,17 +43,19 @@
                 <li> <b>Date de debut :</b> <span data-bind="text : Date" /> </li>
                 <li> <b>Date de fin :</b> <span data-bind="text : DateEnd" /> </li>
             </ul>
-            <br>
-            <strong>Partagez avec vos amis</strong>
-            <hr style="margin: 5px 0;">
-            <div id="listEmailAddress"></div>
-            <form id="listAdress" class="form-inline">
-                <input type="text" id="address" placeholder="email address">
-                <button type="submit" id="submitAddress"class="btn">Ajouter l'adresse email</button>
-            </form>
-            <form id="sendMail" class="form-inline">
-                <button type="submit" id="submitSendMail"class="btn">Envoyer un email a chaque contact</button>
-            </form>
+            <div id="testCreator" data-bind="if: IsCreator">
+                <br>
+                <strong>Partagez avec vos amis</strong>
+                <hr style="margin: 5px 0;">
+                <div id="listEmailAddress"></div>
+                <form id="listAdress" class="form-inline">
+                   <input type="email" id="address" placeholder="email address">
+                   <button type="submit" id="submitAddress"class="btn">Ajouter l'adresse email</button>
+                </form>
+                <form id="sendMail" class="form-inline">
+                    <button type="submit" id="submitSendMail"class="btn">Envoyer un email a chaque contact</button>
+                </form>
+            </div>
         </div>
 
 
