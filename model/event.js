@@ -5,14 +5,12 @@ if (typeof define !== 'function') {
 //class name : USER Model
 (function (define) {
     define([
-        "sequelize"
-    ], function (Sequelize) {
+        "sequelize",
+        "../helpers/helper"
+    ], function (Sequelize,helper) {
 
-        if (!global.sequelize) {
-            var sequelize = global.sequelize = new Sequelize("projectone", "root", "root");
-        } else {
-            var sequelize = global.sequelize;
-        }
+        var sequelize= helper.connectDb();
+
 
 
         var event = sequelize.define('Event', {

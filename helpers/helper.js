@@ -6,8 +6,9 @@ if (typeof define !== 'function') {
 (function (define) {
     define([
         'fs',
-        'walk'
-    ], function (fs,walk) {
+        'walk',
+        'sequelize'
+    ], function (fs,walk,Sequelize) {
         var helpers = {
             manifest:function () {
                 var files   = [];
@@ -67,6 +68,31 @@ http://gg.google.com/";
                 }
 
 
+            },
+            connectDb:function(){
+                if (!global.sequelize) {
+                    if(process.env.VCAP_SERVICES){
+                        var env = JSON.parse(process.env.VCAP_SERVICES);
+                        var mysql_config = env["mysql-5.1"][0]["credentials"];
+                        var username = mysql_config["username"];
+                        var pass=mysql_config["password"];
+                        var port = mysql_config["port"];
+                        var db = mysql_config["name"];
+                        var hostname = mysql_config["hostname"];
+
+                        return new Sequelize(db, username, pass, {
+                            host: hostname,
+                            port: port
+                        });
+
+                    }else{
+                        var username='root';
+                        var pass='root';
+                        return  global.sequelize = new Sequelize("projectone", username,pass);
+                    }
+                } else {
+                    return  global.sequelize;
+                }
             }
         }
 

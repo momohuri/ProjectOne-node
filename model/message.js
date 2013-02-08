@@ -6,15 +6,13 @@ if (typeof define !== 'function') {
 (function (define) {
     define([
         "sequelize",
-        "./user"
-    ], function (Sequelize,user) {
-        if (!global.sequelize) {
-            var sequelize = global.sequelize = new Sequelize("projectone", "root", "root");
-        } else {
-            var sequelize = global.sequelize;
-        }
+        "./user",
+        "../helpers/helper"
+    ], function (Sequelize,user,helper) {
 
-          var message= sequelize.define('Message', {
+        var sequelize= helper.connectDb();
+
+        var message= sequelize.define('Message', {
             title: Sequelize.STRING ,
             message:Sequelize.TEXT,
             sender_Id:Sequelize.INTEGER
