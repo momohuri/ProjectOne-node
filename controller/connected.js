@@ -155,11 +155,11 @@ if (typeof define !== 'function') {
 
                 // setup e-mail data with unicode symbols
                 var mailOptions = {
-                    from: "daily-event <contact@adily-event.com>", // sender address
+                    from: "daily-event <contact@daily-event.com>", // sender address
                     to: req.body.email, // list of receivers
                     subject: "Vous venez de recevoir une invitation ✔", // Subject line
-                    text: "Bonjour,'/n" +
-                        req.body.name+" vous invite a le rejoindre sur http://daily-event.rs.af.cm/"+req.body.link  // plaintext body
+                    text: "Bonjour, " +
+                        req.body.name+" vous invite a le rejoindre sur http://daily-event.rs.af.cm/"+req.body.eventLink  // plaintext body
                 }
 
                 // send mail with defined transport object
@@ -172,7 +172,7 @@ if (typeof define !== 'function') {
 
                     smtpTransport.close();
                 });
-                res.send({succ:"L'invitation est envoye"});
+                res.send({succ:{succ:"L'invitation est envoye"}});
             }
 
         }
