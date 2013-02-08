@@ -72,7 +72,8 @@ if (typeof define !== 'function') {
                             res.send(listMembers);
                         });
                     });
-            },getCreatorByEvent:function(req,res){
+            },
+            getCreatorByEvent:function(req,res){
                     var eventId = parseInt(req.body.id,10);
                     Mevent.find(eventId).success(function (Event) {
                       Muser.find(Event.Creator_id).success(function (creator) {

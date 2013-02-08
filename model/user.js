@@ -8,23 +8,12 @@ if (typeof define !== 'function') {
         "sequelize",
         "./message",
         "./event",
-        "password-hash"
-    ], function (Sequelize, message,event, hash) {
+        "password-hash",
+        "../helpers/helper"
+    ], function (Sequelize, message,event, hash,helper) {
 
-        if (!global.sequelize) {
-            if(process.env.VCAP_SERVICES){
-                var env = JSON.parse(process.env.VCAP_SERVICES);
-                var mysql_config = env["mysql-5.1"][0]["credentials"];
-                var username = mysql_config["username"];
-                var pass=mysql_config["password"];
-            }else{
-                var username='root';
-                var pass='root';
-            }
-                var sequelize = global.sequelize = new Sequelize("projectone", username,pass);
-        } else {
-            var sequelize = global.sequelize;
-        }
+            var sequelize= helper.connectDb();
+
 
 
 
@@ -41,7 +30,7 @@ if (typeof define !== 'function') {
                     this.Password = hash.generate(this.Password);
                 },
                 getCreated:function(next){
-                    sequelize.query('SELECT * FROM projectone.Events where Creator_id='+this.id, null, { raw: true }).success(function(data){
+                    sequelize.query('SELECT * FROM Events where Creator_id='+this.id, null, { raw: true }).success(function(data){
                         next(data);
                     }).error(function(err){
                             console.log('err',err)

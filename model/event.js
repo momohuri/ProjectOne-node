@@ -5,23 +5,12 @@ if (typeof define !== 'function') {
 //class name : USER Model
 (function (define) {
     define([
-        "sequelize"
-    ], function (Sequelize) {
+        "sequelize",
+        "../helpers/helper"
+    ], function (Sequelize,helper) {
 
-        if (!global.sequelize) {
-            if(process.env.VCAP_SERVICES){
-                var env = JSON.parse(process.env.VCAP_SERVICES);
-                var mysql_config = env["mysql-5.1"][0]["credentials"];
-                var username = mysql_config["username"];
-                var pass=mysql_config["password"];
-            }else{
-                var username='root';
-                var pass='root';
-            }
-            var sequelize = global.sequelize = new Sequelize("projectone", username,pass);
-        } else {
-            var sequelize = global.sequelize;
-        }
+        var sequelize= helper.connectDb();
+
 
 
         var event = sequelize.define('Event', {

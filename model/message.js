@@ -6,24 +6,13 @@ if (typeof define !== 'function') {
 (function (define) {
     define([
         "sequelize",
-        "./user"
-    ], function (Sequelize,user) {
-        if (!global.sequelize) {
-            if(process.env.VCAP_SERVICES){
-                var env = JSON.parse(process.env.VCAP_SERVICES);
-                var mysql_config = env["mysql-5.1"][0]["credentials"];
-                var username = mysql_config["username"];
-                var pass=mysql_config["password"];
-            }else{
-                var username='root';
-                var pass='root';
-            }
-            var sequelize = global.sequelize = new Sequelize("projectone", username,pass);
-        } else {
-            var sequelize = global.sequelize;
-        }
+        "./user",
+        "../helpers/helper"
+    ], function (Sequelize,user,helper) {
 
-          var message= sequelize.define('Message', {
+        var sequelize= helper.connectDb();
+
+        var message= sequelize.define('Message', {
             title: Sequelize.STRING ,
             message:Sequelize.TEXT,
             sender_Id:Sequelize.INTEGER
