@@ -69,13 +69,15 @@ define([
                 });
 
                 $('#sendMail').on('submit',function(evt){
-                    var address = [];
+                    var address = "";
                     $('#listEmailAddress .addressToSend').each(function(){
                         if($(this).val() != ""){
-                            address.push($(this).val());
+                            address += $(this).val()+";";
                         }
                     });
-                    myEvent.model().shareEventByMail(address);
+                    alert(address);
+                    debugger
+                    myEvent.model().shareEventByMail(address, sessionStorage.name+" "+sessionStorage.surname);
                 });
             });
             var user = Muser.init('testIsLogged');

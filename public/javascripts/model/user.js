@@ -55,6 +55,9 @@ define([
                             if (res.work) {
                                 sessionStorage.setItem('id', res.id);
                                 sessionStorage.setItem('userId', res.userId);
+                                sessionStorage.setItem('name', res.Name);
+                                sessionStorage.setItem('surname', res.Surname);
+                                sessionStorage.setItem('email', res.Email);
                                 res.events.forEach(function(item){
                                     dao.InsertOffline('events',item,function(){});
                                 })
