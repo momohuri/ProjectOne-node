@@ -94,6 +94,7 @@ define([
 
             $('#addComment').on('submit',function(evt){
                 //todo pas de model ici, moche la dao!!!!
+                if($('#comment')[0].value != ""){
                 dao.QueryOnline('addComment', {idEvent:id,comment:{Comment:$('#comment')[0].value}},
                     function (res) {
                         if(!res.err){
@@ -101,6 +102,7 @@ define([
                             $('#comment').val("");
                         }
                      });
+                }
                 return false;
             });
 

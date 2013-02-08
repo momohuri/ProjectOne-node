@@ -97,18 +97,22 @@ if (typeof define !== 'function') {
                 User.getEvents().success(function(associatedEvents) {
                     var events=[];
                     associatedEvents.forEach(function(item){
-                        events.push({
-                            Name:item.Name,
-                            Description:item.Description,
-                            Date:item.Date,
-                            DateEnd:item.DateEnd,
-                            Address:item.Address,
-                            Type:item.Type,
-                            lat:item.lat,
-                            lng:item.lng,
-                            CreatorId:item.Creator_Id,
-                            Link:item.Link
-                        })
+                        var dateFinish = new Date(item.dateEnd);
+                        var dateNow = new Date();
+                        if(dateFinish > dateNow){
+                            events.push({
+                                Name:item.Name,
+                                Description:item.Description,
+                                Date:item.Date,
+                                DateEnd:item.DateEnd,
+                                Address:item.Address,
+                                Type:item.Type,
+                                lat:item.lat,
+                                lng:item.lng,
+                                CreatorId:item.Creator_Id,
+                                Link:item.Link
+                            })
+                        }
                     })
                     User.getCreated(function(eventCreated){
                         events = events.concat(eventCreated);

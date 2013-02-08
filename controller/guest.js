@@ -139,12 +139,13 @@ if (typeof define !== 'function') {
             getComments:function(req,res){
                 var id = parseInt(req.body.idEvent,10);
                 Mevent.find(id).success(function(result){
-                    result.getComments().success(function(items){
+                    result.getCommentsByDate(function(items){
                         var comments = [];
                         items.forEach(function(item){
-                            comments.push({Comment:item.Comment})
+                            if(item.Comment != ""){
+                                comments.push({Comment:item.Comment,creatorName:item.Surname+" "+item.Creator_Name, commentDate:"à "+new Date(item.createdAt).toLocaleTimeString()+" le "+new Date(item.createdAt).toDateString()})
+                            }
                         })
-
                         res.send(comments);
                     })
                 });
