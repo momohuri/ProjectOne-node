@@ -69,10 +69,15 @@ define([
                 });
 
                 $('#sendMail').on('submit',function(evt){
+                    var bool = false;
                     var address = "";
                     $('#listEmailAddress .addressToSend').each(function(){
                         if($(this).val() != ""){
-                            address += $(this).val()+";";
+                            if(bool){
+                                address += ",";
+                            }
+                            address += $(this).val();
+                            bool = true;
                         }
                     });
                     myEvent.model().shareEventByMail(address, sessionStorage.name+" "+sessionStorage.surname);
