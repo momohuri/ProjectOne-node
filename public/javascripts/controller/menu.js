@@ -6,10 +6,12 @@ define([
         logged:function () {
             $('#disconnectButtonMenu').on('click',function(event){
                 user.unlogue();
+                return false;
             });
         },
         nonlogged:function(){
             $('#loginFormConnexion').on('submit',function(event){
+                $('.container').append('coucou',$('#logEmail').val(),$('#logPassword').val());
                 event.preventDefault();
                 user.login($('#logEmail').val(),$('#logPassword').val());
             });
