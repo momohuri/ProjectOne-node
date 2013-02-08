@@ -64,7 +64,8 @@ define([
             });
             var user = Muser.init('testIsLogged');
             var user = Muser.init('testCreator');
-
+            var user = Muser.init('addComment');
+            
             $('#listAdress').on('submit',function(evt){
                 if($('#address')[0].value != ""){
                     $('#listEmailAddress').prepend('<input type="email" class="addressToSend" style="display:block;" value="'+$('#address')[0].value+'" />');
