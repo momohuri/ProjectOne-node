@@ -116,7 +116,7 @@ define([
             
             function listItemLabelFunction(item) {
                 if(item!=0){
-                    var date= new Date(item.date);
+                    var date= new Date(item.Date);
                     var descrition =item.Name+" le "+date.toLocaleDateString()+"<br>Categorie:"+item.Type;
                 }else{
                     var descrition = "Il n'y a pas d'Evenement... Cree le votre"

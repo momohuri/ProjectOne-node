@@ -46,7 +46,7 @@ define([
                 event.Date = dateFormat.toLocaleString();
                 event.DateEnd = dateEndFormat.toLocaleString();
                 myEvent.model().set(event);
-                if(myEvent.model().attributes.CreatorId == sessionStorage.userId){
+                if(myEvent.model().attributes.CreatorId == localStorage.userId){
                     user.model().set("IsCreator",true);
                 }else{
                     user.model().set("IsCreator",false);
@@ -80,7 +80,7 @@ define([
                             bool = true;
                         }
                     });
-                    myEvent.model().shareEventByMail(address, sessionStorage.name+" "+sessionStorage.surname);
+                    myEvent.model().shareEventByMail(address, localStorage.name+" "+localStorage.surname);
                     return false;
                 });
             });

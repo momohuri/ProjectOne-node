@@ -36,7 +36,7 @@ define([
 
         },
         isLogged:function (next) {
-            if (sessionStorage.getItem('id') != null) {
+            if (localStorage.getItem('id') != null) {
                 user.set("IsLogged",true);
                 next(true);
             } else {
@@ -53,11 +53,11 @@ define([
                     dao.QueryOnline('UserConnect', {user:user, password:password},
                         function (res) {
                             if (!res.err) {
-                                sessionStorage.setItem('id', res.id);
-                                sessionStorage.setItem('userId', res.userId);
-                                sessionStorage.setItem('name', res.Name);
-                                sessionStorage.setItem('surname', res.Surname);
-                                sessionStorage.setItem('email', res.Email);
+                                localStorage.setItem('id', res.id);
+                                localStorage.setItem('userId', res.userId);
+                                localStorage.setItem('name', res.Name);
+                                localStorage.setItem('surname', res.Surname);
+                                localStorage.setItem('email', res.Email);
                                 res.events.forEach(function(item){
                                     dao.InsertOffline('events',item,function(){});
                                 })
@@ -87,9 +87,9 @@ define([
         unlogue:function () {
             functionH.isConnected(function (online) {
                 if (online) {
-                    dao.QueryOnline('UserDisconect', {id:window.sessionStorage.id},
+                    dao.QueryOnline('UserDisconect', {id:window.localStorage.id},
                         function (res) {
-                            window.sessionStorage.removeItem('id');
+                            window.localStorage.removeItem('id');
                             if(window.location.hash == ''){
                                 window.location.hash = 'searchEvent';
                             }else{
@@ -100,7 +100,7 @@ define([
                         });
                 } else {
                     dao.QueryOffline('user', {Email:user, Password:password}, function (res) {
-                        sessionStorage.removeItem('id');
+                        localStorage.removeItem('id');
                         if(window.location.hash == ''){
                             window.location.hash = 'searchEvent';
                         }else{
