@@ -144,7 +144,6 @@ if (typeof define !== 'function') {
                 }
             },
             shareEventByMail:function(req,res){
-
                 var smtpTransport = nodemailer.createTransport("SMTP",{
                     service: "Gmail",
                     auth: {
@@ -153,13 +152,14 @@ if (typeof define !== 'function') {
                     }
                 });
 
+
                 // setup e-mail data with unicode symbols
                 var mailOptions = {
-                    from: "daily-event <contact@adily-event.com>", // sender address
-                    to: "maurin.lenglart@gmail.com", // list of receivers
-                    subject: "Hello ✔", // Subject line
-                    text: "Hello world ✔", // plaintext body
-                    html: "<b>Hello world ✔</b>" // html body
+                    from: "daily-event <contact@daily-event.com>", // sender address
+                    to: req.body.email, // list of receivers
+                    subject: "Vous venez de recevoir une invitation ✔", // Subject line
+                    text: "Bonjour, " +
+                        req.body.name+" vous invite a le rejoindre sur http://daily-event.rs.af.cm/"+req.body.eventLink  // plaintext body
                 }
 
                 // send mail with defined transport object
@@ -172,7 +172,9 @@ if (typeof define !== 'function') {
 
                     smtpTransport.close();
                 });
+                res.send({succ:{succ:"L'invitation est envoye"}});
             }
+
         }
         return Controller;
     });
