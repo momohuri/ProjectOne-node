@@ -30,7 +30,7 @@ if (typeof define !== 'function') {
                     this.Password = hash.generate(this.Password);
                 },
                 getCreated:function(next){
-                    sequelize.query('SELECT * FROM Events where Creator_id='+this.id, null, { raw: true }).success(function(data){
+                    sequelize.query('SELECT * FROM Events where Creator_id='+this.id+" and dateEnd > NOW()", null, { raw: true }).success(function(data){
                         next(data);
                     }).error(function(err){
                             console.log('err',err)
