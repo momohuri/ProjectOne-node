@@ -7,8 +7,9 @@ if (typeof define !== 'function') {
     define([
         "../model/event",
         "../model/user",
-        "../model/comment"
-    ], function (Mevent,Muser,Mcomment) {
+        "../model/comment",
+        "nodemailer"
+    ], function (Mevent,Muser,Mcomment,nodemailer) {
         var Controller = {
             Disconnect:function (req, res) {
                req.session.user=null;
@@ -141,6 +142,36 @@ if (typeof define !== 'function') {
                 }else{
                     res.send({err:{err:['Veuillez vous connecter!']}});
                 }
+            },
+            shareEventByMail:function(req,res){
+
+                var smtpTransport = nodemailer.createTransport("SMTP",{
+                    service: "Gmail",
+                    auth: {
+                        user: "invite.dailyevents@gmail.com",
+                        pass: "dailyevents"
+                    }
+                });
+
+                // setup e-mail data with unicode symbols
+                var mailOptions = {
+                    from: "daily-event <contact@adily-event.com>", // sender address
+                    to: "maurin.lenglart@gmail.com", // list of receivers
+                    subject: "Hello ✔", // Subject line
+                    text: "Hello world ✔", // plaintext body
+                    html: "<b>Hello world ✔</b>" // html body
+                }
+
+                // send mail with defined transport object
+                smtpTransport.sendMail(mailOptions, function(error, response){
+                    if(error){
+                        console.log(error);
+                    }else{
+                        console.log("Message sent: " + response.message);
+                    }
+
+                    smtpTransport.close();
+                });
             }
         }
         return Controller;

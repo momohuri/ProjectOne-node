@@ -84,7 +84,13 @@
             "func":"addComment",
             "method":"post"
         },
+        "shareEventByMail":{
+            "route":"/shareEventByMail",
+            "controller":"connected",
+            "func":"shareEventByMail",
+            "method":"post"
 
+        },
         "404":{
             "route":"*",
             "render":"404"
