@@ -93,7 +93,7 @@ define([
                         lng = results[0].geometry.location.lng();
                         app.centerOnPlace(lat, lng);
                     } else {
-                        alert(address + ' not found');
+                        console.log(address + ' not found');
                     }
                     next(results)
                 });

@@ -1,13 +1,13 @@
 <div class="hidden-phone">
     <ul class="nav" >
         <li>
-            <a href="#">
-                Accueil
+            <a href="#searchEvent">
+                Evenements
             </a>
         </li>
         <li>
-            <a href="#searchEvent">
-                Evenements
+            <a href="#createEvent">
+                Cree un Evenement
             </a>
         </li>
         <li>
@@ -16,44 +16,32 @@
             </a>
         </li>
     </ul>
-    <div>
-        <button id='disconnect' class="btn navbar-form pull-right btn btn-primary">
-            Deconnecter
-        </button>
-        <a href="#createEvent">
-            <button id='create' class="btn navbar-form pull-right btn">
-                Cree un Evenement
-            </button>
-        </a>
-    </div>
+
 </div>
 
 <div class="visible-phone">
-    <div>
-        <button id='disconnect' class="btn navbar-form pull-right btn btn-primary">
-            Deconnecter
-        </button>
-        <a href="#createEvent">
-            <button id='create' class="btn navbar-form pull-right btn">
-                Cree un Evenement
-            </button>
-        </a>
-    </div>
-    <button type="button" class="btn btn-navbar collapsed" onclick="$('#divToSlide').slideToggle(500);" >
+    <button type="button" class="btn btn-navbar collapsed" onclick="$('#divToSlide').toggle(500);" >
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
+</div>
+<div>
+    <button id="disconnectButtonMenu" class="btn navbar-form pull-right btn btn-primary">
+        Deconnecter
+    </button>
+</div>
+<div class="visible-phone">
     <div style="height: auto;display: none;" id="divToSlide" class="nav-collapse collapse">
         <ul class="nav">
             <li class="">
-                <a href="#">
-                    Accueil
-                </a>
-            </li>
-            <li class="">
                 <a href="#searchEvent">
                     Evenements
+                </a>
+            </li>
+            <li>
+                <a href="#createEvent">
+                    Cree un Evenement
                 </a>
             </li>
             <li class="">
