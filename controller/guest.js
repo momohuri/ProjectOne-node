@@ -63,7 +63,7 @@ if (typeof define !== 'function') {
                                         })
                                         User.getCreated(function(eventCreated){
                                             events = events.concat(eventCreated);
-                                            res.send({work:true, Email:User.Email, Password:User.Password, id:req.session.id, userId:User.id,events:events});
+                                            res.send({work:true, Email:User.Email, Password:User.Password, id:req.session.id, userId:User.id,Name:User.Name,Surname:User.Surname,events:events});
                                             req.session.user=User;
                                         })
                                     }).error(function(err){

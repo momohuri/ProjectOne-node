@@ -29,9 +29,8 @@ define([
             }
         });
     };
-    event.prototype.shareEventByMail = function(emails){
-        debugger
-        dao.QueryOnline('shareEventByMail', {email:emails,eventLink:this.attributes.Link},function (res) {
+    event.prototype.shareEventByMail = function(emails,name){
+        dao.QueryOnline('shareEventByMail', {email:emails,eventLink:this.attributes.Link, name:name},function (res) {
             if(!res.err){
                 functionH.success("testIsLogged", res.succ);
             }else{
