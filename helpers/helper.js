@@ -26,10 +26,9 @@ if (typeof define !== 'function') {
                      result= result.code;
                      // minified output
                      }else if (stat.name.substr(-3,3)=='css'){
-
                         var result= uglifycss.processFiles([root + '/' + stat.name]) ;
                     }
-                    if( stat.name.substr(-3,3)=='css'){
+                    if( stat.name.substr(-2,2)=='js' || stat.name.substr(-3,3)=='css'){
                     fs.unlink(root + '/' + stat.name, function (err) {
                             if(!err){
                                 fs.writeFile(root + '/' + stat.name, result, function (err) {
