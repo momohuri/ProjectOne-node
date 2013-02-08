@@ -5,6 +5,7 @@ define([
     var app = {
         logged:function () {
             $('#disconnectButtonMenu').on('click',function(event){
+                event.preventDefault();
                 user.unlogue();
             });
         },
