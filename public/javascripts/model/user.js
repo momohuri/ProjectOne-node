@@ -62,7 +62,7 @@ define([
                                     dao.InsertOffline('events',item,function(){});
                                 })
                                 dao.InsertOffline('user', {Email:user, Password:password}, function () {});
-                                window.location.hash = 'searchEvent';
+                                window.location.hash = 'myEvents';
 
                             } else {
                                 functionH.alert("login", res.err);
@@ -74,7 +74,7 @@ define([
                             if (res.length != 0) {
                                 //todo make offline id session
                                 sessionStorage.setItem('id', 'idOffline');
-                                window.location.hash = 'searchEvent';
+                                window.location.hash = 'myEvents';
 
                             } else {
                                 functionH.alert("login", res.err);
@@ -90,13 +90,22 @@ define([
                     dao.QueryOnline('UserDisconect', {id:window.sessionStorage.id},
                         function (res) {
                             window.sessionStorage.removeItem('id');
-                            window.location.hash = '';
+                            if(window.location.hash == ''){
+                                window.location.hash = 'searchEvent';
+                            }else{
+                                window.location.hash = '';
+                            }
+
+
                         });
                 } else {
                     dao.QueryOffline('user', {Email:user, Password:password}, function (res) {
-                        window.location.hash = '';
                         sessionStorage.removeItem('id');
-
+                        if(window.location.hash == ''){
+                            window.location.hash = 'searchEvent';
+                        }else{
+                            window.location.hash = '';
+                        }
                     });
                 }
             });

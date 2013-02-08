@@ -71,8 +71,14 @@ define([
                         }else{
                             var dateEnd=true;
                         }
+                        var distance = "";
+                        if($("#amount").val() != "undefined" && $("#amount").val() != ""){
+                            distance = $("#amount").val();
+                        }else{
+                            distance = 5000;
+                        }
 
-                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), $("#amount").val(), dateStart,dateEnd, function (events) {
+                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), distance, dateStart,dateEnd, function (events) {
                             if (typeof(events) != 'undefined') {
                                 Mevent.createList(events);
                                 maps.clearMarker();
