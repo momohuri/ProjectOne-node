@@ -1,50 +1,47 @@
-<ul class="nav hidden-phone">
-    <li>
-        <a href="#">
-            Accueil
-        </a>
-    </li>
-    <li>
-        <a href="#inscription">
-            Inscription
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            Emploi du temps
-        </a>
-    </li>
-</ul>
-<ul class="nav visible-phone">
-    <li>
-        <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown">
-            Menu
-            <b class="caret"></b>
-        </a>
+<div class="hidden-phone">
+    <ul class="nav ">
+        <li>
+            <a href="#inscription">
+                Inscription
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                Chercher evenement
+            </a>
+        </li>
+    </ul>
+</div>
 
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li>
-                <a href="#message">
-                    Messages
-                </a>
-            </li>
-            <li>
-                <a href="#searchEvent">
-                    menu2
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    menu3
-                </a>
-            </li>
-        </ul>
-    </li>
-</ul>
-<form id="login" class="navbar-form pull-right">
-    <input name="textinput1" class="span2" type="email" placeholder="Email" id='logEmail'>
+
+
+<div class=" visible-phone">
+    <button type="button" class="btn btn-navbar collapsed" onclick="$('#divToSlide').toggle(500);" >
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    </div>
+<form id="loginFormConnexion" class="navbar-form pull-right">
+    <input name="textinput1" class="span2" type="email" placeholder="Email" id="logEmail">
     <input name="textinput2" class="span2" type="password" placeholder="Mot de passe" id="logPassword">
     <button class="btn">
         Connexion
     </button>
 </form>
+    <div class=" visible-phone">
+    <div style="height: auto;display: none;" id="divToSlide" class="nav-collapse collapse">
+        <ul class="nav">
+            <li>
+                <a href="#inscription">
+                    Inscription
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Chercher evenement
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

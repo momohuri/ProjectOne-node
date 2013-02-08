@@ -25,13 +25,10 @@ define([
             datepicker();
             require(["helpers/googlemaps"], function (maps) {
 
-                $('#inputPlace').on('changeAddress',function(event,address){
+                $('#inputPlace').live('changeAddress',function(event,address){
                     $('#inputPlace').val(address);
                     $('#searchEvent').submit();
-                }).on('blur',function(){
-                    $('#searchEvent').submit();
                 });
-
 
                 $("#buttonSlide").on('click',function(){
                     $("#filter").slideToggle(500);
@@ -75,7 +72,7 @@ define([
                             var dateEnd=true;
                         }
 
-                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), $("#amount").value, dateStart,dateEnd, function (events) {
+                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), $("#amount").val(), dateStart,dateEnd, function (events) {
                             if (typeof(events) != 'undefined') {
                                 Mevent.createList(events);
                                 maps.clearMarker();
