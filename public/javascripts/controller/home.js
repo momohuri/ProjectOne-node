@@ -25,10 +25,18 @@ define([
             datepicker();
             require(["helpers/googlemaps"], function (maps) {
 
-                $('#inputPlace').live('changeAddress',function(event,address){
+                $('#inputPlace').on('changeAddress',function(event,address){
                     $('#inputPlace').val(address);
                     $('#searchEvent').submit();
                 });
+
+                $('#categorie').on('change',function(){
+                    $('#searchEvent').submit();
+                });
+                $('#amount').on('change',function(){
+                    $('#searchEvent').submit();
+                });
+
 
                 $("#buttonSlide").on('click',function(){
                     $("#filter").slideToggle(500);
