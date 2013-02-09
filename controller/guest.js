@@ -108,7 +108,8 @@ if (typeof define !== 'function') {
                         lng : Event.lng,
                         Date : Event.date,
                         DateEnd : Event.dateEnd,
-                        CreatorId : Event.Creator_id
+                        CreatorId : Event.Creator_id,
+                        Type : Event.Type
 
                     }
                     if(Event.Link!=''){
