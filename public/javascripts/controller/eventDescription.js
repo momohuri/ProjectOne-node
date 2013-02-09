@@ -98,7 +98,11 @@ define([
                 dao.QueryOnline('addComment', {idEvent:id,comment:{Comment:$('#comment')[0].value}},
                     function (res) {
                         if(!res.err){
-                            $('#comments').prepend('<li>'+$('#comment')[0].value+'</li>');
+                            $('#comments').prepend('<li><span style="margin: 0;font-weight: bold;">'+localStorage.surname+" "+localStorage.name+' </span>'+
+                            '<span style="margin: 0;font-style: italic">"'+$('#comment')[0].value+'"</span>'+
+                                '<p style="text-align: right;font-style: italic;color: #AAAAAA;"><small><span>à '+new Date().toLocaleTimeString()+' le '+new Date().toDateString()+'</span></small></p>'+
+                                '<hr style="margin: 0;">'+
+                                '</li>');
                             $('#comment').val("");
                         }
                      });
