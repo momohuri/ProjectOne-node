@@ -42,7 +42,7 @@ define([
             getComment(id);
             Mevent.getEventById(id,function(event){
                 var dateFormat = new Date(event.Date);
-                var dateEndFormat = new Date(event.Date);
+                var dateEndFormat = new Date(event.DateEnd);
                 event.Date = dateFormat.toLocaleString();
                 event.DateEnd = dateEndFormat.toLocaleString();
                 myEvent.model().set(event);

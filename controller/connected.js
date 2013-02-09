@@ -103,8 +103,8 @@ if (typeof define !== 'function') {
                             events.push({
                                 Name:item.Name,
                                 Description:item.Description,
-                                Date:item.Date,
-                                DateEnd:item.DateEnd,
+                                Date:item.date,
+                                DateEnd:item.dateEnd,
                                 Address:item.Address,
                                 Type:item.Type,
                                 lat:item.lat,
@@ -115,7 +115,11 @@ if (typeof define !== 'function') {
                         }
                     })
                     User.getCreated(function(eventCreated){
-                        events = events.concat(eventCreated);
+                        eventCreated.forEach(function(item){
+                        item.Date = new Date(item.date);
+                        item.DateEnd = new Date(item.dateEnd);
+                        events.push(item);
+                        });
                         res.send(events);
                     })
                 })

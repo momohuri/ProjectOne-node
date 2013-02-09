@@ -22,7 +22,7 @@
     </div>
     <div class="modal-body">
         <p>Description: <span data-bind="text: Description"></span></p>
-        <p>Date de debut: <span data-bind="text: Date"></span></p>
+        <p>Du: <span data-bind="text: Date"></span> au <span data-bind="text: DateEnd"></span></p>
         <p>Adresse: <span data-bind="text: Address"></span></p>
         <p>Categorie: <span data-bind="text: Type"></span> </p>
         <p data-bind="if: HasCreator"> <a onclick="$('#myModal').modal('hide');" data-bind="attr: { href: Link}">Plus d'info</a></p>
