@@ -37,16 +37,16 @@ jQuery.fn.daterangepicker = function(settings){
 			specificDate: 'Date precise',
 			dateRange: 'Entre 2 date'
 		},
-		rangeStartTitle: 'Start date',
-		rangeEndTitle: 'End date',
-		nextLinkText: 'Next',
-		prevLinkText: 'Prev',
-		doneButtonText: 'Done',
+		rangeStartTitle: 'Date de debut',
+		rangeEndTitle: 'Date de fin',
+		nextLinkText: 'Suivant',
+		prevLinkText: 'Precedent',
+		doneButtonText: 'Finit',
 		earliestDate: Date.parse('-15years'), //earliest date allowed 
 		latestDate: Date.parse('+15years'), //latest date allowed 
 		constrainDates: false,
 		rangeSplitter: '-', //string to use between dates in single input
-		dateFormat: 'm/d/yy', // date formatting. Available formats: http://docs.jquery.com/UI/Datepicker/%24.datepicker.formatDate
+		dateFormat: 'd/m/yy', // date formatting. Available formats: http://docs.jquery.com/UI/Datepicker/%24.datepicker.formatDate
 		closeOnSelect: true, //if a complete selection is made, close the menu
 		arrows: false,
 		appendTo: 'body',

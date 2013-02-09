@@ -56,8 +56,8 @@ define([
                     }
                 });
         },
-        getEvent:function (lat, lng, distance,date,dateEnd, next) {
-            dao.QueryOnline('getEvent', {lat:lat, lng:lng, distance:distance,date:date,dateEnd:dateEnd},
+        getEvent:function (lat, lng, distance,date,dateEnd,categorie, next) {
+            dao.QueryOnline('getEvent', {lat:lat, lng:lng, distance:distance,date:date,dateEnd:dateEnd,categorie:categorie},
                 function (res) {
                     next(res);
                 });

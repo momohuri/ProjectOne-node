@@ -8,7 +8,8 @@ define([
 
     function datepicker() {
         var date = new Date;
-        $('#startDate').val(date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear())
+        var month= date.getMonth() + 1;
+        $('#startDate').val(date.getDate() + '/' + month+ '/' + date.getFullYear())
             .daterangepicker({
             presetRanges:[
                 {text:'Aujourd\'hui', dateStart:'Today', dateEnd:'Today' },
@@ -30,6 +31,9 @@ define([
                     $('#searchEvent').submit();
                 });
 
+                $('#startDate').on('change',function(){
+                    $('#searchEvent').submit();
+                });
                 $('#categorie').on('change',function(){
                     $('#searchEvent').submit();
                 });
@@ -50,9 +54,9 @@ define([
 
                 maps.init(function (geolocalisation) {
                     if (geolocalisation) {
-                        var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[0]));
+                        var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split('/')[1]+'/'+$('#startDate').val().toString().split('/')[0]+'/'+$('#startDate').val().toString().split(' ')[0].split('/')[2]));
                         var dateEnd= true;
-                        Mevent.getEvent(geolocalisation.coords.latitude, geolocalisation.coords.longitude, 30,dateStart,dateEnd, function (events) {
+                        Mevent.getEvent(geolocalisation.coords.latitude, geolocalisation.coords.longitude, 30,dateStart,dateEnd,$('#categorie').val(), function (events) {
                                 if (typeof(events) != 'undefined') {
                                     Mevent.createList(events);
                                     maps.clearMarker();
@@ -73,9 +77,9 @@ define([
                 $('#searchEvent').on('submit', function (event) {
                     event.preventDefault();
                     maps.searchLocations(function (res) {
-                        var dateStart = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[0]));
+                        var dateStart = $.datepicker.formatDate('yy-mm-dd',  new Date($('#startDate').val().toString().split('/')[1]+'/'+$('#startDate').val().toString().split('/')[0]+'/'+$('#startDate').val().toString().split(' ')[0].split('/')[2]));
                         if (typeof( $('#startDate').val().toString().split(' ')[2])!='undefined') {
-                            var dateEnd = $.datepicker.formatDate('yy-mm-dd', new Date($('#startDate').val().toString().split(' ')[2]));
+                            var dateEnd = $.datepicker.formatDate('yy-mm-dd',  $('#startDate').val().toString().split(' ')[2].split('/')[1]+'/'+$('#startDate').val().toString().split(' ')[2].split('/')[0]+'/'+$('#startDate').val().toString().split(' ')[2].split('/')[2]);
                         }else{
                             var dateEnd=true;
                         }
@@ -86,7 +90,7 @@ define([
                             distance = 5000;
                         }
 
-                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), distance, dateStart,dateEnd, function (events) {
+                        Mevent.getEvent(res[0].geometry.location.lat(), res[0].geometry.location.lng(), distance, dateStart,dateEnd,$('#categorie').val(), function (events) {
                             if (typeof(events) != 'undefined') {
                                 Mevent.createList(events);
                                 maps.clearMarker();
