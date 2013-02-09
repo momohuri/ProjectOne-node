@@ -92,6 +92,10 @@ if (typeof define !== 'function') {
                 Mevent.findAll({where:[" ( 6371 * acos( cos( radians(?) ) * cos( radians( `lat` ) ) * cos( radians( `lng` ) - radians(?) ) + sin( radians(?) ) * sin( radians( `lat` ) ) ) ) < ? " +
                     "and DATE(date)BETWEEN ? AND ? and Type like ?",
                     lat, lng, lat, distance, req.body.date, req.body.dateEnd,req.body.categorie]}).success(function (Events) {
+                        Events.forEach(function(item){
+                            item.Date = new Date(item.date);
+                            item.DateEnd = new Date(item.dateEnd);
+                        });
                         res.send(Events);
                     })
 
