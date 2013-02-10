@@ -79,7 +79,7 @@ define([
                     maps.searchLocations(function (res) {
                         var dateStart = $.datepicker.formatDate('yy-mm-dd',  new Date($('#startDate').val().toString().split('/')[1]+'/'+$('#startDate').val().toString().split('/')[0]+'/'+$('#startDate').val().toString().split(' ')[0].split('/')[2]));
                         if (typeof( $('#startDate').val().toString().split(' ')[2])!='undefined') {
-                            var dateEnd = $.datepicker.formatDate('yy-mm-dd',  $('#startDate').val().toString().split(' ')[2].split('/')[1]+'/'+$('#startDate').val().toString().split(' ')[2].split('/')[0]+'/'+$('#startDate').val().toString().split(' ')[2].split('/')[2]);
+                            var dateEnd = new Date($('#startDate').val().toString().split(' ')[2].split('/')[1]+'/'+  $('#startDate').val().toString().split(' ')[2].split('/')[0]+  '/'+$('#startDate').val().toString().split(' ')[2].split('/')[2]).toString('yyyy-MM-dd');
                         }else{
                             var dateEnd=true;
                         }

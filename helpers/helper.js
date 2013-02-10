@@ -54,6 +54,9 @@ if (typeof define !== 'function') {
 
                     function createManifest(files) {
                         var content='CACHE MANIFEST \n';
+                        var time= new Date();
+                        content+='# v'+time.getTime()+' \n';
+                        content+='CACHE: \n';
                         files.forEach(function(item){
                             if(item!='/site.manifest'){
                                 content+=item+'\n';
