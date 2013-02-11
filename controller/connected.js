@@ -180,7 +180,7 @@ if (typeof define !== 'function') {
 
                     smtpTransport.close();
                 });
-                res.send({succ:{succ:"L'invitation est envoye"}});
+                res.send({succ:{succ:["L'invitation a été envoyé avec succès"]}});
             }
 
         }

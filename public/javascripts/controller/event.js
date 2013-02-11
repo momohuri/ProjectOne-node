@@ -70,7 +70,6 @@ define([
 
 
                 maps.autocomplete();
-                maps.init(function(){});
             });
         }
     }

@@ -65,6 +65,7 @@ if (typeof define !== 'function') {
                                             events = events.concat(eventCreated);
                                             res.send({work:true, Email:User.Email, Password:User.Password, id:req.session.id, userId:User.id,Name:User.Name,Surname:User.Surname,events:events});
                                             req.session.user=User;
+                                            console.log(req.session.user.id);
                                         })
                                     }).error(function(err){
                                              console.log('err2',err);
