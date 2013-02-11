@@ -38,10 +38,29 @@ define([
             }
         });
     };
+    event.prototype.resetEvent = function(){
+       event.set(
+           {
+               id:'',
+               Name:'',
+               Description:'',
+               Date:'',
+               DateEnd:'',
+               Address:'',
+               Type:'',
+               lat:'',
+               lng:'',
+               Creator_id:'',
+               HasCreator:'',
+               Link:''
+           }
+       );
+    };
 
 
     var app = {
         init:function (div) {
+            event.resetEvent();
             var view_model = kb.viewModel(event);
             ko.applyBindings(view_model, $('#' + div)[0]);
             return view_model;
