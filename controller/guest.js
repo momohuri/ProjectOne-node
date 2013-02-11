@@ -93,8 +93,8 @@ if (typeof define !== 'function') {
                     "and DATE(date)BETWEEN ? AND ? and Type like ?",
                     lat, lng, lat, distance, req.body.date, req.body.dateEnd,req.body.categorie]}).success(function (Events) {
                         Events.forEach(function(item){
-                            item.Date = new Date(item.date);
-                            item.DateEnd = new Date(item.dateEnd);
+                            item.Date = new Date(item.Date);
+                            item.DateEnd = new Date(item.DateEnd)
                         });
                         res.send(Events);
                     })
