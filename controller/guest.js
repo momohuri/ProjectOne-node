@@ -110,10 +110,10 @@ if (typeof define !== 'function') {
                         Address : Event.Address,
                         lat : Event.lat,
                         lng : Event.lng,
-                        Date : Event.date,
-                        DateEnd : Event.dateEnd,
-                        CreatorId : Event.Creator_id
-
+                        Date : Event.Date,
+                        DateEnd : Event.DateEnd,
+                        CreatorId : Event.Creator_id,
+                        Type: Event.Type
                     }
                     if(Event.Link!=''){
                         eventDescription.Link=Event.Link;
