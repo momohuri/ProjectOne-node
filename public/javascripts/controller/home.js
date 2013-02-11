@@ -2,8 +2,7 @@ define([
     "../model/event",
     "extern/date",
     "extern/daterangepicker.jQuery",
-    "extern/bootstrap.min",
-    "extern/jquery.ui.touch-punch.min"
+    "extern/bootstrap.min"
 ], function (Mevent) {
 
     function datepicker() {
