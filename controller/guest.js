@@ -115,10 +115,10 @@ if (typeof define !== 'function') {
                         CreatorId : Event.Creator_id,
                         Type: Event.Type
                     }
-                    if(Event.Link!=''){
+                    if(Event.Link!=null){
                         eventDescription.Link=Event.Link;
                     }else{
-                        eventDescription.Link='/#eventDescription/'+eventDescription.id;
+                        eventDescription.Link='/#eventDescription/'+id;
                     }
                     if(req.session.user){
                         Muser.find(req.session.user.id).success(function(userHasMember) {
