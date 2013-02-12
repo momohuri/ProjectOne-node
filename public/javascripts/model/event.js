@@ -117,6 +117,9 @@ define([
 
                     })
                 }
+
+                event.item.Date = new Date(event.item.Date).toLocaleString();
+                event.item.DateEnd = new Date(event.item.DateEnd).toLocaleString();
                 $('#myList').list.showModal(event.item);
             }
 
