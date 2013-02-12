@@ -118,7 +118,7 @@ if (typeof define !== 'function') {
                     if(Event.Link!=null){
                         eventDescription.Link=Event.Link;
                     }else{
-                        eventDescription.Link='/#eventDescription/'+id;
+                        eventDescription.Link='#eventDescription/'+id;
                     }
                     if(req.session.user){
                         Muser.find(req.session.user.id).success(function(userHasMember) {
