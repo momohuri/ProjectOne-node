@@ -81,7 +81,7 @@
             if ( !this.touchSupported) {
 
                 var sbWidth = parseInt(this.$scrollbar.css( "width" ), 10);
-                this.$scrollbar.css( "width", 3.25*sbWidth );
+                this.$scrollbar.css( "width", 1.5*sbWidth );
 
                 this.scrollbarStartHandler = function( event ) { return self.scrollbarTouchStart(event); };
                 this.scrollbarMoveHandler = function( event ) { return self.scrollbarTouchMove(event); };
