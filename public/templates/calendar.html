@@ -1,0 +1,37 @@
+<style type='text/css'>
+
+    body {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 14px;
+        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    }
+
+    #calendar {
+        width: 900px;
+        margin: 0 auto;
+    }
+
+</style>
+
+<div id='calendar'></div>
+
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 data-bind="text: Name"></h3>
+    </div>
+    <div class="modal-body" style="text-align: left;">
+        <p>Description: <span data-bind="text: Description"></span></p>
+        <p>Du: <span data-bind="text: Date"></span> au <span data-bind="text: DateEnd"></span></p>
+        <p>Adresse: <span data-bind="text: Address"></span></p>
+        <p>Categorie: <span data-bind="text: Type"></span> </p>
+        <p></p><a target="_blank" onclick="$('#myModal').modal('hide');" data-bind="attr: { href: Link}">Plus d'info</a></p>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+    </div>
+</div>
+

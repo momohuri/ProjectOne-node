@@ -5,6 +5,7 @@ define([
     "../helpers/function",
     "../extern/date"
 
+
 ], function (Mevent,Muser,dao,functionH) {
 
     function getMembersByEvent(id){

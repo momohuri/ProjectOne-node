@@ -108,6 +108,26 @@ define([
                     next(res);
                 });
         },
+        showModalCalendar:function (event,start,end) {
+            event.item.Date = new Date(start).toLocaleString();
+            event.item.DateEnd = new Date(end).toLocaleString();
+            if(event.item!=0){
+                $('#myList').list.showModal(event.item);
+            }
+
+            $.fn.list.showModal=function(self){
+                $('#myModal').modal();
+                event.set(self);
+                if(self.Creator_id){
+                    event.set("HasCreator",true);
+                    if (!self.Link) {
+                        event.set("Link", "/#eventDescription/" + self.id);
+                    }
+                }else{
+                    event.set("HasCreator",false);
+                }
+            }
+        },
         createList:function (events) {
             function listChangeHandler(event) {
                 //todo pas faire le require if offline
@@ -117,11 +137,24 @@ define([
 
                     })
                 }
-
                 event.item.Date = new Date(event.item.Date).toLocaleString();
                 event.item.DateEnd = new Date(event.item.DateEnd).toLocaleString();
                 if(event.item!=0){
                     $('#myList').list.showModal(event.item);
+                }
+
+
+                $.fn.list.showModal=function(self){
+                    $('#myModal').modal();
+                    event.set(self);
+                    if(self.Creator_id){
+                        event.set("HasCreator",true);
+                        if (!self.Link) {
+                            event.set("Link", "/#eventDescription/" + self.id);
+                        }
+                    }else{
+                        event.set("HasCreator",false);
+                    }
                 }
             }
 
