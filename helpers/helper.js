@@ -123,7 +123,16 @@ http://gg.google.com/";
                 } else {
                     return  global.sequelize;
                 }
-            }
+            },
+            DateJStoSQL:function (date){
+                var d = date.getDate();
+                var m = date.getMonth()+1;
+                var y = date.getFullYear();
+                var h= date.getHours();
+                var m= date.getMinutes();
+                var s= date.getSeconds();
+                return '' + y +'-'+ (m<=9?'0'+m:m) +'-'+ (d<=9?'0'+d:d)+' '+ +h+':'+m+':'+s;
+             }
         }
 
         return helpers;

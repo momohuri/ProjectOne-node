@@ -8,8 +8,9 @@ if (typeof define !== 'function') {
         "../model/event",
         "../model/user",
         "../model/comment",
+        "../helpers/helper",
         "nodemailer"
-    ], function (Mevent,Muser,Mcomment,nodemailer) {
+    ], function (Mevent,Muser,Mcomment,functionH,nodemailer) {
         var Controller = {
             Disconnect:function (req, res) {
                req.session.user=null;
@@ -94,7 +95,19 @@ if (typeof define !== 'function') {
                 },
             getMyEvents:function(req,res){
                 var User= Muser.build(req.session.user);
-                User.getEvents().success(function(associatedEvents) {
+                if(typeof(req.body.Date)=='undefined'){
+                    User.getEvents().success(function(associatedEvents) {
+                        parseEvent(associatedEvents);
+                    });
+                }else{
+                    req.body.Date= functionH.DateJStoSQL(req.body.Date);
+                    req.body.DateEnd= functionH.DateJStoSQL(req.body.DateEnd);
+                    User.getEvents({ where: 'Date BETWEEN "'+req.body.Date +'" AND "'+req.body.DateEnd+'"' }).success(function(associatedEvents) {
+                        parseEvent(associatedEvents);
+                    });
+                }
+
+                function parseEvent(associatedEvents){
                     var events=[];
                     associatedEvents.forEach(function(item){
                         var dateFinish = new Date(item.dateEnd);
@@ -122,7 +135,8 @@ if (typeof define !== 'function') {
                         });
                         res.send(events);
                     })
-                })
+                };
+
 
             },
             addComment:function(req,res){
@@ -169,7 +183,6 @@ if (typeof define !== 'function') {
                     text: "Bonjour, " +
                         req.body.name+" vous invite a le rejoindre sur http://daily-event.rs.af.cm/"+req.body.eventLink  // plaintext body
                 }
-
                 // send mail with defined transport object
                 smtpTransport.sendMail(mailOptions, function(error, response){
                     if(error){
