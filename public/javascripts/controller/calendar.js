@@ -27,6 +27,8 @@ define([
                                 end: new Date(event.DateEnd),
                                 allDay: false,
                                 color:"",
+                                address: event.Address,
+                                category: event.Type,
                                 description: event.Description,
                                 link:""
                                 }
@@ -52,6 +54,8 @@ define([
                                 model.model().set("Date", new Date(calEvent.start).toLocaleString());
                                 model.model().set("DateEnd", new Date(calEvent.end).toLocaleString());
                                 model.model().set("Name", calEvent.title);
+                                model.model().set("Address", calEvent.address);
+                                model.model().set("Type", calEvent.category);
                                 model.model().set("Link", calEvent.link);
                                 $('#myModal').modal('show');
                             },
