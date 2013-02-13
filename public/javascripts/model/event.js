@@ -4,7 +4,7 @@ define([
     "../extern/bootstrap-list"
 ], function (dao, functionH) {
 
-    var event = new Backbone.Model(
+    var Mevent = new Backbone.Model(
         {
             id:'',
             Name:'',
@@ -19,8 +19,8 @@ define([
             HasCreator:'',
             Link:''
         });
-    event.prototype = Backbone.Model.prototype;
-    event.prototype.joinEvent = function(){
+    Mevent.prototype = Backbone.Model.prototype;
+    Mevent.prototype.joinEvent = function(){
         dao.QueryOnline('joinEvent', {id:this.attributes.id},function (res) {
             if(res.err){
                 functionH.alert("event", res.err);
@@ -29,7 +29,7 @@ define([
             }
         });
     };
-    event.prototype.shareEventByMail = function(emails,name){
+    Mevent.prototype.shareEventByMail = function(emails,name){
         dao.QueryOnline('shareEventByMail', {email:emails,eventLink:this.attributes.Link, name:name},function (res) {
             if(!res.err){
                 functionH.success("testIsLogged", res.succ);
@@ -38,8 +38,8 @@ define([
             }
         });
     };
-    event.prototype.resetEvent = function(){
-       event.set(
+    Mevent.prototype.resetEvent = function(){
+        Mevent.set(
            {
                id:'',
                Name:'',
@@ -60,8 +60,8 @@ define([
 
     var app = {
         init:function (div) {
-            event.resetEvent();
-            var view_model = kb.viewModel(event);
+            Mevent.resetEvent();
+            var view_model = kb.viewModel(Mevent);
             ko.applyBindings(view_model, $('#' + div)[0]);
             return view_model;
         },
@@ -146,14 +146,14 @@ define([
 
                 $.fn.list.showModal=function(self){
                     $('#myModal').modal();
-                    event.set(self);
+                    Mevent.set(self);
                     if(self.Creator_id){
-                        event.set("HasCreator",true);
+                        Mevent.set("HasCreator",true);
                         if (!self.Link) {
-                            event.set("Link", "/#eventDescription/" + self.id);
+                            Mevent.set("Link", "/#eventDescription/" + self.id);
                         }
                     }else{
-                        event.set("HasCreator",false);
+                        Mevent.set("HasCreator",false);
                     }
                 }
             }
@@ -197,14 +197,14 @@ define([
 
             $.fn.list.showModal=function(self){
                 $('#myModal').modal();
-                event.set(self);
+                Mevent.set(self);
                 if(self.Creator_id){
-                    event.set("HasCreator",true);
+                    Mevent.set("HasCreator",true);
                     if (!self.Link) {
-                        event.set("Link", "/#eventDescription/" + self.id);
+                        Mevent.set("Link", "/#eventDescription/" + self.id);
                     }
                 }else{
-                    event.set("HasCreator",false);
+                    Mevent.set("HasCreator",false);
                 }
             }
         }
