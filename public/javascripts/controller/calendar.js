@@ -23,15 +23,15 @@ define([
                         events.forEach(function(event){
                             if(typeof(event) != 'undefined' ){
                                 var eventToAdd = {
-                                title: event.Name,
-                                start: new Date(event.Date),
-                                end: new Date(event.DateEnd),
-                                allDay: false,
-                                color:"",
-                                address: event.Address,
-                                category: event.Type,
-                                description: event.Description,
-                                link:""
+                                    title: event.Name,
+                                    start: new Date(event.Date),
+                                    end: new Date(event.DateEnd),
+                                    allDay: false,
+                                    color:"",
+                                    address: event.Address,
+                                    category: event.Type,
+                                    description: event.Description,
+                                    link:""
                                 }
                                 switch (event.Type)
                                 {
@@ -92,8 +92,7 @@ define([
                             events: eventList
                         });
                     }
-                }
-            );
+             });
 
 
         }

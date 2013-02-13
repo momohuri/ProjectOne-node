@@ -96,13 +96,14 @@ if (typeof define !== 'function') {
             getMyEvents:function(req,res){
                 var User= Muser.build(req.session.user);
                 if(typeof(req.body.Date)=='undefined'){
-                    User.getEvents().success(function(associatedEvents) {
+                    User.getEvents({where :"DateEnd >= NOW() AND `EventsUsers`.`UserId`="+req.session.user.id
+                        +" AND `EventsUsers`.`EventId`=`Events`.`id`"}).success(function(associatedEvents) {
                         parseEvent(associatedEvents);
                     });
                 }else{
                     req.body.Date= functionH.DateJStoSQL(req.body.Date);
                     req.body.DateEnd= functionH.DateJStoSQL(req.body.DateEnd);
-                    User.getEvents({ where: 'Date BETWEEN "'+req.body.Date +'" AND "'+req.body.DateEnd+'"' }).success(function(associatedEvents) {
+                    User.getEvents({ where: 'DateEnd BETWEEN "'+req.body.Date +'" AND "'+req.body.DateEnd+'"' }).success(function(associatedEvents) {
                         parseEvent(associatedEvents);
                     });
                 }
@@ -110,9 +111,6 @@ if (typeof define !== 'function') {
                 function parseEvent(associatedEvents){
                     var events=[];
                     associatedEvents.forEach(function(item){
-                        var dateFinish = new Date(item.DateEnd);
-                        var dateNow = new Date();
-                        if(dateFinish > dateNow){
                             events.push({
                                 Name:item.Name,
                                 Description:item.Description,
@@ -125,8 +123,7 @@ if (typeof define !== 'function') {
                                 CreatorId:item.Creator_id,
                                 Link:item.Link
                             })
-                        }
-                    })
+                    });
                     User.getCreated(function(eventCreated){
                         eventCreated.forEach(function(item){
                         item.Date = new Date(item.Date);
