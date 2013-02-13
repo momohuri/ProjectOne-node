@@ -10,6 +10,7 @@ define([
     var app = {
         init:function () {
             var model = Mevent.init('myModal');
+            var model = Mevent.init('myModalAddEvent');
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
@@ -32,6 +33,30 @@ define([
                                 description: event.Description,
                                 link:""
                                 }
+                                switch (event.Type)
+                                {
+                                    case "Concert":
+                                        eventToAdd.color = "#FF0000";
+                                        break;
+                                    case "Soirée":
+                                        eventToAdd.color = "#00FF00";
+                                        break;
+                                    case "Festival":
+                                        eventToAdd.color = "#74DF00";
+                                        break;
+                                    case "Spectacle":
+                                        eventToAdd.color = "#00BFFF";
+                                        break;
+                                    case "Sport":
+                                        eventToAdd.color = "#FFBF00";
+                                        break;
+                                    case "Salon":
+                                        eventToAdd.color = "#2E64FE";
+                                        break;
+                                    default:
+                                        eventToAdd.color = "";
+                                        break;
+                                }
                                 if(event.Link != null){
                                     eventToAdd.link = event.Link;
                                 }else{
@@ -49,7 +74,7 @@ define([
                             editable: false,
                             selectable: true,
                             selectHelper: true,
-                            eventClick: function(calEvent, jsEvent, view) {
+                            eventClick: function(calEvent) {
                                 model.model().set("Description", calEvent.description);
                                 model.model().set("Date", new Date(calEvent.start).toLocaleString());
                                 model.model().set("DateEnd", new Date(calEvent.end).toLocaleString());
@@ -58,6 +83,11 @@ define([
                                 model.model().set("Type", calEvent.category);
                                 model.model().set("Link", calEvent.link);
                                 $('#myModal').modal('show');
+                            },
+                            select: function(start, end) {
+                                model.model().set("Date", new Date(start).toLocaleString());
+                                model.model().set("DateEnd", new Date(end).toLocaleString());
+                                $('#myModalAddEvent').modal('show');
                             },
                             events: eventList
                         });

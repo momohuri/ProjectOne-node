@@ -14,6 +14,18 @@
 
 </style>
 
+<table border="1" style="margin: auto;color: white">
+    <tr>
+        <th style="background: #FF0000;width: 10%;" class="ui-corner-all">Concert</th>
+        <th style="background: #00FF00;width: 10%;" class="ui-corner-all">Soirée</th>
+        <th style="background: #74DF00;width: 10%;" class="ui-corner-all">Festival</th>
+        <th style="background: #00BFFF;width: 10%;" class="ui-corner-all">Spectacle</th>
+        <th style="background: #FFBF00;width: 10%;" class="ui-corner-all">Sport</th>
+        <th style="background: #2E64FE;width: 10%;" class="ui-corner-all">Salon</th>
+    </tr>
+</table>
+        <br>
+
 <div id='calendar'></div>
 
 
@@ -28,6 +40,81 @@
         <p>Adresse: <span data-bind="text: Address"></span></p>
         <p>Categorie: <span data-bind="text: Type"></span> </p>
         <p></p><a target="_blank" onclick="$('#myModal').modal('hide');" data-bind="attr: { href: Link}">Plus d'info</a></p>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
+    </div>
+</div>
+
+<div id="myModalAddEvent" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 data-bind="text: Name"></h3>
+    </div>
+    <div class="modal-body" style="text-align: left;">
+        <form class="form-inline well" id="event">
+            <h3>Créer un evenement</h3>
+            <hr>
+            <fieldset>
+                <div>
+                    <label class="control-label hidden-phone" for="event">Titre de votre évènement :</label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-font icon-large"></i></span>
+                        <input type="text" id="eventName" class="input-large" placeholder="Titre de votre évènement" data-bind="value: Name" required>
+                    </div>
+                </div>
+                <br/>
+                <div>
+                    <label class="control-label hidden-phone" for="eventDesc">Description de votre évènement :</label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-align-justify icon-large"></i></span>
+                        <input type="text" id="eventDesc" class="input-xxlarge" placeholder="Description de votre évènement" data-bind="value: Description" required>
+                    </div>
+                </div>
+                <br/>
+                <div style="display: inline-block">
+                    <label for="startDate" class="control-label hidden-phone">Date de début : </label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-calendar icon-large"></i></span>
+                        <input type="text" name="startDate" class="input-medium" placeholder="Date de début" data-bind="value: Date"  id="startDate" value="" required>
+                    </div>
+                </div>
+                <div style="display: inline-block">
+                    <label for="endDate" class="control-label hidden-phone">Date de fin : </label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-calendar icon-large"></i></span>
+                        <input type="text" id="endDate" class="input-medium" placeholder="Date de fin"  data-bind="value: DateEnd"  value="" required/>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div style="display: inline-block">
+                    <label class="control-label hidden-phone" for="inputPlace">Lieu :</label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-home icon-large"></i></span>
+                        <input type="text" id="inputPlace"  class="input-xxlarge" placeholder="Lieu"  data-bind="value: Address" required>
+                    </div>
+                </div>
+                <div style="display: inline-block">
+                    <label class="control-label hidden-phone" for="inputType">Categorie :</label>
+                    <div id="inputType" class="input-prepend">
+                        <span class="add-on"><i class="icon-th icon-large"></i></span>
+                        <select id="categorie" data-bind="value: Type" class="input-medium">
+                            <option value="Toutes" selected>Toutes</option>
+                            <option value="Concert" >Concert</option>
+                            <option value="Soirée">Soirée</option>
+                            <option value="Festival">Festival</option>
+                            <option value="Spectacle">Spectacle</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Salon">Salon</option>
+                        </select>
+                    </div>
+                </div>
+                <br/><br/>
+                <button type="submit" id='submit' class="btn">Valider</button>
+            </fieldset>
+        </form>
 
     </div>
     <div class="modal-footer">

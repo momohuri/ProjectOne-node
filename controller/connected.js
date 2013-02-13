@@ -110,7 +110,7 @@ if (typeof define !== 'function') {
                 function parseEvent(associatedEvents){
                     var events=[];
                     associatedEvents.forEach(function(item){
-                        var dateFinish = new Date(item.dateEnd);
+                        var dateFinish = new Date(item.DateEnd);
                         var dateNow = new Date();
                         if(dateFinish > dateNow){
                             events.push({
@@ -122,7 +122,7 @@ if (typeof define !== 'function') {
                                 Type:item.Type,
                                 lat:item.lat,
                                 lng:item.lng,
-                                CreatorId:item.Creator_Id,
+                                CreatorId:item.Creator_id,
                                 Link:item.Link
                             })
                         }
