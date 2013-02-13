@@ -28,7 +28,7 @@
             this.MAX_MOUSE_POSITION_FLOAT_PX = 10;
             this.MAX_TOUCH_POSITION_FLOAT_PX = 25;
 
-            this.SCROLLBAR_BORDER = 1;
+            this.SCROLLBAR_BORDER = 4;
             this.SCROLLBAR_MIN_SIZE = 10;
 
             this.RESIZE_TIMEOUT_DELAY = 100;
@@ -79,13 +79,15 @@
             this.$el.bind( this.MOUSE_WHEEL, function( event ) { event.preventDefault();  return self.onMouseWheel(event); } );
 
             if ( !this.touchSupported) {
+
                 var sbWidth = parseInt(this.$scrollbar.css( "width" ), 10);
-                this.$scrollbar.css( "width", 1.25*sbWidth );
+                this.$scrollbar.css( "width", 3.25*sbWidth );
 
                 this.scrollbarStartHandler = function( event ) { return self.scrollbarTouchStart(event); };
                 this.scrollbarMoveHandler = function( event ) { return self.scrollbarTouchMove(event); };
                 this.scrollbarEndHandler = function( event ) { return self.scrollbarTouchEnd(event); };
-                this.$scrollbar.bind( this.TOUCH_START, this.scrollbarStartHandler );
+                //this.$scrollbar.on( "mouseenter", this.scrollbarStartHandler );
+                $(document).on(this.TOUCH_START,'#scrollbar', this.scrollbarStartHandler);
             }
             else {
                 this.$scrollbar.fadeTo( 0,0 );
@@ -147,8 +149,8 @@
             this.inputStartCoordinates = this.inputCoordinates;
             this.inputStartTime = new Date().getTime();
 
-            event.preventDefault();
-            return false;
+//            event.preventDefault();
+//            return false;
         },
 
         onTouchMove: function ( event ) {

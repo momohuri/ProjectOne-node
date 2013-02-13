@@ -142,7 +142,7 @@ define([
                 if(item!=0){
                     var date= new Date(item.Date);
                     var dateEnd= new Date(item.DateEnd);
-                    var descrition =item.Name+" du "+date.toLocaleDateString()+" au "+dateEnd.toLocaleDateString()+"<br>Categorie:"+item.Type;
+                    var descrition =item.Type+':  '+item.Name+"<br> Du "+ date.toLocaleDateString() +' ' +date.getHours()+':'+(date.getMinutes()<10?'0':'') + date.getMinutes()+" au "+ dateEnd.toLocaleDateString() +' ' +dateEnd.getHours()+':'+(dateEnd.getMinutes()<10?'0':'') + dateEnd.getMinutes();
                 }else{
                     var descrition = "Il n'y a pas d'Evenement... Cree le votre"
                 }
