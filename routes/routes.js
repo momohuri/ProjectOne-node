@@ -31,6 +31,10 @@ if (typeof define !== 'function') {
 //                        res.json(['must auth']);
 //                    }
 //                });
+//                app.all('/*', function (req, res, next) {
+//                    console.log(req.session);
+//                    next();
+//                });
 
 
                 var routesConf = JSON.parse(fs.readFileSync("./config/routes.json", "utf-8"));

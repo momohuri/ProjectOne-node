@@ -44,7 +44,7 @@ if (typeof define !== 'function') {
                     }).on('success', function (User) {
                             if (User != null) {
                                 if (Muser.verify(req.body.password, User.Password)) {
-
+                                    req.session.user=User;
                                      User.getEvents().success(function(associatedEvents) {
                                         var events=[];
                                         associatedEvents.forEach(function(item){
@@ -64,8 +64,7 @@ if (typeof define !== 'function') {
                                         User.getCreated(function(eventCreated){
                                             events = events.concat(eventCreated);
                                             res.send({work:true, Email:User.Email, Password:User.Password, id:req.session.id, userId:User.id,Name:User.Name,Surname:User.Surname,events:events});
-                                            req.session.user=User;
-                                            console.log(req.session.user.id);
+
                                         })
                                     }).error(function(err){
                                              console.log('err2',err);
@@ -116,10 +115,10 @@ if (typeof define !== 'function') {
                         CreatorId : Event.Creator_id,
                         Type: Event.Type
                     }
-                    if(Event.Link!=''){
+                    if(Event.Link!=null){
                         eventDescription.Link=Event.Link;
                     }else{
-                        eventDescription.Link='/#eventDescription/'+eventDescription.id;
+                        eventDescription.Link='#eventDescription/'+id;
                     }
                     if(req.session.user){
                         Muser.find(req.session.user.id).success(function(userHasMember) {

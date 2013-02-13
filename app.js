@@ -12,6 +12,8 @@ define([
     'sequelize'
 ], function (express, routes, http,ejs, path,helpers,relation,Sequelize) {
 
+
+
     var app = express();
     global.sequelize = new Sequelize("projectone", "root", "root");
     app.configure(function () {
@@ -23,8 +25,29 @@ define([
         app.use(express.logger('dev'));
         app.use(express.bodyParser());
         app.use(express.methodOverride());
-        app.use(express.cookieParser('mouhahaha'));
-        app.use(express.session());
+        app.use(express.cookieParser());
+
+        if(typeof(process.env.VCAP_SERVICES)!='undefined'){
+            var env = JSON.parse(process.env.VCAP_SERVICES);
+            var conf = env['redis-2.2'][0]["credentials"];
+            console.log(conf);
+            var RedisStore = require('connect-redis')(express);
+            app.sessionStore = new RedisStore({port : conf.redis_port, host: conf.redis_host, pass: conf.redis_pass});
+            app.use(express.session({
+                secret: "cookie",
+                store: app.sessionStore,
+                cookie: {
+                    maxAge: 14400000
+                }
+            }));
+        }else{
+            app.use(express.session({
+                secret: 'mySecret',
+                maxAge: new Date(Date.now() + 3600000)
+            }));
+        }
+
+
         app.use(express.static(path.join(__dirname, 'public')));
         app.use(app.router);
         routes.route(app);

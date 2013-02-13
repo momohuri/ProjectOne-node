@@ -99,8 +99,7 @@ define([
                 });
             },
             autocomplete:function () {
-                   var options = {
-                   };
+                   var options = {};
                    var input = document.getElementById('inputPlace');
                    var autocomplete = new google.maps.places.Autocomplete(input, options);
 

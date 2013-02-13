@@ -119,7 +119,9 @@ define([
                 }
                 event.item.Date = new Date(event.item.Date).toLocaleString();
                 event.item.DateEnd = new Date(event.item.DateEnd).toLocaleString();
-                $('#myList').list.showModal(event.item);
+                if(event.item!=0){
+                    $('#myList').list.showModal(event.item);
+                }
             }
 
             function createDataProvider(events) {
@@ -161,13 +163,11 @@ define([
 
             $.fn.list.showModal=function(self){
                 $('#myModal').modal();
-
                 event.set(self);
                 if(self.Creator_id){
                     event.set("HasCreator",true);
-                    if (self.Link) {
-                    }else{
-                        event.set("Link","/#eventDescription/"+self.id);
+                    if (!self.Link) {
+                        event.set("Link", "/#eventDescription/" + self.id);
                     }
                 }else{
                     event.set("HasCreator",false);
