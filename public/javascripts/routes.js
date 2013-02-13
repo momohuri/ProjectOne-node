@@ -6,11 +6,12 @@ define([
     'controller/inscription',
     'controller/eventDescription',
     'controller/myEvents',
+    'controller/calendar',
     'helpers/function',
     'model/user',
     'extern/backbone.routefilter.min'
 
-], function (homeC, messageC, eventC, menuC, inscriptionC, eventDescriptionC,myEventsC, functionH, user) {
+], function (homeC, messageC, eventC, menuC, inscriptionC, eventDescriptionC,myEventsC,calendarC, functionH, user) {
 
         var AppRouter = Backbone.Router.extend({
             before:function(route){
@@ -23,6 +24,7 @@ define([
                 "searchEvent":"searchEvent",
                 "eventDescription/:id":"eventDescription",
                 "myEvents":"myEvent",
+                "calendar":"calendar",
                 "*actions":"defaultRoute"
             },
             message:function () {
@@ -53,6 +55,11 @@ define([
             eventDescription:function (id) {
                 loadViewSameMenu('eventDescription', function (online) {
                         eventDescriptionC.init(id);
+                });
+            },
+            calendar:function () {
+                loadViewLogged('calendar', function () {
+                    calendarC.init();
                 });
             },
             myEvent:function(){
