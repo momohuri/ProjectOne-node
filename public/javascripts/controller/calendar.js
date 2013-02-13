@@ -9,6 +9,7 @@ define([
 
     var app = {
         init:function () {
+            var model = Mevent.init('myModal');
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
@@ -26,12 +27,13 @@ define([
                                 end: new Date(event.DateEnd),
                                 allDay: false,
                                 color:"",
-                                url: ""
+                                description: event.Description,
+                                link:""
                                 }
                                 if(event.Link != null){
-                                    eventToAdd.url = event.Link;
+                                    eventToAdd.link = event.Link;
                                 }else{
-                                    eventToAdd.url = "/#eventDescription/"+event.id;
+                                    eventToAdd.link = "/#eventDescription/"+event.id;
                                 }
                                 eventList.push(eventToAdd);
                             }
@@ -45,24 +47,13 @@ define([
                             editable: false,
                             selectable: true,
                             selectHelper: true,
-                            select: function(start, end, allDay) {
-                                var title = prompt('Event Title:');
-                                var title = prompt('Event Title:');
-                                var title = prompt('Event Title:');
-                                var title = prompt('Event Title:');
-                                var title = prompt('Event Title:');
-                                if (title) {
-                                    calendar.fullCalendar('renderEvent',
-                                        {
-                                            title: title,
-                                            start: start,
-                                            end: end,
-                                            allDay: allDay
-                                        },
-                                        true // make the event "stick"
-                                    );
-                                }
-                                calendar.fullCalendar('unselect');
+                            eventClick: function(calEvent, jsEvent, view) {
+                                model.model().set("Description", calEvent.description);
+                                model.model().set("Date", new Date(calEvent.start).toLocaleString());
+                                model.model().set("DateEnd", new Date(calEvent.end).toLocaleString());
+                                model.model().set("Name", calEvent.title);
+                                model.model().set("Link", calEvent.link);
+                                $('#myModal').modal('show');
                             },
                             events: eventList
                         });
