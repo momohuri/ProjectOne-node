@@ -18,5 +18,4 @@ define([
         }
     }
     return app;
-
 });

@@ -2,51 +2,69 @@
     <h3>Inscription</h3>
     <hr>
     <div class="row-fluid">
-        <div class="span5 " >
+        <div class="span6 well" >
             <form class="form-horizontal" id="inscription">
                 <div class="control-group">
-                    <label class="control-label hidden-phone" for="inputName">Nom :</label>
-
+                    <label class="control-label hidden-phone" for="inputName">Nom : </label>
                     <div class="controls">
-                        <input type="text" id="inputName" placeholder="Votre nom" data-bind="value: Name" required>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-user"> </i></span>
+                            <input type="text" id="inputName" data-bind="value: Name" required>
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label hidden-phone" for="inputSurname">Prénom :</label>
 
                     <div class="controls">
-                        <input type="text" id="inputSurname" placeholder="Votre prénom" data-bind="value: Surname"
-                               required>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-user"> </i></span>
+                            <input type="text" id="inputSurname" placeholder="Votre prénom" data-bind="value: Surname"
+                                   required>
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label hidden-phone" for="inputEmail">Adresse e-mail :</label>
 
                     <div class="controls">
-                        <input type="email" id="inputEmail" placeholder="Votre adresse e-mail:" data-bind="value: Email"
-                               required>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-envelope"> </i></span>
+                            <input type="email" id="inputEmail" placeholder="Votre adresse e-mail:" data-bind="value: Email"
+                                   required>
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label hidden-phone" for="inputEmail">Saisissez à nouveau votre e-mail :</label>
 
                     <div class="controls">
-                        <input type="email" id="inputEmail2" placeholder="E-mail" required>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-envelope"> </i></span>
+                            <input type="email" id="inputEmail2" placeholder="E-mail" required>
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label hidden-phone" for="inputPassword">Mot de passe :</label>
 
                     <div class="controls">
-                        <input type="password" id="inputPassword2" placeholder="Votre mot de passe :"
-                               data-bind="value: Password" required>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-lock"> </i></span>
+                            <input type="password" id="inputPassword2" placeholder="Votre mot de passe :"
+
+                                   data-bind="value: Password" required>
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label hidden-phone" for="inputPassword">Saisissez à nouveau votre e-mail :</label>
 
                     <div class="controls">
-                        <input type="password" id="inputPassword" placeholder="Mot de passe" required>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-lock"> </i></span>
+                            <input type="password" id="inputPassword" placeholder="Mot de passe" required>
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
@@ -57,7 +75,7 @@
             </form>
         </div>
 
-        <div id="description" class="span7">
+        <div id="description" class="span6 well">
             <h4> En vous inscrivant vous aurez accès a plein de nouvelle fonctionnalités!!!</h4>
             <ul>
                 <li>Crée de nouveau évènements</li>
