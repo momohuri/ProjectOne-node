@@ -9,8 +9,9 @@ define([
 
     var app = {
         init:function () {
-            var model = Mevent.init('myModal');
-            var model = Mevent.init('myModalAddEvent');
+            var model = Mevent.init('myModal')
+            Mevent.init('myModalAddEvent');
+
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
@@ -85,6 +86,7 @@ define([
                                 $('#myModal').modal('show');
                             },
                             select: function(start, end) {
+                                model.model().resetEvent();
                                 model.model().set("Date", new Date(start).toLocaleString());
                                 model.model().set("DateEnd", new Date(end).toLocaleString());
                                 $('#myModalAddEvent').modal('show');
