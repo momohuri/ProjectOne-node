@@ -9,8 +9,9 @@ define([
 
     var app = {
         init:function () {
-            var model = Mevent.init('myModal');
-            var model = Mevent.init('myModalAddEvent');
+            var model = Mevent.init('myModal')
+            Mevent.init('myModalAddEvent');
+
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
@@ -23,15 +24,15 @@ define([
                         events.forEach(function(event){
                             if(typeof(event) != 'undefined' ){
                                 var eventToAdd = {
-                                title: event.Name,
-                                start: new Date(event.Date),
-                                end: new Date(event.DateEnd),
-                                allDay: false,
-                                color:"",
-                                address: event.Address,
-                                category: event.Type,
-                                description: event.Description,
-                                link:""
+                                    title: event.Name,
+                                    start: new Date(event.Date),
+                                    end: new Date(event.DateEnd),
+                                    allDay: false,
+                                    color:"",
+                                    address: event.Address,
+                                    category: event.Type,
+                                    description: event.Description,
+                                    link:""
                                 }
                                 switch (event.Type)
                                 {
@@ -85,6 +86,7 @@ define([
                                 $('#myModal').modal('show');
                             },
                             select: function(start, end) {
+                                model.model().resetEvent();
                                 model.model().set("Date", new Date(start).toLocaleString());
                                 model.model().set("DateEnd", new Date(end).toLocaleString());
                                 $('#myModalAddEvent').modal('show');
@@ -92,8 +94,7 @@ define([
                             events: eventList
                         });
                     }
-                }
-            );
+             });
 
 
         }
