@@ -95,16 +95,16 @@ if (typeof define !== 'function') {
                 },
             getMyEvents:function(req,res){
                 var User= Muser.build(req.session.user);
-                if(typeof(req.body.Date)=='undefined'){
+                if(typeof(req.query.start)=='undefined'){
                     User.getEvents({where :"DateEnd >= NOW() AND `EventsUsers`.`UserId`="+req.session.user.id
                         +" AND `EventsUsers`.`EventId`=`Events`.`id`"}).success(function(associatedEvents) {
                         parseEvent(associatedEvents);
                     });
                 }else{
-                    req.body.Date= functionH.DateJStoSQL(req.body.Date);
-                    req.body.DateEnd= functionH.DateJStoSQL(req.body.DateEnd);
+                    req.body.Date= functionH.DateJStoSQL(new Date(req.query.start*1000));
+                    req.body.DateEnd= functionH.DateJStoSQL(new Date(req.query.end * 1000));
                     User.getEvents({ where: 'DateEnd BETWEEN "'+req.body.Date +'" AND "'+req.body.DateEnd+'"' }).success(function(associatedEvents) {
-                        parseEvent(associatedEvents);
+                        parseEventToCalendar(associatedEvents);
                     });
                 }
 
@@ -133,7 +133,56 @@ if (typeof define !== 'function') {
                         res.send(events);
                     })
                 };
+                function parseEventToCalendar(events){
+                    var eventList =[];
+                        var bool = false;
+                        events.forEach(function(event){
+                                var eventToAdd = {
+                                    title: event.Name,
+                                    start: new Date(event.Date),
+                                    end: new Date(event.DateEnd),
+                                    allDay: false,
+                                    color:"",
+                                    address: event.Address,
+                                    category: event.Type,
+                                    description: event.Description,
+                                    link:""
+                                }
+                                switch (event.Type)
+                                {
+                                    case "Concert":
+                                        eventToAdd.color = "#FF0000";
+                                        break;
+                                    case "Soirée":
+                                        eventToAdd.color = "#00FF00";
+                                        break;
+                                    case "Festival":
+                                        eventToAdd.color = "#74DF00";
+                                        break;
+                                    case "Spectacle":
+                                        eventToAdd.color = "#00BFFF";
+                                        break;
+                                    case "Sport":
+                                        eventToAdd.color = "#FFBF00";
+                                        break;
+                                    case "Salon":
+                                        eventToAdd.color = "#2E64FE";
+                                        break;
+                                    default:
+                                        eventToAdd.color = "";
+                                        break;
+                                }
+                                if(event.Link != null){
+                                    eventToAdd.link = event.Link;
+                                }else{
+                                    eventToAdd.link = "/#eventDescription/"+event.id;
+                                }
+                                eventList.push(eventToAdd);
+                        });
 
+                    res.send(eventList);
+
+                }
 
             },
             addComment:function(req,res){

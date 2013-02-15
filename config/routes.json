@@ -66,6 +66,12 @@
             "func":"getMyEvents",
             "method":"post"
             },
+        "getMyEventsGet":{
+            "route":"/getMyEvents",
+            "controller":"connected",
+            "func":"getMyEvents",
+            "method":"get"
+        },
         "joinEvent":{
             "route":"/joinEvent",
             "controller":"connected",
