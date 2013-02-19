@@ -36,6 +36,19 @@ if (typeof define !== 'function') {
                             console.log('err',err)
                             next([]);
                         })
+                },
+                getEventBetween:function(date,dateEnd,next){
+                    sequelize.query('SELECT * FROM `Events` \
+                        join `EventsUsers` on `EventId`=`Events`.`id` WHERE (`DateEnd` \
+                        BETWEEN "'+date+'" AND "'+dateEnd+'" OR `Date` BETWEEN "'+date+'" AND "'+dateEnd+'"\
+                        OR (`Date`<"'+date+'" and `DateEnd`>"'+dateEnd+'"))\
+                        AND `EventsUsers`.`UserId`='+this.id+';'
+                    ,null,{raw:true}).success(function(data){
+                    next(data);
+                    }).error(function(err){
+                        console.log('err',err);
+                        next([]);
+                    });
                 }
             },
             classMethods:{
