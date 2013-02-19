@@ -3,7 +3,7 @@ define([
     "../helpers/function",
     "../extern/bootstrap-list"
 ], function (dao, functionH) {
-
+functionH
     var Mevent = new Backbone.Model(
         {
             id:'',

@@ -107,10 +107,7 @@ define([
                         var place = autocomplete.getPlace();
                         var lattitude = place.geometry.location.lat();
                         var longitude = place.geometry.location.lng();
-
-
                         $('#inputPlace').trigger('changeLatLng',[lattitude,longitude]);
-
                     });
             },
             addMarker:function (lat, lng, item, number) {

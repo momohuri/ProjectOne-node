@@ -12,14 +12,36 @@ define([
             var model = Mevent.init('myModal')
             Mevent.init('myModalAddEvent');
 
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
+            functionH.dateTimePicker();
 
-            //add event
+            //bug: modal passe devant si on fait pas ca.
+            $('#startDate').on('click',function(){
+                $("#ui-datepicker-div").css("z-index", "9999");
+            });
+            $('#endDate').on('click',function(){
+                $("#ui-datepicker-div").css("z-index", "9999");
+            });
+            $('#inputPlace').on('input',function(){
+                $('.pac-container').css("z-index", "9999");
+            });
+            require(["helpers/googlemaps"],function(maps){
+                $('#inputPlace')
+                    .on('changeLatLng',function(event,lat,lng){
+                        model.model().set("lat",lat);
+                        model.model().set("lng",lng);
+                    }).on('changeAddress',function(event,address){
+                        model.model().set("Address",address);
+                    });
+                maps.autocomplete();
+            });
+
             $('#submit').on('click',function(event){
                 event.preventDefault();
+                if(typeof(model.model().attributes.DateEnd)=='undefined'){
+                    model.model().attributes.DateEnd=model.model().attributes.Date;
+                }
+                model.model().attributes.Date = $.datepicker.formatDate('yy-mm-dd', new Date(model.model().attributes.Date.toString().split(' ')[0])) + ' ' + model.model().attributes.Date.toString().slice(11,16);
+                model.model().attributes.DateEnd = $.datepicker.formatDate('yy-mm-dd', new Date(model.model().attributes.DateEnd.toString().split(' ')[0])) + ' ' + model.model().attributes.DateEnd.toString().slice(11,16);
                 $('#myModalAddEvent').modal('hide');
                 Mevent.create(model);
             });
@@ -45,67 +67,16 @@ define([
                 },
                 select: function(start, end) {
                     model.model().resetEvent();
-                    model.model().set("Date", new Date(start).toLocaleString());
-                    model.model().set("DateEnd", new Date(end).toLocaleString());
+                    var hours= (start.getHours()<=9)?'0'+start.getHours():start.getHours();
+                    var min= (start.getMinutes()<=9)?'0'+start.getMinutes():start.getMinutes();
+                    $('#startDate').val($.datepicker.formatDate('yy-mm-dd', new Date(start))+' '+hours+':'+min);
+                    hours= (end.getHours()<=9)?'0'+end.getHours():end.getHours();
+                    min= (end.getMinutes()<=9)?'0'+end.getMinutes():end.getMinutes();
+                    $('#endDate').val($.datepicker.formatDate('yy-mm-dd', new Date(end))+' '+hours+':'+min);
                     $('#myModalAddEvent').modal('show');
                 },
                 events: '/getMyEvents'
             });
-
-//            Mevent.getMyEventsOnline(function(events){
-//                    if (typeof(events) != 'undefined') {
-//                        var eventList =[];
-//                        var bool = false;
-//                        events.forEach(function(event){
-//                            if(typeof(event) != 'undefined' ){
-//                                var eventToAdd = {
-//                                    title: event.Name,
-//                                    start: new Date(event.Date),
-//                                    end: new Date(event.DateEnd),
-//                                    allDay: false,
-//                                    color:"",
-//                                    address: event.Address,
-//                                    category: event.Type,
-//                                    description: event.Description,
-//                                    link:""
-//                                }
-//                                switch (event.Type)
-//                                {
-//                                    case "Concert":
-//                                        eventToAdd.color = "#FF0000";
-//                                        break;
-//                                    case "Soirée":
-//                                        eventToAdd.color = "#00FF00";
-//                                        break;
-//                                    case "Festival":
-//                                        eventToAdd.color = "#74DF00";
-//                                        break;
-//                                    case "Spectacle":
-//                                        eventToAdd.color = "#00BFFF";
-//                                        break;
-//                                    case "Sport":
-//                                        eventToAdd.color = "#FFBF00";
-//                                        break;
-//                                    case "Salon":
-//                                        eventToAdd.color = "#2E64FE";
-//                                        break;
-//                                    default:
-//                                        eventToAdd.color = "";
-//                                        break;
-//                                }
-//                                if(event.Link != null){
-//                                    eventToAdd.link = event.Link;
-//                                }else{
-//                                    eventToAdd.link = "/#eventDescription/"+event.id;
-//                                }
-//                                eventList.push(eventToAdd);
-//                            }
-//                        });
-//
-//                    }
-//             });
-
-
         }
     }
     return app;
