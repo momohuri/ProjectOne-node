@@ -37,9 +37,6 @@ define([
 
             $('#submit').on('click',function(event){
                 event.preventDefault();
-                if(typeof(model.model().attributes.DateEnd)=='undefined'){
-                    model.model().attributes.DateEnd=model.model().attributes.Date;
-                }
                 model.model().attributes.Date = $.datepicker.formatDate('yy-mm-dd', new Date(model.model().attributes.Date.toString().split(' ')[0])) + ' ' + model.model().attributes.Date.toString().slice(11,16);
                 model.model().attributes.DateEnd = $.datepicker.formatDate('yy-mm-dd', new Date(model.model().attributes.DateEnd.toString().split(' ')[0])) + ' ' + model.model().attributes.DateEnd.toString().slice(11,16);
                 $('#myModalAddEvent').modal('hide');
@@ -73,6 +70,8 @@ define([
                     hours= (end.getHours()<=9)?'0'+end.getHours():end.getHours();
                     min= (end.getMinutes()<=9)?'0'+end.getMinutes():end.getMinutes();
                     $('#endDate').val($.datepicker.formatDate('yy-mm-dd', new Date(end))+' '+hours+':'+min);
+                    model.model().set('date',$('#startDate').val());
+                    model.model().set('dateEnd',$('#endDate').val());
                     $('#myModalAddEvent').modal('show');
                 },
                 events: '/getMyEvents'
