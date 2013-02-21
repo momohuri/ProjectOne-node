@@ -117,7 +117,7 @@ if (typeof define !== 'function') {
                 function parseEvent(associatedEvents){
                     var events=[];
                     associatedEvents.forEach(function(item){
-                            events.push({
+                        var eventToAdd = {
                                 Name:item.Name,
                                 Description:item.Description,
                                 Date:item.Date,
@@ -127,8 +127,14 @@ if (typeof define !== 'function') {
                                 lat:item.lat,
                                 lng:item.lng,
                                 CreatorId:item.Creator_id,
-                                Link:item.Link
-                            })
+                                Link:''
+                            }
+                        if(item.Link != '' && item.Link != null){
+                            eventToAdd.Link = item.Link;
+                        }else{
+                            eventToAdd.Link = "/#eventDescription/"+item.id;
+                        }
+                        events.push(eventToAdd);
                     });
                     User.getCreated(function(eventCreated){
                         eventCreated.forEach(function(item){
