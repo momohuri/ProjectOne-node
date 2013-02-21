@@ -178,7 +178,7 @@ if (typeof define !== 'function') {
                                     eventToAdd.color = "";
                                     break;
                             }
-                            if(event.Link != ''){
+                            if(event.Link != '' && event.Link != null){
                                 eventToAdd.link = event.Link;
                             }else{
                                 eventToAdd.link = "/#eventDescription/"+event.id;
