@@ -252,7 +252,6 @@ if (typeof define !== 'function') {
                 });
                 res.send({succ:{succ:["L'invitation a été envoyé avec succès"]}});
             }
-
         }
         return Controller;
     });
