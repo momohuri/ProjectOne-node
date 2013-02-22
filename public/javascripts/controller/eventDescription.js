@@ -69,6 +69,11 @@ define([
                     }
                 });
 
+                $('.removeComment').on('click',function(evt){
+                    alert($(this).find(".idComment").html());
+                    $(this).parent("li").remove();
+                });
+
                 $('#sendMail').on('submit',function(evt){
                     var bool = false;
                     var address = "";

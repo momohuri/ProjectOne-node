@@ -142,12 +142,26 @@ if (typeof define !== 'function') {
             },
             getComments:function(req,res){
                 var id = parseInt(req.body.idEvent,10);
+                var idUser = null;
+                if(req.session.user){
+                    idUser = req.session.user.id;
+                }
                 Mevent.find(id).success(function(result){
                     result.getCommentsByDate(function(items){
                         var comments = [];
                         items.forEach(function(item){
                             if(item.Comment != ""){
-                                comments.push({Comment:item.Comment,creatorName:item.Surname+" "+item.Creator_Name, commentDate:"à "+new Date(item.createdAt).toLocaleTimeString()+" le "+new Date(item.createdAt).toDateString()})
+                                var commentToAdd = {
+                                    commentId:item.CommentId,
+                                    Comment:item.Comment,
+                                    IsCommentCreator: false,
+                                    creatorName:item.Surname+" "+item.Creator_Name,
+                                    commentDate:"à "+new Date(item.createdAt).toLocaleTimeString()+" le "+new Date(item.createdAt).toDateString()
+                                }
+                                if( idUser == item.UserId){
+                                    commentToAdd.IsCommentCreator = true;
+                                }
+                                comments.push(commentToAdd);
                             }
                         })
                         res.send(comments);

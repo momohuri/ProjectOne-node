@@ -27,7 +27,7 @@ if (typeof define !== 'function') {
         },{
             instanceMethods:{
                 getCommentsByDate:function(next){
-                    sequelize.query('SELECT *,Users.name as Creator_Name FROM Comments join Users on Comments.UserId= Users.id join Events on Comments.EventId= Events.id where EventId='+this.id+" ORDER BY Comments.createdAt DESC;", null, { raw: true }).success(function(data){
+                    sequelize.query('SELECT *,Users.name as Creator_Name,Comments.id as CommentId FROM Comments join Users on Comments.UserId= Users.id join Events on Comments.EventId= Events.id where EventId='+this.id+" ORDER BY Comments.createdAt DESC;", null, { raw: true }).success(function(data){
                         next(data);
                     }).error(function(err){
                         console.log('err',err)

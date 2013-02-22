@@ -25,7 +25,7 @@
                 <button type="submit" id="submitComment"class="btn">Ajouter le commentaire</button>
             </form>
             <ul class="unstyled " id="comments" data-bind="foreach: comments">
-                <li>
+                <li><div class="removeComment" style="float:right;" data-bind="if: IsCommentCreator"><i class="icon-remove"><span style="display: none;" class="idComment" data-bind="text: commentId"></span></i></div>
                     <span style="margin: 0;font-weight: bold;" data-bind="text: creatorName">  </span>
                     "<span style="margin: 0;font-style: italic" data-bind="text: Comment"> </span>"
                     <p style="text-align: right;font-style: italic;color: #AAAAAA;"><small><span data-bind="text: commentDate"> </span></small></p>
