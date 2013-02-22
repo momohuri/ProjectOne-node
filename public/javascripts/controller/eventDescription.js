@@ -69,7 +69,7 @@ define([
                     }
                 });
 
-                $('.removeComment').on('click',function(evt){
+                $('.removeComment').on('click',function(){
                     alert($(this).find(".idComment").html());
                     $(this).parent("li").remove();
                 });
@@ -104,7 +104,9 @@ define([
                 dao.QueryOnline('addComment', {idEvent:id,comment:{Comment:$('#comment')[0].value}},
                     function (res) {
                         if(!res.err){
-                            $('#comments').prepend('<li><span style="margin: 0;font-weight: bold;">'+localStorage.surname+" "+localStorage.name+' </span>'+
+                            $('#comments').prepend('<li>' +
+                                '<div class="removeComment" style="float:right;"><i class="icon-remove"><span style="display: none;" class="idComment">'+res.idComment+'</span></i></div>'+
+                            '<span style="margin: 0;font-weight: bold;">'+localStorage.surname+" "+localStorage.name+' </span>'+
                             '<span style="margin: 0;font-style: italic">"'+$('#comment')[0].value+'"</span>'+
                                 '<p style="text-align: right;font-style: italic;color: #AAAAAA;"><small><span>à '+new Date().toLocaleTimeString()+' le '+new Date().toDateString()+'</span></small></p>'+
                                 '<hr style="margin: 0;">'+

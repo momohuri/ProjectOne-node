@@ -210,7 +210,7 @@ if (typeof define !== 'function') {
                         User.addComment(Comment).success(function(){
                             Mevent.find(eventId).success(function(eventToComment){
                                 eventToComment.addComment(Comment).success(function(){
-                                    res.send({work:true});
+                                    res.send({work:true,idComment:Comment.id});
                                 });
                             });
                         }).error(function(error) {
