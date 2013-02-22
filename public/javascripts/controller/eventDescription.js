@@ -70,8 +70,17 @@ define([
                 });
 
                 $('.removeComment').on('click',function(){
-                    alert($(this).find(".idComment").html());
-                    $(this).parent("li").remove();
+                   var commentId = $(this).find(".idComment").html();
+                    alert(commentId);
+                    if(commentId != null){
+                    dao.QueryOnline('deleteComment', {idComment: commentId,idEvent: id},
+                        function (res) {
+                            debugger
+                            if(!res.err){
+                                $(this).parent("li").remove();
+                            }
+                        });
+                    }
                 });
 
                 $('#sendMail').on('submit',function(evt){

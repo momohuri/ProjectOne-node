@@ -90,6 +90,12 @@
             "func":"addComment",
             "method":"post"
         },
+        "deleteComment":{
+            "route":"/deleteComment",
+            "controller":"connected",
+            "func":"deleteComment",
+            "method":"post"
+        },
         "shareEventByMail":{
             "route":"/shareEventByMail",
             "controller":"connected",

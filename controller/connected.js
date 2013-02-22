@@ -222,6 +222,26 @@ if (typeof define !== 'function') {
                     res.send({err:{err:['Veuillez vous connecter!']}});
                 }
             },
+            deleteComment:function(req,res){
+                var commentId = parseInt(req.body.idComment,10);
+                var eventId = parseInt(req.body.idEvent,10);
+                if( req.session.user!=null){
+                    var Comment = Mcomment.find(commentId);
+                    var User= Muser.build(req.session.user);
+                    User.removeComment(Comment).success(function(){
+                        Mevent.find(eventId).success(function(eventToDeleteComment){
+                            eventToDeleteComment.removeComment(Comment).success(function(){
+                                res.send({work:true});
+                            });
+                        });
+                    }).error(function(error) {
+                        console.log("error 1 "+error);
+                        res.send({err:"error 1"});
+                    })
+                }else{
+                    res.send({err:{err:['Veuillez vous connecter!']}});
+                }
+            },
             shareEventByMail:function(req,res){
                 var smtpTransport = nodemailer.createTransport("SMTP",{
                     service: "Gmail",
